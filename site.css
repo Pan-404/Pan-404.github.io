@@ -1,0 +1,25 @@
+body {
+    display: flexbox;
+    transform: translateY(160px);
+    text-align:center;
+    background-color: rgba(17, 17, 17, 0.966);
+}
+h1 {
+    color: aliceblue;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 140px;
+    margin: 20px;
+}
+
+button {
+    border: 0px;
+    margin: 42px;
+    transform: scale(5);
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: rgb(255, 245, 223);
+    border-radius: 3px;
+}
+
+button:hover {
+    background-color: rgba(255, 245, 223, 0.787);
+}
