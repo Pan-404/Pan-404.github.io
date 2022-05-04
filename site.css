@@ -1,6 +1,5 @@
 body {
     display: flexbox;
-    transform: translateY(160px);
     text-align:center;
     background-color: rgba(17, 17, 17, 0.966);
 }
@@ -13,9 +12,6 @@ h2 {
     color:beige;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 40px;
-}
-.title {
-    
 }
 
 button {
