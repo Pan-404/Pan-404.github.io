@@ -7,8 +7,15 @@ body {
 h1 {
     color: aliceblue;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 140px;
-    margin: 20px;
+    font-size: 80px;
+}
+h2 {
+    color:beige;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 40px;
+}
+.title {
+    
 }
 
 button {
