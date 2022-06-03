@@ -1,6 +1,3 @@
-# Streak
-  My first good looking site
-  
-Its a streak counter
+# The Hub
 
-I didnt make it to save the current streak but i will try to implement one
+Its a Hub for all of my projects!
