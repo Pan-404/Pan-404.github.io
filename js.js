@@ -1,6 +1,4 @@
 let rnr = document.getElementById("rnr")
-let x = document.getElementById("x").values
-let y = document.getElementsByName("y").values
 let count = 0
 
 function change() {
