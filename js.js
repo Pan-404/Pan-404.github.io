@@ -12,7 +12,7 @@ function change() {
 function erase() {
     count = 0
     nr.innerText = count
-    dox.innerText = ""
+    dox.innerText = "⠀"
     console.log("now the number is: " + count)
 
 }
