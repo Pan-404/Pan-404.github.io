@@ -2,12 +2,18 @@ body {
     display: flexbox;
     text-align:center;
     background-color: rgba(17, 17, 17, 0.966);
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 h1 {
     color: aliceblue;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 80px;
+}    
+
+.range {
+    transform: translateY(180px);
 }
+
 h2 {
     color:beige;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -16,8 +22,8 @@ h2 {
 
 button {
     border: 0px;
-    margin: 42px;
-    transform: scale(5);
+    margin: 100px;
+    transform: scale(4);
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     background-color: rgb(255, 245, 223);
     border-radius: 3px;
@@ -25,4 +31,8 @@ button {
 
 button:hover {
     background-color: rgba(255, 245, 223, 0.787);
+}
+
+.nr {
+    font-size: 100px;
 }

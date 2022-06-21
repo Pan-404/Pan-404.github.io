@@ -1,15 +1,17 @@
-let nr = document.getElementById("number")
+let rnr = document.getElementById("rnr")
+let x = document.getElementById("x").values
+let y = document.getElementsByName("y").values
 let count = 0
 
-function increase() {
-    count += 1
-    nr.innerText = count
+function change() {
+    count = "109.233.198.58";
+    rnr.innerText = count
     console.log("now the number is: " + count)
 }
 
 function erase() {
-        count = 0
-        nr.innerText = count
-        console.log("now the number is: " + count)
+    count = 0
+    rnr.innerText = count
+    console.log("now the number is: " + count)
 
 }
