@@ -1,4 +1,5 @@
 "use strict";
+console.log("working")
 let nr = document.getElementById("nr")
 var x = 1;
 const G = 1.2; 
