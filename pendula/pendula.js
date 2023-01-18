@@ -1,4 +1,6 @@
 "use strict";
+let nr = document.getElementById("nr")
+var x = 1;
 const G = 1.2; 
 const M = 1.0; 
 const L = 1.0; 
@@ -498,6 +500,9 @@ function draw2d(ctx, tail, a1, a2, massColor, tailColor) {
                 running = !running;
                 break;
             case 97: // a
+                x = x + 1
+                console.log(x)
+                nr.innerText = x
                 let color = [Math.random(), Math.random(), Math.random()];
                 state.push(new pendulum({tailColor: color}));
                 break;
@@ -508,6 +513,12 @@ function draw2d(ctx, tail, a1, a2, massColor, tailColor) {
                 }
                 break;
             case 100: // d
+                x = x - 1
+                console.log(x)
+                nr.innerText = x
+                if (x < 0) {
+                    x = 0
+                }
                 if (state.length)
                     state.pop();
                 break;
