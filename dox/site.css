@@ -32,3 +32,7 @@ button {
 button:hover {
     background-color: rgba(255, 245, 223, 0.787);
 }
+
+.nr {
+    font-size: 100px;
+}
