@@ -1,7 +1,5 @@
 "use strict";
-console.log("working")
-let nr = document.getElementById("nr")
-var x = 1;
+
 const G = 1.2; 
 const M = 1.0; 
 const L = 1.0; 
@@ -12,7 +10,8 @@ const barWidth = 0.04;
 const barLength = 0.23;
 const massRadius = 0.035;
 const tailThickness = 0.012;
-
+let nr = document.getElementById("nr")
+var x = 1;
 // WebGL
 const quad = new Float32Array([-1, -1, +1, -1, -1, +1, +1, +1]);
 
@@ -286,15 +285,10 @@ function pendulum({
                 cp2 = p2 * (1 - Math.random() * 1e-10);
             conf.init = [a1, a2, p1, cp2];
             return new pendulum(conf);
-        },
-    };
-}
-
+        },};}
 function clear3d(gl) {
     gl.viewport(0, 0, gl.drawingBufferWidth, gl.drawingBufferHeight);
-    gl.clear(gl.COLOR_BUFFER_BIT);
-}
-
+    gl.clear(gl.COLOR_BUFFER_BIT);}
 function draw3d(gl, webgl, pendulums) {
     let w = gl.canvas.width;
     let h = gl.canvas.height;
@@ -302,7 +296,6 @@ function draw3d(gl, webgl, pendulums) {
     let ax = w / z;
     let ay = h / z;
     let d = barLength * 2;
-
     let tail = webgl.tail;
     gl.useProgram(tail.program);
     gl.uniform2f(tail.u_aspect, ax / d, ay / d);
@@ -320,10 +313,7 @@ function draw3d(gl, webgl, pendulums) {
             gl.uniform3fv(tail.u_color, p.tailColor);
             let cutoff = 1 - p.tail.length * 2 / p.tail.v.length;
             gl.uniform1f(tail.u_cutoff, cutoff);
-            gl.drawArrays(gl.TRIANGLE_STRIP, 0, p.tail.length * 2);
-        }
-    }
-
+            gl.drawArrays(gl.TRIANGLE_STRIP, 0, p.tail.length * 2);}}
     let mass = webgl.mass;
     gl.useProgram(mass.program);
     gl.uniform2f(mass.u_aspect, ax, ay);
@@ -341,9 +331,7 @@ function draw3d(gl, webgl, pendulums) {
         gl.uniform2f(mass.u_center, x1, y1);
         gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
         gl.uniform2f(mass.u_center, x2, y2);
-        gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-    }
-
+        gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);}
     let bar = webgl.bar;
     gl.useProgram(bar.program);
     gl.uniform2f(bar.u_aspect, ax, ay);
@@ -361,57 +349,41 @@ function draw3d(gl, webgl, pendulums) {
         gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
         gl.uniform2f(bar.u_attach, x1, y1);
         gl.uniform1f(bar.u_angle, a2 - Math.PI / 2);
-        gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-    }
-};
-
+        gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);}};
 function glRenderer(gl, tailLen) {
     let webgl = {};
     gl.clearColor(1, 1, 1, 1);
     gl.enable(gl.BLEND);
     gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
-
     webgl.quad = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, webgl.quad);
     gl.bufferData(gl.ARRAY_BUFFER, quad, gl.STATIC_DRAW);
-
     webgl.tailb = gl.createBuffer();
     webgl.tailpoly = new Float32Array(tailLen * 4);
     gl.bindBuffer(gl.ARRAY_BUFFER, webgl.tailb);
     gl.bufferData(gl.ARRAY_BUFFER, webgl.tailpoly.byteLength, gl.STREAM_DRAW);
-
     webgl.alpha = gl.createBuffer();
     let alpha = new Float32Array(tailLen * 2);
     for (let i = 0; i < alpha.length; i++) {
         let v = (i + 1) / alpha.length;
-        alpha[i] = 1 - v;
-    }
+        alpha[i] = 1 - v;}
     gl.bindBuffer(gl.ARRAY_BUFFER, webgl.alpha);
     gl.bufferData(gl.ARRAY_BUFFER, alpha, gl.STATIC_DRAW);
-
     webgl.mass = compile(gl, massShader.vert, massShader.frag);
     webgl.bar  = compile(gl, barShader.vert, barShader.frag);
     webgl.tail = compile(gl, tailShader.vert, tailShader.frag);
-
     webgl.renderAll = function(pendulums) {
         clear3d(gl);
-        draw3d(gl, webgl, pendulums);
-    };
-    return webgl;
-}
-
+        draw3d(gl, webgl, pendulums);};
+    return webgl;}
 function color2style(color) {
     let r = Math.round(255 * color[0]);
     let g = Math.round(255 * color[1]);
     let b = Math.round(255 * color[2]);
-    return 'rgb(' + r + ',' + g + ',' + b + ')';
-}
-
+    return 'rgb(' + r + ',' + g + ',' + b + ')';}
 function clear2d(ctx) {
     ctx.fillStyle = 'white';
-    ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-}
-
+    ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);}
 function draw2d(ctx, tail, a1, a2, massColor, tailColor) {
     let w = ctx.canvas.width;
     let h = ctx.canvas.height;
@@ -424,7 +396,6 @@ function draw2d(ctx, tail, a1, a2, massColor, tailColor) {
     let x1 = Math.sin(a2) * d + x0;
     let y1 = Math.cos(a2) * d + y0;
     let massStyle = color2style(massColor);
-
     ctx.lineCap = 'butt';
     ctx.lineWidth = z * tailThickness / 2;
     ctx.strokeStyle = color2style(tailColor);
@@ -451,9 +422,7 @@ function draw2d(ctx, tail, a1, a2, massColor, tailColor) {
     ctx.beginPath();
     ctx.arc(x0, y0, z * massRadius / 2, 0, 2 * Math.PI);
     ctx.arc(x1, y1, z * massRadius / 2, 0, 2 * Math.PI);
-    ctx.fill();
-}
-
+    ctx.fill();}
 (function() {
     let state = [new pendulum()];
     let params = new URL(document.location);
@@ -466,18 +435,15 @@ function draw2d(ctx, tail, a1, a2, massColor, tailColor) {
     let gl = useWebGL ? c3d.getContext('webgl') : null;
     let ctx = c2d.getContext('2d');
     let renderer = null;
-
     if (!gl) {
         mode = '2d-only';
         canvas = c2d;
-        c3d.style.display = 'none';
-    } else {
+        c3d.style.display = 'none';} 
+        else {
         renderer = new glRenderer(gl, tailMax);
         mode = '3d';
         canvas = c3d;
-        c2d.style.display = 'none';
-    }
-
+        c2d.style.display = 'none';}
     function toggleMode() {
         switch (mode) {
             case '2d':
@@ -491,10 +457,7 @@ function draw2d(ctx, tail, a1, a2, massColor, tailColor) {
                 canvas = c2d;
                 c2d.style.display = 'block';
                 c3d.style.display = 'none';
-                break;
-        }
-    }
-
+                break;}}
     window.addEventListener('keypress', function(e) {
         switch (e.charCode) {
             case 32: // SPACE
@@ -517,9 +480,7 @@ function draw2d(ctx, tail, a1, a2, massColor, tailColor) {
                 x = x - 1
                 console.log(x)
                 nr.innerText = x
-                if (x < 0) {
-                    x = 0
-                }
+                if (x < 0) {x = 0}
                 if (state.length)
                     state.pop();
                 break;
@@ -528,7 +489,6 @@ function draw2d(ctx, tail, a1, a2, massColor, tailColor) {
                 break;
         }
     });
-
     let last = 0.0;
     function cb(t) {
         let dt = Math.min(t - last, dtMax);
