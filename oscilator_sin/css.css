@@ -2,6 +2,7 @@ html, body {
     margin: 0;
     padding: 0;
     background: black;
+    overflow: hidden;
   }
   canvas {
     display: block;
@@ -17,7 +18,7 @@ html, body {
     width: 100%; /* Full-width */
     height: 15px; /* Specified height */
     border-radius: 10px;
-    background: #272727; /* Grey background */
+    background: #4d4d4d; /* Grey background */
     outline: none; /* Remove outline */
     opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
     -webkit-transition: .2s; /* 0.2 seconds transition on hover */
@@ -36,18 +37,22 @@ html, body {
     width: 25px; /* Set a specific slider handle width */
     height: 25px; /* Slider handle height */
     border-radius: 50%;
-    background: #4446ec; 
+    background: #8082ff; 
     cursor: pointer;
   }
   
   .slider::-moz-range-thumb {
     width: 25px;
     height: 25px;
-    background: #080cff;
+    background: #8082ff;
     cursor: pointer; 
   }
   
   h1 {
-    color: aliceblue;
+    color: rgb(255, 255, 255);
+  }
+  label {
+    color: rgb(255, 255, 255);
+    font-size: 30px;
   }
   
