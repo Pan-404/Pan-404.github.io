@@ -238,7 +238,7 @@ function compile(gl, vert, frag) {
 };
 
 function pendulum({
-    tailColor = [0, 0, 1],
+    tailColor = [2, 0, 9],
     massColor = [0, 0, 0],
     init = null
 } = {}) {
