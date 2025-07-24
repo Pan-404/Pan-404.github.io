@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Info</title>
+</head>
+<body>
+
+    <h2>vCard QR Generator</h2>
+    <p>Acest generator vă permite să creați coduri QR pentru vCard-uri, care pot fi scanate de telefoane mobile pentru a salva rapid informațiile de contact.</p>
+    <p>Introduceți informațiile dvs. în câmpurile de mai sus și apăsați "Generează QR" pentru a crea codul QR.</p>
+    <p>Codul QR generat poate fi scanat cu orice aplicație de citit coduri QR pentru a adăuga contactul direct în agenda telefonului.</p>
+    <p>Pentru mai multe informații despre vCard, puteti accesa acest link:<a href="https://en.wikipedia.org/wiki/VCard" target="_blank">Wikipedia</a>.</p>
+    <button onclick="window.location.href='QR.html'"><</button>
+    <style>
+    body {
+      background-color: #111111;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+      box-shadow: 0 8px 32px 0 rgba(215,184,153,0.12);
+      border-radius: 18px;
+      border: 1px solid #d7b89940;
+      padding: 32px 0;
+      min-height: 100vh;
+      margin: 20px;
+    }
+    p {
+        color: #d7b899;
+        font-size: 25px;
+        font-weight: bold;
+        text-shadow: 0 1px 2px #000, 0 0 8px #d7b89980;
+        margin-bottom: 16px;
+        line-height: 1.6;
+    }
+    a {
+        color: #66513c;
+        text-decoration: none;
+        font-weight: bold;
+    }
+    h2 {
+      color: #d7b899;
+      font-size: 2rem;
+      margin-bottom: 24px;
+      text-shadow: 0 0 8px #d7b899, 0 0 16px #d7b89980;
+    }
+    input {
+      display: block;
+      margin-bottom: 12px;
+      width: 320px;
+      padding: 12px 16px;
+      border-radius: 12px;
+      background: linear-gradient(90deg, #4e342e 60%, #6d4c41 100%);
+      border: 2px solid #795548;
+      color: #fff;
+      font-size: 1rem;
+      box-shadow: 0 2px 8px rgba(78,52,46,0.15);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    input:focus {
+      border-color: #d7b899;
+      box-shadow: 0 0 12px 2px #d7b899, 0 0 0 2px #d7b89980;
+      outline: none;
+    }
+    button {
+      margin-bottom: 24px;
+      padding: 12px 32px;
+      border-radius: 12px;
+      background: linear-gradient(90deg, #a1887f 60%, #8d6e63 100%);
+      border: none;
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(78,52,46,0.15);
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    }
+    button:hover, button:focus {
+      background: linear-gradient(90deg, #8d6e63 60%, #a1887f 100%);
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 0 16px 2px #d7b899, 0 2px 8px rgba(78,52,46,0.15);
+      outline: none;
+    }
+    #qrcode {
+      margin-top: 20px;
+      border: 2px solid #d7b899;
+      background: #fff;
+      border-radius: 12px;
+      padding: 16px;
+      display: inline-block;
+    }
+</body>
+</html>
