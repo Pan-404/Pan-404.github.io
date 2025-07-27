@@ -1,8 +1,17 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Generator Coduri QR</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <head>
+    <title>Generator Coduri QR</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arial:wght@300;400;500;600;700&display=swap">
+    <meta name="description" content="Generator de coduri QR pentru vCard. Creează și descarcă coduri QR personalizate pentru informațiile tale de contact.">
+    <meta name="keywords" content="QR Code, vCard, Generator QR, Contact, Descărcare QR, Coduri QR, Contacte">
+    <meta name="author" content="Pan-404">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
   <h2>vCard QR Generator</h2>
@@ -16,12 +25,27 @@
   <input id="org" placeholder="Companie"><br>
   <input id="site" placeholder="Site"><br>
   
- <div style="display: flex; gap: 16px; justify-content: center; margin-bottom: 24px;">
-  <button onclick="generateQR()">Generează QR</button>
-  <button onclick="window.location.href='info.html'">Info</button>
-</div>
+  <div style="display: flex; gap: 16px; justify-content: center; margin-bottom: 24px;">
+    <button onclick="generateQR()">Generează QR</button>
+    <button onclick="window.location.href='info.html'">Info</button>
+  </div>
 
   <div id="qrcode"></div>
+
+  <button  onclick="downloadQR()">Descarcă PNG</button>
+  <script>
+    function downloadQR() {
+      const canvas = document.querySelector("#qrcode canvas");
+      if (!canvas) {
+        alert("Nu există un cod QR generat pentru a descărca.");
+        return;
+      }
+      const link = document.createElement("a");
+      link.download = "qrcode.png";
+      link.href = canvas.toDataURL("image/png");
+      link.click();
+    }
+  </script>
 
   <script>
     function generateQR() {
@@ -54,8 +78,8 @@ END:VCARD
   document.getElementById("qrcode").innerHTML = "";
   new QRCode(document.getElementById("qrcode"), {
     text: vCardData,
-    width: 200,
-    height: 200,
+    width: 500,
+    height: 500,
   });
 }
   </script>
@@ -126,5 +150,6 @@ END:VCARD
       padding: 16px;
       display: inline-block;
     }
+  </style>
 </body>
 </html>
