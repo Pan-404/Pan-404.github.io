@@ -44,6 +44,10 @@
         height: 500,
         type: "svg",
         data: "",
+        qrOptions: {
+          version: 40, // Set QR version (1-40). 40 is the largest.
+          errorCorrectionLevel: "H" // Optional: highest error correction
+        },
         dotsOptions: {
           color: "#000000",
           type: "basic"
