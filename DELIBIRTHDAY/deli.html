@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAPPY BIRTHDAY!!!</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #180a1ffa 0%, #3a1c4a 100%);
+            color: #333;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            padding-top: 40px;
+            min-height: 100vh;
+        }
+        #userInput {
+            width: 320px;
+            background: rgba(255, 255, 255, 0.041);
+            border: 0.1px solid #f4c4f800;
+            border-radius: 9px;
+            padding: 10px 16px;
+            font-size: 1.7em;
+            margin-bottom: 10px;
+            outline: none;
+            transition: background 0.3s, border 0.3s, box-shadow 0.3s;
+            color: #fce5eb;
+            text-align: center;
+            box-shadow: 0 4px 80px 2px #f8c4d13d;
+            padding: 18px 24px
+        }
+        #userInput:focus {
+            background: rgba(255, 221, 250, 0.267);
+            border-color: #ffb347;
+            box-shadow: 0 0 0 3px #f8c4d1aa;
+        }
+        #notification {
+            color: #d32f2f;
+            font-style: italic;
+            font-size: 0.95em;
+            margin-top: 8px;
+        }
+        #message {
+            display: inline-block;
+            min-height: 2em;
+            font-size: 1.2em;
+            font-weight: 500;
+            border-radius: 8px;
+            padding: 8px 16px;
+            color: #f8c4d1;
+            margin-top: 24px;
+            text-align: center;
+            white-space: pre-wrap;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0);
+            box-shadow: 0 2px 12px 0 #f8c4d100;
+            border: 1px solid #f8c4d100;
+        }
+        button {
+            background: linear-gradient(60deg, #ffffff 0%, #fc9dff 100%);
+            color: #180a1f;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+            box-shadow: 0 4px 12px rgba(248, 196, 209, 0.18);
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        button:hover {
+            background: linear-gradient(-300deg, #fc9dff 0%, #ffffff 100%);
+            color: #180a1f;
+            transform: scale(1.07) rotate(-2deg);
+            box-shadow: 0 6px 18px #f8c4d1aa;
+        }
+        .confetti {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 999;
+        }
+        .typewriter {
+        
+            animation: blink-caret 0.7s steps(1) infinite;
+        }
+    </style>
+    <canvas class="confetti"></canvas>
+<script>
+    let confettiActive = false;
+    let confettiAnimationId;
+    let confettip = [];
+    const canvas = document.querySelector('.confetti');
+    const ctx = canvas.getContext('2d');
+
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    function randomColor() {
+        const colors = ['#f8c4d1', '#ffb347', '#fce5eb', '#fff', '#e1bee7'];
+        return colors[Math.floor(Math.random() * colors.length)];
+    }
+    function createConfettiPiece() {
+        return {
+            x: Math.random() * canvas.width,
+            y: Math.random() * -canvas.height,
+            r: 6 + Math.random() * 8,
+            d: 2 + Math.random() * 2,
+            color: randomColor(),
+            tilt: Math.random() * 10 - 5,
+            tiltangle: 0,
+            tiltangleincremental: (Math.random() * 0.07) + 0.05
+        };
+    }
+    function drawConfetti() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (let i = 0; i < confettip.length; i++) {
+            let p = confettip[i];
+            ctx.beginPath();
+            ctx.lineWidth = p.r;
+            ctx.strokeStyle = p.color;
+            ctx.moveTo(p.x + p.tilt + p.r / 3, p.y);
+            ctx.lineTo(p.x + p.tilt, p.y + p.r);
+            ctx.stroke();
+        }
+        updateConfetti();
+    }
+    function updateConfetti() {
+        confettip = confettip.filter(p => p.y <= canvas.height);
+        for (let i = 0; i < confettip.length; i++) {
+            let p = confettip[i];
+            p.y += p.d;
+            p.tiltangle += p.tiltangleincremental;
+            p.tilt = Math.sin(p.tiltangle) * 10;
+        }
+    }
+    function animateConfetti() {
+        drawConfetti();
+        if (confettiActive || confettip.length > 0) {
+            confettiAnimationId = requestAnimationFrame(animateConfetti);
+        }
+    }
+    function startConfetti(duration = 3000) {
+        confettip = Array.from({length: 60}, createConfettiPiece);
+        confettiActive = true;
+        animateConfetti();
+        setTimeout(() => {
+            confettiActive = false;
+        }, duration);
+    }
+    function stopConfetti() {
+        confettiActive = false;
+    }
+</script>
+
+</head>
+<body>
+    <div><img src="dont_worry_about_it/Titlu.png" style="max-width: 450px; width: 100%; margin-bottom: 90px;"></div>
+    <input type="text" id="userInput" placeholder="...">
+    <div>
+        <button onclick="checkInput()">Enter</button>
+    </div>
+    <div>
+        <p id="message"></p>
+        <p id="notification"></p>
+    </div>
+    <script>
+        function typeWriterEffect(element, text) {
+            element.textContent = '';
+            element.classList.remove('typewriter');
+            let i = 0;
+            function type() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, 35);
+                } else {
+                    element.classList.remove('typewriter');
+                }
+            }
+            element.classList.add('typewriter');
+            type();
+        }
+
+        function checkInput() {
+            const userInputElem = document.getElementById('userInput');
+            const userInput = userInputElem.value;
+            const message = document.getElementById('message');
+            const notification = document.getElementById('notification');
+            if (userInput === '') {
+                const msg = `*Jocul de vrei să-l începi,
+apăs un buton și povestea pornești,
+imagini vii și sunete pline de dor,
+tot ce vezi aici vine din...*`;
+                typeWriterEffect(message, msg);
+            } else if (userInput.toLowerCase() === '16.10.2005') {
+                const msg = `*Parola corecta!*
+La multi ani deli draga!
+Vino la mine si spune-mi parola pentru a primi cadoul! 
+🎉🎂🎁`;
+                typeWriterEffect(message, msg);
+                startConfetti(5000); 
+            } else if (userInput.toLowerCase() === '16') {
+                const msg = `Mai ai două probleme de rezolvat!
+Întoarce-te când le ai rezolvat pe toate trei.`;
+                typeWriterEffect(message, msg);
+                notification.textContent = '';
+            } else {
+                notification.textContent = 'Womp Womp, încearcă din nou...';
+                message.textContent = '';
+            }
+            
+            userInputElem.value = '';
+            userInputElem.focus();
+        }
+
+        document.getElementById('userInput').addEventListener('input', function() {
+            document.getElementById('notification').textContent = '';
+        });
+    </script>
+</body>
+</html>

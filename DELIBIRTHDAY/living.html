@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Living!</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh; /* Full viewport height */
+            margin: 0; /* Remove default margin */
+            background-color: #f0f0f0; /* Light background color */
+            font-family: Arial, sans-serif; /* Change font */
+        }
+        h1 {
+            color: #333; /* Darker text color */
+            margin-bottom: 20px; /* Space below heading */
+        }
+        img {
+            width: 80%; 
+            max-width: 300px;
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+            margin-bottom: 20px; /* Space below image */
+        }
+        input {
+            padding: 10px; /* Padding for input */
+            border: 1px solid #ccc; /* Border color */
+            border-radius: 5px; /* Rounded corners */
+            margin-bottom: 10px; /* Space below input */
+            width: 80%; /* Full width */
+            max-width: 300px; /* Max width */
+        }
+        button {
+            padding: 10px 20px; 
+            background-color: #28a745;
+            color: white;
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            transition: background-color 0.3s; 
+        }
+        button:hover {
+            background-color: #218838; 
+        }
+    </style>
+</head>
+<body>
+    <h1>Rezolva problema!</h1>
+    <img src="dont_worry_about_it/Untitled.png" alt="">
+    <input id="answer" type="text" placeholder="Introdu răspunsul">
+    <button id="check">Trimite</button>
+    <script>
+    document.getElementById('check').addEventListener('click', check);
+    document.getElementById('answer').addEventListener('keydown', function(e){
+        if (e.key === 'Enter') check();
+    });
+    function check() {
+        if (document.getElementById('answer').value.trim() === '16') {
+            window.location.href = 'correct.html';
+        } else {
+            alert('Răspuns incorect');
+        }
+    }
+    </script>
+</body>
+</html>
