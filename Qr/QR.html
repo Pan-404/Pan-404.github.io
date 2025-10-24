@@ -2,9 +2,10 @@
 <html>
   <head>
     <title>Generator Coduri QR</title>
+    <meta lang="ro">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.6.0/lib/qr-code-styling.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;500;600;700&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arial:wght@300;400;500;600;700&display=swap">
@@ -38,37 +39,45 @@
     <button onclick="downloadQR('svg')">Descarcă SVG</button>
   </div>
 
-    <script>
-      const qrCode = new QRCodeStyling({
-        width: 500,
-        height: 500,
-        type: "svg",
-        data: "",
-        qrOptions: {
-          version: 40, // Set QR version (1-40). 40 is the largest.
-          errorCorrectionLevel: "H" // Optional: highest error correction
-        },
-        dotsOptions: {
-          color: "#000000",
-          type: "basic"
-        },
-        backgroundOptions: {
-          color: "#ffffff"
-        }
-      });
+  <script>
+  const qrCode = new QRCodeStyling({
+    width: 500,
+    height: 500,
+    type: "svg",
+    data: "",
+    qrOptions: {
+      errorCorrectionLevel: "H",
+    },
+    dotsOptions: {
+      color: "#000000",
+      type: "square",
+    },
+    backgroundOptions: {
+      color: "#ffffff",
+    },
+  });
 
-      function generateQR() {
-        const name = document.getElementById("name").value;
-        const phone = document.getElementById("phone").value;
-        const fax = document.getElementById("fax").value;
-        const mobile = document.getElementById("mobile").value;
-        const email = document.getElementById("email").value;
-        const org = document.getElementById("org").value;
-        const title = document.getElementById("title").value;
-        const address = document.getElementById("address").value;
-        const site = document.getElementById("site").value;
+  // 🔹 Funcție sigură pentru codare UTF-8 completă (inclusiv ă, î, ș, ț)
+  function toUTF8Bytes(str) {
+    const encoder = new TextEncoder();
+    const bytes = encoder.encode(str);
+    let binary = "";
+    bytes.forEach(b => binary += String.fromCharCode(b));
+    return binary;
+  }
 
-        const vCardData = `
+  function generateQR() {
+    const name = document.getElementById("name").value;
+    const phone = document.getElementById("phone").value;
+    const fax = document.getElementById("fax").value;
+    const mobile = document.getElementById("mobile").value;
+    const email = document.getElementById("email").value;
+    const org = document.getElementById("org").value;
+    const title = document.getElementById("title").value;
+    const address = document.getElementById("address").value;
+    const site = document.getElementById("site").value;
+
+    const vCardData = `
 BEGIN:VCARD
 VERSION:3.0
 N:${name}
@@ -83,20 +92,23 @@ ADR;TYPE=work:;;${address}
 URL:${site}
 END:VCARD`.trim();
 
-        qrCode.update({ data: vCardData });
+    // ✅ Conversie în UTF-8 corect pentru QRCodeStyling
+    const utf8String = toUTF8Bytes(vCardData);
 
-        const qrContainer = document.getElementById("qrcode");
-        qrContainer.innerHTML = "";
-        qrCode.append(qrContainer);
-      }
+    qrCode.update({ data: utf8String });
 
-      function downloadQR(format) {
-        qrCode.download({
-          name: "qrcode",
-          extension: format
-        });
-      }
-    </script>
+    const qrContainer = document.getElementById("qrcode");
+    qrContainer.innerHTML = "";
+    qrCode.append(qrContainer);
+  }
+
+  function downloadQR(format) {
+    qrCode.download({
+      name: "qrcode",
+      extension: format,
+    });
+  }
+</script>
 
     <style>
       body {
