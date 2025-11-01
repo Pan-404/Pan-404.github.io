@@ -16,7 +16,7 @@
   </head>
   <body>
     <h2>vCard QR Generator</h2>
-    <h3>*Update:1.4, suport pentru diacritice*</h3>
+    <h3>*Update:1.4.1, auto refresh + *</h3>
     <input id="name" placeholder="Nume"><br>
     <input id="title" placeholder="Funcție"><br>
     <input id="phone" placeholder="Telefon"><br>
@@ -30,6 +30,7 @@
     <div style="display: flex; gap: 16px; justify-content: center; margin-bottom: 24px;">
       <button onclick="generateQR()">Generează QR</button>
       <button onclick="window.location.href='info.html'">Info</button>
+      <button onclick="window.location.href='idei.html'">Idei</button>
     </div>
 
     <div id="qrcode"></div>
@@ -46,7 +47,7 @@
     type: "svg",
     data: "",
     qrOptions: {
-      errorCorrectionLevel: "H",
+      errorCorrectionLevel: "L",
     },
     dotsOptions: {
       color: "#000000",
@@ -92,7 +93,6 @@ ADR;TYPE=work:;;${address}
 URL:${site}
 END:VCARD`.trim();
 
-    // ✅ Conversie în UTF-8 corect pentru QRCodeStyling
     const utf8String = toUTF8Bytes(vCardData);
 
     qrCode.update({ data: utf8String });
@@ -104,8 +104,10 @@ END:VCARD`.trim();
 
   function downloadQR(format) {
     qrCode.download({
-      name: "qrcode",
-      extension: format,
+      name: "qrcode", 
+      extension: format
+    }).then(() => {
+      window.location.reload();
     });
   }
 </script>

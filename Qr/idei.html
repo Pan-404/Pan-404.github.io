@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Append to idei.txt</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <style>
+        body{font-family:system-ui,Segoe UI,Arial,sans-serif;margin:2rem;max-width:800px}
+        h1{font-size:1.25rem;margin-bottom:.5rem}
+        textarea{width:100%;height:200px;padding:.6rem;font-size:1rem;box-sizing:border-box;border:1px solid #ccc;border-radius:6px;resize:vertical}
+        .controls{margin-top:.6rem;display:flex;gap:.6rem;align-items:center}
+        button{padding:.5rem .8rem;border-radius:6px;border:1px solid #2b6; background:#2d8;cursor:pointer}
+        #status{margin-left:.6rem;font-size:.95rem;color:#066}
+        small{display:block;margin-top:.5rem;color:#666}
+    </style>
+</head>
+<body>
+    <h1>Append text to idei.txt</h1>
+    <textarea id="input" placeholder="Type text to save (each save will append a timestamp and go into idei.txt)…"></textarea>
+    <div class="controls">
+        <button id="saveBtn">Append & Save</button>
+        <span id="status"></span>
+    </div>
+    <small>Note: This will append to the existing idei.txt file in the /qr folder.</small>
+
+<script>
+const input = document.getElementById('input');
+const saveBtn = document.getElementById('saveBtn');
+const status = document.getElementById('status');
+
+function pad(n){return String(n).padStart(2,'0');}
+function nowString(){
+  const d = new Date();
+  return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
+}
+function buildEntry(text){
+  return `----- ${nowString()} -----\n${text.trim()}\n\n`;
+}
+
+saveBtn.addEventListener("click", async () => {
+  status.textContent = "";
+  const text = input.value.trim();
+  if (!text){ status.textContent = "Please type something first."; return; }
+
+  const entry = buildEntry(text);
+  status.textContent = "Appending...";
+
+  try {
+    await fetch("https://github-append-proxy.onrender.com/append", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ text: entry })
+});
+
+    status.textContent = "Appended to idei.txt on GitHub!";
+    input.value = "";
+  } catch (err) {
+    console.error(err);
+    status.textContent = "Failed to append (check console)";
+  }
+});
+</script>
+</body>
+</html>
