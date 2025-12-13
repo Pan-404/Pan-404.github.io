@@ -58,7 +58,6 @@
     },
   });
 
-  // 🔹 Funcție sigură pentru codare UTF-8 completă (inclusiv ă, î, ș, ț)
   function toUTF8Bytes(str) {
     const encoder = new TextEncoder();
     const bytes = encoder.encode(str);
