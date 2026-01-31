@@ -41,6 +41,10 @@
     <button onclick="document.location='qrnormal.html'">QR pentru linkuri</button>
   </div>
 
+  <footer class="fine-print">
+  Questions or feedback? <a href="https://github.com/Pan-404" target="_blank">Visit my GitHub</a> or reach out anytime.
+</footer>
+
   <script>
   const qrCode = new QRCodeStyling({
     width: 500,
@@ -185,6 +189,27 @@ END:VCARD`.trim();
         border-radius: 12px;
         padding: 16px;
         display: inline-block;
+      }
+      /* Fine print footer */
+      .fine-print {
+        margin-top: 60px;
+        padding: 24px 20px;
+        max-width: 900px;
+        width: 100%;
+        font-size: 0.8rem;
+        color: rgba(255, 255, 255, 0.55);
+        text-align: center;
+        line-height: 1.6;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .fine-print a {
+        color: rgba(173, 216, 230, 0.8);
+        text-decoration: none;
+        transition: color 160ms ease;
+      }
+      .fine-print a:hover {
+        color: aliceblue;
+        text-decoration: underline;
       }
     </style>
   </body>

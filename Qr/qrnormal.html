@@ -15,22 +15,33 @@ body {
   background-color: #111111;
   font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
   box-shadow: 0 8px 32px 0 rgba(215,184,153,0.12);
-  border-radius: 18px;
+  border-radius: clamp(12px, 3vw, 18px);
   border: 1px solid #d7b89940;
   min-height: 87.7vh;
-  padding:40px;
-  
+  padding: clamp(20px, 5vw, 40px);
 }
+
 
 .app {
   margin-top: clamp(170px, 12vh, 160px);
+  scale: 1.2;
 }
 
+body, .app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
-h2 {
+h1 {
   text-align:center;
   color:#d7b899;
+  text-decoration: underline;
+  text-decoration-color: rgba(215, 184, 153, 0.233);
+  text-decoration-thickness: 3px;
   margin-bottom:40px;
+  text-shadow: 0 0 2px #d7b899, 0 0 16px #d7b89980;
+  font-size: 2.5rem;
 }
 
 .layout {
@@ -152,6 +163,36 @@ button:disabled {
   justify-content:center;
 }
 
+/* Fine print footer */
+.fine-print {
+  margin-top: 60px;
+  padding: 24px 20px;
+  max-width: 900px;
+  width: 100%;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.55);
+  text-align: center;
+  line-height: 1.6;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  margin-top: auto;
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-align: center;
+  padding-top: 20px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.fine-print a {
+  color: rgba(173, 216, 230, 0.8);
+  text-decoration: none;
+  transition: color 160ms ease;
+}
+
+.fine-print a:hover {
+  color: aliceblue;
+  text-decoration: underline;
+}
+
 @media (max-width:900px){
   .layout{flex-direction:column;align-items:center;}
 }
@@ -160,7 +201,7 @@ button:disabled {
 
 <body>
 
-<h2>QR Code Generator pentru Link</h2>
+<h1>Qr Code Generator</h1>
 <div class="app">
   <div class="layout">
 
@@ -320,5 +361,8 @@ function downloadQR(format){
   qrCode.download({name:"qr-link", extension:format});
 }
 </script>
+<footer class="fine-print">
+  Questions or feedback? <a href="https://github.com/Pan-404" target="_blank">Visit my GitHub</a> or reach out anytime.
+</footer>
 </body>
 </html>

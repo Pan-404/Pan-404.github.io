@@ -10,15 +10,18 @@
 <body>
     <h1>The hub</h1>
     <div>
-        <div>
-            <button onclick="document.location='pendula/pendul.html'">Pendul Dubla</button>
-            <button onclick="document.location='oscilator_sin/sin.html'">Oscilator Sin</button>
+        <div id="r1">
+            <button data-icon="⏱️" title="Pendul Dubla" aria-label="Pendul Dubla" onclick="document.location='pendula/pendul.html'">Pendul Dubla</button>
+            <button data-icon="🎚️" title="Oscilator Sin" aria-label="Oscilator Sin" onclick="document.location='oscilator_sin/sin.html'">Oscilator Sin</button>
         </div>
-        <div>
-            <button onclick="document.location='Qr/QR.html'">Generator Qr VCard</button>
-            <button onclick="document.location='Qr/qrnormal.html'">QR pentru linkuri</button>
+        <div id="r2">
+            <button data-icon="🔳" title="Generator Qr VCard" aria-label="Generator Qr VCard" onclick="document.location='Qr/QR.html'">Generator Qr VCard</button>
+            <button data-icon="🔗" title="QR pentru linkuri" aria-label="QR pentru linkuri" onclick="document.location='Qr/qrnormal.html'">QR pentru linkuri</button>
         </div>
     </div>
+    <footer class="fine-print">
+        Questions or feedback? <a href="https://github.com/Pan-404" target="_blank">Visit my GitHub</a> or reach out anytime.
+    </footer>
     <script src="js.js"></script>
 </body>
 </html>
