@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<title>QR Link Generator</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.6.0/lib/qr-code-styling.js"></script>
+<meta name="description" content="Generator de coduri QR pentru linkuri. Creează și descarcă coduri QR personalizate pentru URL-urile tale.">
+<meta name="keywords" content="QR Code, Link, Generator QR, Descărcare QR, Coduri QR, URL">
+<meta name="author" content="Pan-404">
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+
+<style>
+body {
+  background-color: #111111;
+  font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+  box-shadow: 0 8px 32px 0 rgba(215,184,153,0.12);
+  border-radius: 18px;
+  border: 1px solid #d7b89940;
+  min-height: 87.7vh;
+  padding:40px;
+  
+}
+
+.app {
+  margin-top: clamp(170px, 12vh, 160px);
+}
+
+
+h2 {
+  text-align:center;
+  color:#d7b899;
+  margin-bottom:40px;
+}
+
+.layout {
+  display:flex;
+  gap:80px;
+  justify-content:center;
+}
+
+.left, .right {
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+input {
+  width:320px;
+  padding:12px 20px;
+  border-radius:12px;
+  background:linear-gradient(90deg,#4e342e,#6d4c41);
+  border:2px solid #795548;
+  color:#fff;
+}
+
+#logoInput {
+  display: none;
+}
+
+.logo-upload-btn {
+  display: inline-block;
+  width: 320px;
+  padding: 12px 20px;
+  border-radius: 12px;
+  background: linear-gradient(90deg, #a1887f, #8d6e63);
+  border: none;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+  font-size: 1rem;
+}
+
+button {
+  padding:12px 28px;
+  border-radius:12px;
+  background:linear-gradient(90deg,#a1887f,#8d6e63);
+  border:none;
+  color:#fff;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+button:disabled {
+  opacity:.4;
+  cursor:not-allowed;
+}
+
+/* UNDO / REDO */
+.history {
+  display:flex;
+  gap:12px;
+  justify-content: center;
+}
+
+.history button {
+  width:120px;
+  position:relative;
+  overflow:hidden;
+}
+
+.history span {
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:opacity .25s ease, transform .25s ease;
+}
+
+.history .text {
+  opacity:0;
+  transform:translateY(8px);
+}
+
+.history button:hover .arrow {
+  opacity:0;
+  transform:translateY(-8px);
+}
+
+.history button:hover .text {
+  opacity:1;
+  transform:translateY(0);
+}
+
+#qrcode {
+  background:#fff;
+  padding:16px;
+  border-radius:12px;
+  border:2px solid #d7b899;
+}
+
+#logoPreview {
+  width:120px;
+  height:120px;
+  object-fit:contain;
+  border-radius:10px;
+  background:#222;
+  display:none;
+  margin:0 auto;
+}
+
+.downloads {
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  justify-content:center;
+}
+.logopreview{ 
+  display:flex;
+  justify-content:center;
+}
+
+@media (max-width:900px){
+  .layout{flex-direction:column;align-items:center;}
+}
+</style>
+</head>
+
+<body>
+
+<h2>QR Code Generator pentru Link</h2>
+<div class="app">
+  <div class="layout">
+
+    <div class="left">
+      <input id="linkInput" placeholder="Introdu link-ul (https://...)" />
+      <label for="logoInput" class="logo-upload-btn">Upload Logo</label>
+      <input type="file" id="logoInput" accept="image/*" />
+      <img id="logoPreview">
+
+      <div class="history">
+        <button onclick="undo()">
+          <span class="arrow">←</span>
+          <span class="text">Undo</span>
+        </button>
+
+        <button onclick="redo()">
+          <span class="arrow">→</span>
+          <span class="text">Redo</span>
+        </button>
+      </div>
+     <label style="color:#d7b899;font-size:.9rem;">Logo Size:</label>
+
+  <div style="display:flex;align-items:center;gap:10px;">
+    <input
+      type="range"
+      id="logoSizeSlider"
+      min="0.1"
+      max="0.5"
+      step="0.01"
+      value="0.25"
+      style="width:220px;"
+    />
+
+    <input
+      type="number"
+      id="logoSizeInput"
+      min="0.1"
+      max="0.5"
+      step="0.01"
+      value="0.25"
+      style="width:80px;"
+    />
+  </div>
+</div>
+    <div class="right">
+      <div id="qrcode"></div>
+      <div class="downloads">
+        <button onclick="downloadQR('png')">PNG</button>
+        <button onclick="downloadQR('svg')">SVG</button>
+        <button id="clearBtn" onclick="clearLogo()" disabled>Șterge imaginea</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+let uploadedLogo = null;
+let history = [];
+let redoStack = [];
+
+const logoSizeSlider = document.getElementById("logoSizeSlider");
+const logoSizeInput  = document.getElementById("logoSizeInput");
+
+function updateLogoSize(value) {
+  const size = Math.min(0.5, Math.max(0.1, value));
+
+  logoSizeSlider.value = size;
+  logoSizeInput.value = size;
+
+  qrCode.update({
+    imageOptions: {
+      imageSize: size
+    }
+  });
+}
+logoSizeSlider.addEventListener("input", e => {
+  updateLogoSize(e.target.value);
+});
+logoSizeInput.addEventListener("input", e => {
+  updateLogoSize(e.target.value);
+});
+
+const qrCode = new QRCodeStyling({
+  width:300,
+  height:300,
+  data:"",
+  image:"",
+  dotsOptions:{color:"#000"},
+  backgroundOptions:{color:"#fff"},
+  imageOptions: {
+  crossOrigin: "anonymous",
+  margin: 8,
+  imageSize: 0.25
+}
+
+});
+
+qrCode.append(document.getElementById("qrcode"));
+
+function saveState(){
+  history.push({
+    link: linkInput.value,
+    logo: uploadedLogo
+  });
+  redoStack = [];
+}
+function applyState(state){
+  uploadedLogo = state.logo;
+  linkInput.value = state.link;
+  updateQR();
+}
+function updateQR(){
+  qrCode.update({
+    data: linkInput.value,
+    image: uploadedLogo || ""
+  });
+
+  clearBtn.disabled = !uploadedLogo;
+  logoPreview.style.display = uploadedLogo ? "block" : "none";
+  if(uploadedLogo) logoPreview.src = uploadedLogo;
+}
+linkInput.addEventListener("input", ()=>{
+  saveState();
+  updateQR();
+});
+logoInput.addEventListener("change", e=>{
+  const file = e.target.files[0];
+  if(!file) return;
+
+  const reader = new FileReader();
+  reader.onload = ev=>{
+    saveState();
+    uploadedLogo = ev.target.result;
+    updateQR();
+  };
+  reader.readAsDataURL(file);
+});
+function clearLogo(){
+  saveState();
+  uploadedLogo = null;
+  logoInput.value = "";
+  updateQR();
+}
+function undo(){
+  if(history.length < 2) return;
+  redoStack.push(history.pop());
+  applyState(history[history.length-1]);
+}
+function redo(){
+  if(!redoStack.length) return;
+  const state = redoStack.pop();
+  history.push(state);
+  applyState(state);
+}
+function downloadQR(format){
+  qrCode.download({name:"qr-link", extension:format});
+}
+</script>
+</body>
+</html>
