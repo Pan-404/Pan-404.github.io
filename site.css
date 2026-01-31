@@ -164,9 +164,30 @@ button:active {
 }
 
 .fine-print {
-    margin-top: auto;
-    font-size: 0.85rem;
-    color: var(--muted);
-    text-align: center;
-    padding-top: 20px;
+  margin-top: 60px;
+  padding: 24px 20px;
+  max-width: 900px;
+  width: 100%;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.55);
+  text-align: center;
+  line-height: 1.6;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  margin-top: auto;
+  font-size: 0.85rem;
+  color: var(--muted);
+  text-align: center;
+  padding-top: 20px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.fine-print a {
+  color: rgba(173, 216, 230, 0.8);
+  text-decoration: none;
+  transition: color 160ms ease;
+}
+
+.fine-print a:hover {
+  color: aliceblue;
+  text-decoration: underline;
 }
