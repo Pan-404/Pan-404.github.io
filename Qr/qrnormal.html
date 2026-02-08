@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ro">
 <head>
@@ -21,7 +20,6 @@ body {
   min-height: 87.7vh;
   padding: clamp(20px, 5vw, 40px);
 }
-
 
 .app {
   margin-top: clamp(170px, 12vh, 160px);
@@ -66,22 +64,19 @@ input {
   color:#fff;
 }
 
-#logoInput {
-  display: none;
-}
+#logoInput { display:none; }
 
 .logo-upload-btn {
-  display: inline-block;
-  width: 320px;
-  padding: 12px 20px;
-  border-radius: 12px;
-  background: linear-gradient(90deg, #a1887f, #8d6e63);
-  border: none;
-  color: #fff;
-  font-weight: bold;
-  cursor: pointer;
-  text-align: center;
-  font-size: 1rem;
+  display:inline-block;
+  width:320px;
+  padding:12px 20px;
+  border-radius:12px;
+  background:linear-gradient(90deg,#a1887f,#8d6e63);
+  border:none;
+  color:#fff;
+  font-weight:bold;
+  cursor:pointer;
+  text-align:center;
 }
 
 button {
@@ -99,48 +94,12 @@ button:disabled {
   cursor:not-allowed;
 }
 
-/* UNDO / REDO */
-.history {
-  display:flex;
-  gap:12px;
-  justify-content: center;
-}
-
-.history button {
-  width:120px;
-  position:relative;
-  overflow:hidden;
-}
-
-.history span {
-  position:absolute;
-  inset:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  transition:opacity .25s ease, transform .25s ease;
-}
-
-.history .text {
-  opacity:0;
-  transform:translateY(8px);
-}
-
-.history button:hover .arrow {
-  opacity:0;
-  transform:translateY(-8px);
-}
-
-.history button:hover .text {
-  opacity:1;
-  transform:translateY(0);
-}
-
 #qrcode {
   background:#fff;
-  padding:16px;
+  padding:22px;
   border-radius:12px;
   border:2px solid #d7b899;
+  align-items:center;
 }
 
 #logoPreview {
@@ -159,14 +118,14 @@ button:disabled {
   gap:10px;
   justify-content:center;
 }
-.logopreview{ 
-  display:flex;
-  justify-content:center;
+
+@media (max-width:900px){
+  .layout{flex-direction:column;align-items:center;}
 }
 
 .fine-print {
   margin-top: 60px;
-  padding: 24px 20px;
+  padding: 24px 20x;
   max-width: 900px;
   width: 100%;
   font-size: 0.8rem;
@@ -178,7 +137,7 @@ button:disabled {
   font-size: 0.85rem;
   color: var(--muted);
   text-align: center;
-  padding-top: 20px;
+  padding-top: 10px;
   color: rgba(255, 255, 255, 0.6);
 }
 
@@ -193,59 +152,135 @@ button:disabled {
   text-decoration: underline;
 }
 
-@media (max-width:900px){
-  .layout{flex-direction:column;align-items:center;}
+.prefs-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.65);
+  backdrop-filter:blur(6px);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:999;
 }
+
+.prefs-modal{
+  background:#141414;
+  border:1px solid #d7b89955;
+  border-radius:18px;
+  padding:26px;
+  width:340px;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  box-shadow:0 0 40px #d7b89930;
+}
+
+.prefs-modal h2{
+  color:#d7b899;
+  text-align:center;
+  margin-bottom:6px;
+}
+
+.prefs-modal label{
+  font-size:.85rem;
+  color:#d7b899;
+}
+
+.prefs-modal select,
+.prefs-modal input{
+  width:100%;
+}
+
+.prefs-actions{
+  display:flex;
+  justify-content: center;
+  gap:10px;
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  width: 100%;
+  padding: 12px 12px;
+  border-radius: 12px;
+
+  background:
+    linear-gradient(90deg,#4e342e,#6d4c41);
+  border: 2px solid #795548;
+
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  text-align-last: center;
+
+  color-scheme: dark;
+
+  box-shadow:
+    inset 0 0 12px rgba(0,0,0,.35),
+    0 0 0 1px rgba(215,184,153,.15);
+
+  transition: box-shadow .2s ease;
+}
+
+select:hover {
+  box-shadow: 0 0 14px #d7b89955;
+}
+
+select:focus {
+  outline: none;
+  box-shadow:
+    0 0 0 2px #d7b89980,
+    0 0 18px #d7b89960;
+}
+
+option {
+  background-color: #2a1d18;
+  color: #fff;
+  text-align: center;
+}
+
+option:checked {
+  background-color: #6d4c41;
+}
+
+input[type="color"] {
+  height: 44px;
+  padding: 4px;
+  border-radius: 10px;
+  background: #2a1d18;
+  border: 2px solid #795548;
+  cursor: pointer;
+}
+
+input:focus {
+  outline: none;
+  box-shadow:
+    0 0 0 2px #d7b89980,
+    0 0 18px #d7b89960;
+}
+
 </style>
 </head>
 
 <body>
 
 <h1>Qr Code Generator</h1>
+
 <div class="app">
   <div class="layout">
-
     <div class="left">
       <input id="linkInput" placeholder="Introdu link-ul (https://...)" />
       <label for="logoInput" class="logo-upload-btn">Upload Logo</label>
       <input type="file" id="logoInput" accept="image/*" />
       <img id="logoPreview">
+      <label style="color:#d7b899;font-size:.9rem;">Logo Size:</label>
+      <input type="range" id="logoSizeSlider" min="0.1" max="0.5" step="0.01" value="0.25">
+      <button type="button" onclick="openPrefs()">Preferences ⚙️</button>
+    </div>
 
-      <div class="history">
-        <button onclick="undo()">
-          <span class="arrow">←</span>
-          <span class="text">Undo</span>
-        </button>
-
-        <button onclick="redo()">
-          <span class="arrow">→</span>
-          <span class="text">Redo</span>
-        </button>
-      </div>
-     <label style="color:#d7b899;font-size:.9rem;">Logo Size:</label>
-
-  <div style="display:flex;align-items:center;gap:10px;">
-    <input
-      type="range"
-      id="logoSizeSlider"
-      min="0.1"
-      max="0.5"
-      step="0.01"
-      value="0.25"
-      style="width:220px;"
-    />
-
-    <input
-      type="number"
-      id="logoSizeInput"
-      min="0.1"
-      max="0.5"
-      step="0.01"
-      value="0.25"
-      style="width:80px;"
-    />
-  </div>
-</div>
     <div class="right">
       <div id="qrcode"></div>
       <div class="downloads">
@@ -254,115 +289,224 @@ button:disabled {
         <button id="clearBtn" onclick="clearLogo()" disabled>Șterge imaginea</button>
       </div>
     </div>
-
   </div>
 </div>
 
+<div id="prefsOverlay" class="prefs-overlay">
+  <div class="prefs-modal">
+    <h2>QR Preferences</h2>
+
+    <label>Dots Style</label>
+    <select id="dotStyle">
+      <option value="square">Square</option>
+      <option value="dots">Dots</option>
+      <option value="rounded">Rounded</option>
+      <option value="classy">Classy</option>
+    </select>
+
+    <label>QR Color</label>
+    <input type="color" id="fgColor" value="#000000">
+
+    <label>Background</label>
+    <input type="color" id="bgColor" value="#ffffff">
+
+    <label>Error Correction</label>
+    <select id="errorCorrection">
+      <option value="L">Low ⚠️</option>
+      <option value="M" selected>Medium</option>
+      <option value="Q">Quartile</option>
+      <option value="H">High</option>
+    </select>
+
+    <div class="prefs-actions">
+      <button onclick="closePrefs()">Close</button>
+    </div>
+  </div>
+</div>
+
+<footer class="fine-print">
+  Questions or feedback? <a href="https://github.com/Pan-404" target="_blank">Visit my GitHub</a> or reach out anytime.
+</footer>
+
+
 <script>
+
+const DEFAULTS = {
+  dotStyle: "square",
+  fgColor: "#000000",
+  bgColor: "#ffffff",
+  errorCorrection: "M",
+  imageSize: 0.25
+};
+
+
 let uploadedLogo = null;
-let history = [];
-let redoStack = [];
-
-const logoSizeSlider = document.getElementById("logoSizeSlider");
-const logoSizeInput  = document.getElementById("logoSizeInput");
-
-function updateLogoSize(value) {
-  const size = Math.min(0.5, Math.max(0.1, value));
-
-  logoSizeSlider.value = size;
-  logoSizeInput.value = size;
-
-  qrCode.update({
-    imageOptions: {
-      imageSize: size
-    }
-  });
-}
-logoSizeSlider.addEventListener("input", e => {
-  updateLogoSize(e.target.value);
-});
-logoSizeInput.addEventListener("input", e => {
-  updateLogoSize(e.target.value);
-});
 
 const qrCode = new QRCodeStyling({
-  width:300,
-  height:300,
-  data:"",
-  image:"",
-  dotsOptions:{color:"#000"},
-  backgroundOptions:{color:"#fff"},
-  imageOptions: {
-  crossOrigin: "anonymous",
-  margin: 8,
-  imageSize: 0.25
-}
-
+  width: 300,
+  height: 300,
+  type: "canvas",
+  data: "",
+  image: "",
+  margin: 0,
+  dotsOptions:{ type:"square", color:"#000000" },
+  cornersSquareOptions:{ type:"square", color:"#000000" },
+  cornersDotOptions:{ type:"square", color:"#000000" },
+  backgroundOptions:{ color:"#FFFFFF" },
+  imageOptions:{
+    crossOrigin:"anonymous",
+    margin:8,
+    imageSize:0.25
+  }
 });
 
 qrCode.append(document.getElementById("qrcode"));
 
-function saveState(){
-  history.push({
-    link: linkInput.value,
-    logo: uploadedLogo
-  });
-  redoStack = [];
-}
-function applyState(state){
-  uploadedLogo = state.logo;
-  linkInput.value = state.link;
-  updateQR();
-}
-function updateQR(){
-  qrCode.update({
-    data: linkInput.value,
-    image: uploadedLogo || ""
-  });
-
-  clearBtn.disabled = !uploadedLogo;
-  logoPreview.style.display = uploadedLogo ? "block" : "none";
-  if(uploadedLogo) logoPreview.src = uploadedLogo;
-}
-linkInput.addEventListener("input", ()=>{
-  saveState();
-  updateQR();
+linkInput.addEventListener("input",()=>{
+  qrCode.update({ data: linkInput.value });
 });
+
 logoInput.addEventListener("change", e=>{
   const file = e.target.files[0];
   if(!file) return;
-
-  const reader = new FileReader();
-  reader.onload = ev=>{
-    saveState();
+  const r = new FileReader();
+  r.onload = ev=>{
     uploadedLogo = ev.target.result;
-    updateQR();
+    logoPreview.src = uploadedLogo;
+    logoPreview.style.display = "block";
+    clearBtn.disabled = false;
+    qrCode.update({ image: uploadedLogo });
   };
-  reader.readAsDataURL(file);
+  r.readAsDataURL(file);
 });
+
+logoSizeSlider.addEventListener("input", e=>{
+  qrCode.update({ imageOptions:{ imageSize: e.target.value } });
+});
+
 function clearLogo(){
-  saveState();
   uploadedLogo = null;
-  logoInput.value = "";
-  updateQR();
+  logoPreview.style.display = "none";
+  clearBtn.disabled = true;
+  qrCode.update({ image:"" });
 }
-function undo(){
-  if(history.length < 2) return;
-  redoStack.push(history.pop());
-  applyState(history[history.length-1]);
-}
-function redo(){
-  if(!redoStack.length) return;
-  const state = redoStack.pop();
-  history.push(state);
-  applyState(state);
-}
+
 function downloadQR(format){
-  qrCode.download({name:"qr-link", extension:format});
+  if(format === "png"){
+    qrCode.download({ name:"qr-link", extension:"png" });
+  } else {
+    downloadTrueSVG();
+  }
 }
+
+async function downloadTrueSVG(){
+  const blob = await qrCode.getRawData("png");
+  const img = new Image();
+  img.src = URL.createObjectURL(blob);
+
+  img.onload = ()=>{
+    const size = 300;
+    const c = document.createElement("canvas");
+    c.width = size;
+    c.height = size;
+    const ctx = c.getContext("2d");
+    ctx.drawImage(img,0,0);
+
+    const data = ctx.getImageData(0,0,size,size).data;
+
+    let moduleSize = 1;
+    for(let x=0;x<size;x++){
+      const i = x*1;
+      if(data[i] !== 0){
+        moduleSize = x;
+        break;
+      }
+    }
+
+    moduleSize = Math.max(3, Math.round(moduleSize / 7));
+
+    const cols = Math.floor(size / moduleSize);
+    const rows = Math.floor(size / moduleSize);
+    let rects = "";
+
+    for(let y=0;y<rows;y++){
+      for(let x=0;x<cols;x++){
+        const px = (y*moduleSize*size + x*moduleSize)*4;
+        if(data[px] === 0){
+          rects += `<rect x="${x*moduleSize}" y="${y*moduleSize}" width="${moduleSize}" height="${moduleSize}"/>`;
+        }
+      }
+    }
+
+    const svg = `
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="${size}" height="${size}"
+     viewBox="0 0 ${size} ${size}">
+  <rect width="100%" height="100%" fill="#FFFFFF"/>
+  <g fill="#000000">${rects}</g>
+</svg>`;
+
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([svg],{type:"image/svg+xml"}));
+    a.download = "qr-link.svg";
+    a.click();
+  };
+}
+
+function openPrefs(){
+  document.getElementById("prefsOverlay").style.display="flex";
+}
+
+function closePrefs(){
+  document.getElementById("prefsOverlay").style.display="none";
+}
+
+dotStyle.onchange = () => {
+  const style = dotStyle.value;
+  const color = fgColor.value;
+
+  qrCode.update({
+    dotsOptions: {
+      type: style,
+      color
+    },
+    cornersSquareOptions: {
+      type: style === "dots" ? "square" : style,
+      color
+    },
+    cornersDotOptions: {
+      type: style === "square" ? "dot" : style,
+      color
+    }
+  });
+};
+
+
+fgColor.oninput = () => {
+  const color = fgColor.value;
+
+  qrCode.update({
+    dotsOptions:{ color },
+    cornersSquareOptions:{ color },
+    cornersDotOptions:{ color }
+  });
+};
+
+
+bgColor.oninput = () => {
+  qrCode.update({
+    backgroundOptions:{ color: bgColor.value }
+  });
+};
+
+errorCorrection.onchange = () => {
+  qrCode.update({
+    qrOptions:{ errorCorrectionLevel: errorCorrection.value }
+  });
+};
+
+
 </script>
-<footer class="fine-print">
-  Questions or feedback? <a href="https://github.com/Pan-404" target="_blank">Visit my GitHub</a> or reach out anytime.
-</footer>
+
 </body>
 </html>
