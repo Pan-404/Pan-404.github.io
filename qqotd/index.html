@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quirkiest Quote of the Day</title>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    background: #ffffff;
+    font-family: "gg sans", "Segoe UI", Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+}
+
+h1 {
+    margin-bottom: 25px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: black;
+}
+
+/* message box */
+.message-box {
+    background: #2b2d31;
+    border-radius: 10px;
+    padding: 18px;
+    width: min(520px, 90vw); /* responsive width */
+    box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+    text-align: left;
+
+    /* important */
+    height: auto;
+}
+
+.message-box:hover {
+    background: #313338;
+}
+
+.message {
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+}
+
+.avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #444;
+}
+
+.username {
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.timestamp {
+    color: #949ba4;
+    font-size: 12px;
+    margin-left: 8px;
+}
+
+.text {
+    margin-top: 4px;
+    line-height: 1.4;
+    color: #dbdee1;
+    word-wrap: break-word;
+}
+
+/* fade animation */
+.fade {
+    transition: opacity 0.6s ease;
+}
+
+.fade.hidden {
+    opacity: 0;
+}
+
+button {
+    margin-top: 18px;
+    background: #5865f2;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Quirkiest quote of the day</h1>
+
+<div id="quoteBox" class="message-box fade">
+    <div class="message">
+        <img id="avatar" class="avatar" crossorigin="anonymous">
+        <div>
+            <div>
+                <span id="username" class="username">Loading...</span>
+                <span id="timestamp" class="timestamp"></span>
+            </div>
+            <div id="text" class="text">
+                Loading today's quote...
+            </div>
+        </div>
+    </div>
+</div>
+<button onclick="downloadQuote()">Download as Discord screenshot</button>
+
+<script>
+let messages = [];
+
+/* LOAD JSON */
+async function loadMessages() {
+    try {
+        const response = await fetch("messages.json");
+        const data = await response.json();
+
+        messages = data.messages || [];
+        showQuoteOfTheDay();
+    } catch (err) {
+        document.getElementById("text").textContent =
+            "Failed to load messages.json";
+        console.error(err);
+    }
+}
+
+loadMessages();
+
+/* DAILY INDEX GENERATOR */
+function getDailyIndex(length) {
+    const today = new Date();
+
+    // YYYY-MM-DD string ensures same result for everyone
+    const seedString =
+        today.getFullYear() +
+        "-" +
+        (today.getMonth()+1) +
+        "-" +
+        today.getDate();
+
+    // simple hash
+    let hash = 0;
+    for (let i = 0; i < seedString.length; i++) {
+        hash = seedString.charCodeAt(i) + ((hash << 5) - hash);
+    }
+
+    return Math.abs(hash) % length;
+}
+
+/* SHOW DAILY QUOTE */
+function showQuoteOfTheDay() {
+    if (!messages.length) return;
+
+    const index = getDailyIndex(messages.length);
+    const msg = messages[index];
+
+    document.getElementById("username").textContent =
+        msg.author?.name || "Unknown";
+
+    document.getElementById("text").textContent =
+        msg.content || "(no text)";
+
+    document.getElementById("timestamp").textContent =
+        formatDate(msg.timestamp);
+
+    document.getElementById("avatar").src =
+        msg.author?.avatarUrl ||
+        "https://cdn.discordapp.com/embed/avatars/0.png";
+}
+
+function formatDate(dateString) {
+    if (!dateString) return "";
+    return new Date(dateString).toLocaleString();
+}
+
+/* ===== MIDNIGHT AUTO CHANGE ===== */
+
+function msUntilMidnight() {
+    const now = new Date();
+    const midnight = new Date();
+
+    midnight.setHours(24, 0, 0, 0); // next midnight
+
+    return midnight - now;
+}
+
+function scheduleMidnightUpdate() {
+    setTimeout(() => {
+        changeQuoteWithFade();
+
+        // after first run, repeat every 24h
+        setInterval(changeQuoteWithFade, 24 * 60 * 60 * 1000);
+
+    }, msUntilMidnight());
+}
+
+function changeQuoteWithFade() {
+    const box = document.getElementById("quoteBox");
+
+    box.classList.add("hidden");
+
+    setTimeout(() => {
+        showQuoteOfTheDay(); // your existing function
+        box.classList.remove("hidden");
+    }, 600);
+}
+
+scheduleMidnightUpdate();
+
+async function downloadQuote() {
+    const element = document.getElementById("quoteBox");
+
+    const canvas = await html2canvas(element, {
+        backgroundColor: "#313338",
+        scale: 2,
+        useCORS: true,       // ⭐ IMPORTANT
+        allowTaint: false
+    });
+
+    const link = document.createElement("a");
+    link.download = "quirky-quote.png";
+    link.href = canvas.toDataURL("image/png");
+    link.click();
+}
+</script>
+
+</body>
+</html>
