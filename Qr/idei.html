@@ -1,64 +1,330 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="ro">
 <head>
-    <meta charset="utf-8" />
-    <title>Append to idei.txt</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <style>
-        body{font-family:system-ui,Segoe UI,Arial,sans-serif;margin:2rem;max-width:800px}
-        h1{font-size:1.25rem;margin-bottom:.5rem}
-        textarea{width:100%;height:200px;padding:.6rem;font-size:1rem;box-sizing:border-box;border:1px solid #ccc;border-radius:6px;resize:vertical}
-        .controls{margin-top:.6rem;display:flex;gap:.6rem;align-items:center}
-        button{padding:.5rem .8rem;border-radius:6px;border:1px solid #2b6; background:#2d8;cursor:pointer}
-        #status{margin-left:.6rem;font-size:.95rem;color:#066}
-        small{display:block;margin-top:.5rem;color:#666}
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Idei pentru site</title>
+  <meta name="description" content="Trimite o idee pentru generatorul QR sau pentru site.">
+  <meta name="author" content="Pan-404">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+  <style>
+    :root {
+      --accent: #d7b899;
+      --text: #fff8ee;
+      --muted: rgba(255, 248, 238, 0.62);
+      --line: rgba(215, 184, 153, 0.25);
+      --brown: #6d4c41;
+      --brown-dark: #4e342e;
+      --panel: rgba(23, 20, 18, 0.76);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      background:
+        radial-gradient(circle at top left, rgba(215, 184, 153, 0.12), transparent 34rem),
+        linear-gradient(135deg, #111111 0%, #15100e 58%, #0d0d0d 100%);
+      color: var(--text);
+      font-family: "Poppins", "Segoe UI", Arial, sans-serif;
+    }
+
+    .shell {
+      width: min(900px, calc(100% - 32px));
+      min-height: calc(100vh - 32px);
+      margin: 16px auto;
+      padding: clamp(22px, 4vw, 44px);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: 0 18px 60px rgba(0, 0, 0, 0.36), 0 8px 32px rgba(215, 184, 153, 0.12);
+      display: flex;
+      flex-direction: column;
+      gap: 26px;
+    }
+
+    header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    h1 {
+      margin: 0;
+      color: var(--accent);
+      font-size: clamp(2.4rem, 7vw, 5rem);
+      line-height: 0.95;
+      letter-spacing: 0;
+      text-shadow: 0 0 14px rgba(215, 184, 153, 0.5);
+    }
+
+    p {
+      margin: 12px 0 0;
+      max-width: 620px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: aliceblue;
+      text-decoration: underline;
+    }
+
+    .back {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 18px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      color: var(--accent);
+      font-weight: 700;
+      white-space: nowrap;
+      transition: transform 160ms ease, box-shadow 160ms ease;
+    }
+
+    .back:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 0 18px rgba(215, 184, 153, 0.35);
+      text-decoration: none;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid rgba(215, 184, 153, 0.18);
+      border-radius: 18px;
+      padding: clamp(18px, 3vw, 26px);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--accent);
+      font-size: 0.86rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    textarea,
+    input {
+      width: 100%;
+      border: 2px solid #795548;
+      border-radius: 12px;
+      background: linear-gradient(90deg, var(--brown-dark), var(--brown));
+      color: #fff;
+      font: inherit;
+      outline: none;
+      transition: border-color 160ms ease, box-shadow 160ms ease;
+    }
+
+    textarea {
+      min-height: 220px;
+      padding: 14px 16px;
+      resize: vertical;
+      line-height: 1.6;
+    }
+
+    input {
+      min-height: 44px;
+      margin-bottom: 16px;
+      padding: 12px 14px;
+    }
+
+    textarea::placeholder,
+    input::placeholder {
+      color: rgba(255, 255, 255, 0.52);
+    }
+
+    textarea:focus,
+    input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px rgba(215, 184, 153, 0.3), 0 0 18px rgba(215, 184, 153, 0.34);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    button {
+      min-height: 44px;
+      padding: 12px 20px;
+      border: 0;
+      border-radius: 12px;
+      color: #21130f;
+      background: linear-gradient(90deg, #d7b899, #a1887f);
+      font: inherit;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform 160ms ease, box-shadow 160ms ease, opacity 160ms ease;
+    }
+
+    button.secondary {
+      color: var(--accent);
+      background: transparent;
+      border: 1px solid var(--line);
+    }
+
+    button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 0 18px rgba(215, 184, 153, 0.35);
+    }
+
+    button:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .status {
+      min-height: 24px;
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .fine-print {
+      margin-top: auto;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      color: rgba(255, 255, 255, 0.58);
+      text-align: center;
+      font-size: 0.84rem;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 640px) {
+      .shell {
+        width: min(100% - 18px, 900px);
+        margin: 9px auto;
+        border-radius: 14px;
+      }
+
+      header {
+        flex-direction: column;
+      }
+
+      .back,
+      button {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
-    <h1>Append text to idei.txt</h1>
-    <textarea id="input" placeholder="Type text to save (each save will append a timestamp and go into idei.txt)…"></textarea>
-    <div class="controls">
-        <button id="saveBtn">Append & Save</button>
-        <span id="status"></span>
-    </div>
-    <small>Note: This will append to the existing idei.txt file in the /qr folder.</small>
+  <main class="shell">
+    <header>
+      <div>
+        <h1>Idei</h1>
+        <p>Scrie aici ce ai schimba sau ce ai vrea sa apara pe site.</p>
+      </div>
+      <a class="back" href="qrULT.html">Inapoi</a>
+    </header>
 
-<script>
-const input = document.getElementById('input');
-const saveBtn = document.getElementById('saveBtn');
-const status = document.getElementById('status');
+    <section class="panel">
+      <label for="ideaTitle">Titlu scurt</label>
+      <input id="ideaTitle" maxlength="80" placeholder="Ex: buton pentru Wi-Fi QR">
 
-function pad(n){return String(n).padStart(2,'0');}
-function nowString(){
-  const d = new Date();
-  return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
-}
-function buildEntry(text){
-  return `----- ${nowString()} -----\n${text.trim()}\n\n`;
-}
+      <label for="ideaText">Ideea ta</label>
+      <textarea id="ideaText" placeholder="Scrie ideea aici... ce ar trebui sa faca, cum ar trebui sa arate, sau ce nu merge bine acum."></textarea>
 
-saveBtn.addEventListener("click", async () => {
-  status.textContent = "";
-  const text = input.value.trim();
-  if (!text){ status.textContent = "Please type something first."; return; }
+      <div class="actions">
+        <button id="sendBtn" type="button" disabled>Trimite prin GitHub</button>
+        <button class="secondary" id="copyBtn" type="button" disabled>Copiaza textul</button>
+      </div>
+      <div class="status" id="statusText"></div>
+    </section>
 
-  const entry = buildEntry(text);
-  status.textContent = "Appending...";
+    <footer class="fine-print">
+      Questions or feedback? <a href="https://github.com/Pan-404" target="_blank">Visit my GitHub</a> or reach out anytime.
+    </footer>
+  </main>
 
-  try {
-    await fetch("https://github-append-proxy.onrender.com/append", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ text: entry })
-});
+  <script>
+    const repoIssueUrl = "https://github.com/Pan-404/Pan-404.github.io/issues/new";
+    const ideaTitle = document.getElementById("ideaTitle");
+    const ideaText = document.getElementById("ideaText");
+    const sendBtn = document.getElementById("sendBtn");
+    const copyBtn = document.getElementById("copyBtn");
+    const statusText = document.getElementById("statusText");
 
-    status.textContent = "Appended to idei.txt on GitHub!";
-    input.value = "";
-  } catch (err) {
-    console.error(err);
-    status.textContent = "Failed to append (check console)";
-  }
-});
-</script>
+    function clean(value) {
+      return String(value || "").trim();
+    }
+
+    function buildIdea() {
+      const title = clean(ideaTitle.value) || "Idee pentru site";
+      const body = clean(ideaText.value);
+      return { title, body };
+    }
+
+    function updateButtons() {
+      const hasText = Boolean(clean(ideaText.value));
+      sendBtn.disabled = !hasText;
+      copyBtn.disabled = !hasText;
+      statusText.textContent = hasText
+        ? "Gata. Trimite prin GitHub sau copiaza textul."
+        : "";
+    }
+
+    function issueUrl() {
+      const idea = buildIdea();
+      const body = [
+        idea.body,
+        "",
+        "---",
+        "Trimis din pagina Qr/idei.html"
+      ].join("\n");
+
+      const params = new URLSearchParams({
+        title: idea.title,
+        body
+      });
+
+      return `${repoIssueUrl}?${params.toString()}`;
+    }
+
+    sendBtn.addEventListener("click", () => {
+      if (sendBtn.disabled) return;
+      window.open(issueUrl(), "_blank", "noopener,noreferrer");
+      statusText.textContent = "S-a deschis GitHub. Apasa Submit new issue acolo ca sa ajunga ideea.";
+    });
+
+    copyBtn.addEventListener("click", async () => {
+      if (copyBtn.disabled) return;
+      const idea = buildIdea();
+      const text = `${idea.title}\n\n${idea.body}`;
+
+      try {
+        await navigator.clipboard.writeText(text);
+        statusText.textContent = "Copiat. Il poti trimite oriunde vrei.";
+      } catch (error) {
+        ideaText.select();
+        statusText.textContent = "Nu am putut copia automat. Selecteaza textul si copiaza manual.";
+      }
+    });
+
+    ideaTitle.addEventListener("input", updateButtons);
+    ideaText.addEventListener("input", updateButtons);
+    updateButtons();
+  </script>
 </body>
 </html>

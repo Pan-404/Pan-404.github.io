@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QR Generator</title>
+  <meta name="description" content="Generator QR pentru linkuri si contacte vCard, cu logo, culori si descarcare PNG sau SVG.">
+  <meta name="keywords" content="QR Code, Generator QR, vCard, Link, Logo, PNG, SVG">
+  <meta name="author" content="Pan-404">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+  <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.6.0/lib/qr-code-styling.js"></script>
+  <style>
+    :root {
+      --bg: #111111;
+      --panel: #171412;
+      --panel-soft: #201916;
+      --accent: #d7b899;
+      --accent-strong: #f0d2ad;
+      --brown: #6d4c41;
+      --brown-dark: #4e342e;
+      --text: #fff8ee;
+      --muted: rgba(255, 248, 238, 0.64);
+      --line: rgba(215, 184, 153, 0.25);
+      --danger: #ff8b7b;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      background:
+        radial-gradient(circle at top left, rgba(215, 184, 153, 0.12), transparent 34rem),
+        linear-gradient(135deg, #111111 0%, #15100e 58%, #0d0d0d 100%);
+      color: var(--text);
+      font-family: "Poppins", "Segoe UI", Arial, sans-serif;
+    }
+
+    a {
+      color: rgba(173, 216, 230, 0.86);
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: aliceblue;
+      text-decoration: underline;
+    }
+
+    .shell {
+      width: min(1180px, calc(100% - 32px));
+      min-height: calc(100vh - 32px);
+      margin: 16px auto;
+      padding: clamp(22px, 4vw, 46px);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: 0 18px 60px rgba(0, 0, 0, 0.36), 0 8px 32px rgba(215, 184, 153, 0.12);
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 22px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 24px;
+    }
+
+    h1 {
+      margin: 0;
+      color: var(--accent);
+      font-size: clamp(2.2rem, 6vw, 5rem);
+      line-height: 0.95;
+      text-shadow: 0 0 14px rgba(215, 184, 153, 0.5);
+      letter-spacing: 0;
+    }
+
+    .tagline {
+      max-width: 450px;
+      margin: 12px 0 0;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 0.96rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .mode-switch,
+    .nav-links,
+    .download-row,
+    .actions {
+      display: flex;
+      align-items: center;
+    }
+
+    .mode-switch {
+      width: fit-content;
+      padding: 5px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: rgba(0, 0, 0, 0.22);
+      gap: 4px;
+    }
+
+    .mode-btn,
+    button,
+    .file-btn,
+    .link-btn {
+      min-height: 44px;
+      border: 0;
+      border-radius: 12px;
+      color: #fff;
+      background: linear-gradient(90deg, #a1887f, #8d6e63);
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease, opacity 160ms ease;
+    }
+
+    button,
+    .file-btn,
+    .link-btn {
+      padding: 12px 20px;
+    }
+
+    .mode-btn {
+      padding: 10px 20px;
+      background: transparent;
+      color: var(--muted);
+      box-shadow: none;
+    }
+
+    .mode-btn.active {
+      color: #20130f;
+      background: var(--accent);
+      box-shadow: 0 0 18px rgba(215, 184, 153, 0.28);
+    }
+
+    button:hover,
+    .file-btn:hover,
+    .link-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 0 18px rgba(215, 184, 153, 0.4);
+    }
+
+    button:disabled {
+      cursor: not-allowed;
+      opacity: 0.42;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .workspace {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 420px);
+      gap: clamp(24px, 5vw, 70px);
+      align-items: start;
+    }
+
+    .panel {
+      background: rgba(23, 20, 18, 0.72);
+      border: 1px solid rgba(215, 184, 153, 0.18);
+      border-radius: 18px;
+      padding: clamp(18px, 3vw, 26px);
+    }
+
+    .form-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 12px;
+      color: var(--accent);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      color: var(--accent);
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      min-height: 44px;
+      padding: 12px 14px;
+      border: 2px solid #795548;
+      border-radius: 12px;
+      background: linear-gradient(90deg, var(--brown-dark), var(--brown));
+      color: #fff;
+      font: inherit;
+      font-size: 0.94rem;
+      outline: none;
+      transition: border-color 160ms ease, box-shadow 160ms ease;
+    }
+
+    textarea {
+      min-height: 92px;
+      resize: vertical;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: rgba(255, 255, 255, 0.52);
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px rgba(215, 184, 153, 0.3), 0 0 18px rgba(215, 184, 153, 0.34);
+    }
+
+    input[type="color"] {
+      height: 46px;
+      padding: 4px;
+      cursor: pointer;
+    }
+
+    input[type="range"] {
+      padding: 0;
+      accent-color: var(--accent);
+    }
+
+    input[type="file"] {
+      display: none;
+    }
+
+    .settings-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .actions {
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .ghost {
+      background: transparent;
+      border: 1px solid var(--line);
+      color: var(--accent);
+    }
+
+    .preview {
+      position: sticky;
+      top: 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+      text-align: center;
+    }
+
+    .qr-wrap {
+      width: min(100%, 360px);
+      aspect-ratio: 1;
+      padding: 18px;
+      display: grid;
+      place-items: center;
+      background: #fff;
+      border: 2px solid var(--accent);
+      border-radius: 16px;
+      box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05), 0 18px 46px rgba(0, 0, 0, 0.25);
+    }
+
+    #qrcode {
+      width: 100%;
+      display: grid;
+      place-items: center;
+    }
+
+    #qrcode canvas,
+    #qrcode svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .status {
+      min-height: 22px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .status.warn {
+      color: var(--danger);
+    }
+
+    .download-row {
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .logo-preview {
+      width: 72px;
+      height: 72px;
+      object-fit: contain;
+      display: none;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: rgba(0, 0, 0, 0.22);
+      padding: 6px;
+    }
+
+    .fine-print {
+      margin-top: auto;
+      padding-top: 22px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      color: rgba(255, 255, 255, 0.58);
+      text-align: center;
+      font-size: 0.84rem;
+      line-height: 1.7;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    @media (max-width: 920px) {
+      header,
+      .workspace {
+        grid-template-columns: 1fr;
+      }
+
+      header {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+      }
+
+      .preview {
+        position: static;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .shell {
+        width: min(100% - 18px, 1180px);
+        margin: 9px auto;
+        border-radius: 14px;
+      }
+
+      .grid,
+      .settings-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .mode-switch,
+      .mode-btn,
+      .actions > *,
+      .download-row > * {
+        width: 100%;
+      }
+
+      .mode-switch {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header>
+      <div>
+        <h1>Generator QR</h1>
+        <p class="tagline">Generează coduri QR rapid și ușor</p>
+      </div>
+      <nav class="nav-links" aria-label="Pagini QR">
+        <a class="link-btn ghost" href="QR.html">vCard vechi</a>
+        <a class="link-btn ghost" href="qrnormal.html">Link vechi</a>
+        <a class="link-btn ghost" href="idei.html">Idei</a>
+      </nav>
+    </header>
+
+    <section class="workspace">
+      <div class="form-panel">
+        <div class="mode-switch" role="tablist" aria-label="Tip QR">
+          <button class="mode-btn active" type="button" data-mode="link" role="tab" aria-selected="true">Link</button>
+          <button class="mode-btn" type="button" data-mode="vcard" role="tab" aria-selected="false">vCard</button>
+        </div>
+
+        <section class="panel" id="linkPanel">
+          <div class="section-title">Link</div>
+          <label>
+            URL sau text
+            <input id="linkInput" type="text" autocomplete="url" placeholder="https://pan-404.github.io">
+          </label>
+        </section>
+
+        <section class="panel hidden" id="vcardPanel">
+          <div class="section-title">Contact vCard</div>
+          <div class="grid">
+            <label>
+              Nume
+              <input id="nameInput" data-vcard type="text" autocomplete="name" placeholder="Nume complet">
+            </label>
+            <label>
+              Functie
+              <input id="titleInput" data-vcard type="text" placeholder="Designer, developer...">
+            </label>
+            <label>
+              Telefon
+              <input id="phoneInput" data-vcard type="tel" autocomplete="tel" placeholder="+40...">
+            </label>
+            <label>
+              Mobil
+              <input id="mobileInput" data-vcard type="tel" autocomplete="tel" placeholder="+40...">
+            </label>
+            <label>
+              Email
+              <input id="emailInput" data-vcard type="email" autocomplete="email" placeholder="mail@example.com">
+            </label>
+            <label>
+              Companie
+              <input id="orgInput" data-vcard type="text" autocomplete="organization" placeholder="Companie">
+            </label>
+            <label>
+              Site
+              <input id="siteInput" data-vcard type="url" autocomplete="url" placeholder="https://...">
+            </label>
+            <label>
+              Fax
+              <input id="faxInput" data-vcard type="tel" placeholder="Optional">
+            </label>
+            <label class="full">
+              Adresa
+              <textarea id="addressInput" data-vcard autocomplete="street-address" placeholder="Strada, oras, tara"></textarea>
+            </label>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="section-title">Stil</div>
+          <div class="settings-grid">
+            <label>
+              Dots
+              <select id="dotStyle">
+                <option value="square" selected>Square</option>
+                <option value="rounded">Rounded</option>
+                <option value="dots">Dots</option>
+                <option value="classy">Classy</option>
+                <option value="classy-rounded">Classy rounded</option>
+              </select>
+            </label>
+            <label>
+              Cornere
+              <select id="cornerStyle">
+                <option value="square" selected>Square</option>
+                <option value="extra-rounded">Extra rounded</option>
+                <option value="dot">Dot</option>
+              </select>
+            </label>
+            <label>
+              Corectie
+              <select id="errorCorrection">
+                <option value="M">Medium</option>
+                <option value="Q" selected>Quartile</option>
+                <option value="H">High</option>
+                <option value="L">Low</option>
+              </select>
+            </label>
+            <label>
+              QR
+              <input id="fgColor" type="color" value="#000000">
+            </label>
+            <label>
+              Fundal
+              <input id="bgColor" type="color" value="#ffffff">
+            </label>
+            <label>
+              Margine
+              <input id="marginInput" type="range" min="0" max="24" step="1" value="8">
+            </label>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="section-title">Logo</div>
+          <div class="actions">
+            <label class="file-btn" for="logoInput">Upload Logo</label>
+            <input id="logoInput" type="file" accept="image/*">
+            <button class="ghost" id="clearLogoBtn" type="button" disabled>Sterge logo</button>
+            <img id="logoPreview" class="logo-preview" alt="Logo preview">
+          </div>
+          <label style="margin-top: 14px;">
+            Marime logo
+            <input id="logoSizeInput" type="range" min="0.12" max="0.42" step="0.01" value="0.22">
+          </label>
+        </section>
+      </div>
+
+      <aside class="panel preview">
+        <div class="qr-wrap">
+          <div id="qrcode" aria-label="Previzualizare QR"></div>
+        </div>
+        <p id="statusText" class="status">Scrie un link sau un contact ca sa activezi descarcarea.</p>
+        <div class="download-row">
+          <button id="downloadPng" type="button" disabled>Descarca PNG</button>
+          <button id="downloadSvg" type="button" disabled>Descarca SVG</button>
+        </div>
+        <button class="ghost" id="resetBtn" type="button">Reset stil</button>
+      </aside>
+    </section>
+
+    <footer class="fine-print">
+      Questions or feedback? <a href="https://github.com/Pan-404" target="_blank" rel="noreferrer">Visit my GitHub</a> or reach out anytime.
+    </footer>
+  </main>
+
+  <script>
+    const els = {
+      modeButtons: document.querySelectorAll(".mode-btn"),
+      linkPanel: document.getElementById("linkPanel"),
+      vcardPanel: document.getElementById("vcardPanel"),
+      linkInput: document.getElementById("linkInput"),
+      vcardInputs: document.querySelectorAll("[data-vcard]"),
+      dotStyle: document.getElementById("dotStyle"),
+      cornerStyle: document.getElementById("cornerStyle"),
+      errorCorrection: document.getElementById("errorCorrection"),
+      fgColor: document.getElementById("fgColor"),
+      bgColor: document.getElementById("bgColor"),
+      marginInput: document.getElementById("marginInput"),
+      logoInput: document.getElementById("logoInput"),
+      logoPreview: document.getElementById("logoPreview"),
+      logoSizeInput: document.getElementById("logoSizeInput"),
+      clearLogoBtn: document.getElementById("clearLogoBtn"),
+      downloadPng: document.getElementById("downloadPng"),
+      downloadSvg: document.getElementById("downloadSvg"),
+      resetBtn: document.getElementById("resetBtn"),
+      statusText: document.getElementById("statusText"),
+      qrcode: document.getElementById("qrcode")
+    };
+
+    const defaults = {
+      dotStyle: "square",
+      cornerStyle: "square",
+      errorCorrection: "Q",
+      fgColor: "#000000",
+      bgColor: "#ffffff",
+      margin: 8,
+      logoSize: 0.22
+    };
+
+    let currentMode = "link";
+    let uploadedLogo = "";
+    let hasRealData = false;
+
+    const qrCode = new QRCodeStyling({
+      width: 720,
+      height: 720,
+      type: "canvas",
+      data: "https://pan-404.github.io",
+      margin: defaults.margin,
+      qrOptions: {
+        errorCorrectionLevel: defaults.errorCorrection
+      },
+      dotsOptions: {
+        type: defaults.dotStyle,
+        color: defaults.fgColor
+      },
+      cornersSquareOptions: {
+        type: defaults.cornerStyle,
+        color: defaults.fgColor
+      },
+      cornersDotOptions: {
+        type: "dot",
+        color: defaults.fgColor
+      },
+      backgroundOptions: {
+        color: defaults.bgColor
+      },
+      imageOptions: {
+        crossOrigin: "anonymous",
+        margin: 8,
+        imageSize: defaults.logoSize
+      }
+    });
+
+    qrCode.append(els.qrcode);
+
+    function clean(value) {
+      return String(value || "").trim();
+    }
+
+    function escapeVCard(value) {
+      return clean(value)
+        .replace(/\\/g, "\\\\")
+        .replace(/\n/g, "\\n")
+        .replace(/;/g, "\\;")
+        .replace(/,/g, "\\,");
+    }
+
+    function normalizeUrl(value) {
+      const trimmed = clean(value);
+      if (!trimmed) return "";
+      const looksLikeDomain = /^[\w.-]+\.[a-z]{2,}(\/.*)?$/i.test(trimmed);
+      if (looksLikeDomain) return `https://${trimmed}`;
+      return trimmed;
+    }
+
+    function line(name, value) {
+      return value ? `${name}:${escapeVCard(value)}` : "";
+    }
+
+    function buildVCard() {
+      const data = {
+        name: clean(document.getElementById("nameInput").value),
+        title: clean(document.getElementById("titleInput").value),
+        phone: clean(document.getElementById("phoneInput").value),
+        mobile: clean(document.getElementById("mobileInput").value),
+        fax: clean(document.getElementById("faxInput").value),
+        email: clean(document.getElementById("emailInput").value),
+        org: clean(document.getElementById("orgInput").value),
+        site: normalizeUrl(document.getElementById("siteInput").value),
+        address: clean(document.getElementById("addressInput").value)
+      };
+
+      const rows = [
+        "BEGIN:VCARD",
+        "VERSION:3.0",
+        line("FN", data.name),
+        line("N", data.name),
+        line("ORG", data.org),
+        line("TITLE", data.title),
+        data.phone ? `TEL;TYPE=WORK,VOICE:${escapeVCard(data.phone)}` : "",
+        data.mobile ? `TEL;TYPE=CELL:${escapeVCard(data.mobile)}` : "",
+        data.fax ? `TEL;TYPE=FAX:${escapeVCard(data.fax)}` : "",
+        line("EMAIL", data.email),
+        data.address ? `ADR;TYPE=WORK:;;${escapeVCard(data.address)}` : "",
+        line("URL", data.site),
+        "END:VCARD"
+      ].filter(Boolean);
+
+      const hasContactData = Object.values(data).some(Boolean);
+      return hasContactData ? rows.join("\r\n") : "";
+    }
+
+    function getPayload() {
+      if (currentMode === "link") {
+        return normalizeUrl(els.linkInput.value);
+      }
+      return buildVCard();
+    }
+
+    function currentFilename() {
+      if (currentMode === "vcard") {
+        const name = clean(document.getElementById("nameInput").value).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+        return name ? `qr-vcard-${name}` : "qr-vcard";
+      }
+      return "qr-link";
+    }
+
+    function updateStatus(data) {
+      hasRealData = Boolean(data);
+      els.downloadPng.disabled = !hasRealData;
+      els.downloadSvg.disabled = !hasRealData;
+      els.statusText.classList.remove("warn");
+
+      if (!hasRealData) {
+        els.statusText.textContent = "Scrie un link sau un contact ca sa activezi descarcarea.";
+        return;
+      }
+
+      if (data.length > 1200) {
+        els.statusText.textContent = "QR-ul are multa informatie. Foloseste corectie Medium daca scanarea devine grea.";
+        els.statusText.classList.add("warn");
+        return;
+      }
+
+      els.statusText.textContent = currentMode === "link" ? "Link QR gata de scanat." : "vCard QR gata de scanat.";
+    }
+
+    function applyQrUpdate() {
+      const data = getPayload();
+      const color = els.fgColor.value;
+      const payload = data || "https://pan-404.github.io";
+
+      qrCode.update({
+        data: payload,
+        image: uploadedLogo,
+        margin: Number(els.marginInput.value),
+        qrOptions: {
+          errorCorrectionLevel: uploadedLogo ? "H" : els.errorCorrection.value
+        },
+        dotsOptions: {
+          type: els.dotStyle.value,
+          color
+        },
+        cornersSquareOptions: {
+          type: els.cornerStyle.value,
+          color
+        },
+        cornersDotOptions: {
+          type: els.cornerStyle.value === "dot" ? "dot" : "square",
+          color
+        },
+        backgroundOptions: {
+          color: els.bgColor.value
+        },
+        imageOptions: {
+          crossOrigin: "anonymous",
+          margin: 8,
+          imageSize: Number(els.logoSizeInput.value)
+        }
+      });
+
+      updateStatus(data);
+    }
+
+    function setMode(mode) {
+      currentMode = mode;
+      els.modeButtons.forEach((button) => {
+        const active = button.dataset.mode === mode;
+        button.classList.toggle("active", active);
+        button.setAttribute("aria-selected", String(active));
+      });
+      els.linkPanel.classList.toggle("hidden", mode !== "link");
+      els.vcardPanel.classList.toggle("hidden", mode !== "vcard");
+      applyQrUpdate();
+    }
+
+    function resetStyle() {
+      els.dotStyle.value = defaults.dotStyle;
+      els.cornerStyle.value = defaults.cornerStyle;
+      els.errorCorrection.value = defaults.errorCorrection;
+      els.fgColor.value = defaults.fgColor;
+      els.bgColor.value = defaults.bgColor;
+      els.marginInput.value = defaults.margin;
+      els.logoSizeInput.value = defaults.logoSize;
+      applyQrUpdate();
+    }
+
+    els.modeButtons.forEach((button) => {
+      button.addEventListener("click", () => setMode(button.dataset.mode));
+    });
+
+    els.linkInput.addEventListener("input", applyQrUpdate);
+    els.linkInput.addEventListener("blur", () => {
+      els.linkInput.value = normalizeUrl(els.linkInput.value);
+      applyQrUpdate();
+    });
+
+    els.vcardInputs.forEach((input) => input.addEventListener("input", applyQrUpdate));
+
+    [els.dotStyle, els.cornerStyle, els.errorCorrection, els.fgColor, els.bgColor, els.marginInput, els.logoSizeInput]
+      .forEach((input) => input.addEventListener("input", applyQrUpdate));
+
+    els.logoInput.addEventListener("change", (event) => {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = (readerEvent) => {
+        uploadedLogo = readerEvent.target.result;
+        els.logoPreview.src = uploadedLogo;
+        els.logoPreview.style.display = "block";
+        els.clearLogoBtn.disabled = false;
+        applyQrUpdate();
+      };
+      reader.readAsDataURL(file);
+    });
+
+    els.clearLogoBtn.addEventListener("click", () => {
+      uploadedLogo = "";
+      els.logoInput.value = "";
+      els.logoPreview.removeAttribute("src");
+      els.logoPreview.style.display = "none";
+      els.clearLogoBtn.disabled = true;
+      applyQrUpdate();
+    });
+
+    els.downloadPng.addEventListener("click", () => {
+      if (!hasRealData) return;
+      qrCode.download({ name: currentFilename(), extension: "png" });
+    });
+
+    els.downloadSvg.addEventListener("click", () => {
+      if (!hasRealData) return;
+      qrCode.download({ name: currentFilename(), extension: "svg" });
+    });
+
+    els.resetBtn.addEventListener("click", resetStyle);
+
+    applyQrUpdate();
+  </script>
+</body>
+</html>
