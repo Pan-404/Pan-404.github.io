@@ -12,6 +12,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
   <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.6.0/lib/qr-code-styling.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
   <style>
     :root {
       --bg: #111111;
@@ -429,6 +430,9 @@
             URL sau text
             <input id="linkInput" type="text" autocomplete="url" placeholder="https://pan-404.github.io">
           </label>
+          <div class="actions" style="margin-top: 14px;">
+            <button class="ghost" id="compactLinkBtn" type="button">Compact link</button>
+          </div>
         </section>
 
         <section class="panel hidden" id="vcardPanel">
@@ -557,6 +561,7 @@
       linkPanel: document.getElementById("linkPanel"),
       vcardPanel: document.getElementById("vcardPanel"),
       linkInput: document.getElementById("linkInput"),
+      compactLinkBtn: document.getElementById("compactLinkBtn"),
       vcardInputs: document.querySelectorAll("[data-vcard]"),
       dotStyle: document.getElementById("dotStyle"),
       cornerStyle: document.getElementById("cornerStyle"),
@@ -642,6 +647,71 @@
       return trimmed;
     }
 
+    function compactUrl(value) {
+      const normalized = normalizeUrl(value);
+      const before = normalized.length;
+
+      try {
+        const url = new URL(normalized);
+        const removableParams = [
+          "utm_source",
+          "utm_medium",
+          "utm_campaign",
+          "utm_term",
+          "utm_content",
+          "utm_id",
+          "utm_name",
+          "fbclid",
+          "gclid",
+          "gbraid",
+          "wbraid",
+          "mc_cid",
+          "mc_eid",
+          "igshid",
+          "ref",
+          "ref_src",
+          "spm"
+        ];
+
+        url.hash = "";
+        url.username = "";
+        url.password = "";
+        url.hostname = url.hostname.toLowerCase().replace(/^www\./, "");
+
+        removableParams.forEach((param) => url.searchParams.delete(param));
+
+        for (const key of Array.from(url.searchParams.keys())) {
+          if (/^utm_/i.test(key)) {
+            url.searchParams.delete(key);
+          }
+        }
+
+        if ((url.protocol === "https:" && url.port === "443") || (url.protocol === "http:" && url.port === "80")) {
+          url.port = "";
+        }
+
+        if (url.pathname !== "/" && url.pathname.endsWith("/")) {
+          url.pathname = url.pathname.replace(/\/+$/, "");
+        }
+
+        let compacted = url.toString();
+
+        if (url.pathname === "/" && !url.search) {
+          compacted = compacted.replace(/\/$/, "");
+        }
+
+        return {
+          value: compacted,
+          saved: Math.max(0, before - compacted.length)
+        };
+      } catch (error) {
+        return {
+          value: normalized,
+          saved: 0
+        };
+      }
+    }
+
     function line(name, value) {
       return value ? `${name}:${escapeVCard(value)}` : "";
     }
@@ -692,6 +762,145 @@
         return name ? `qr-vcard-${name}` : "qr-vcard";
       }
       return "qr-link";
+    }
+
+    function safeColor(value, fallback) {
+      return /^#[0-9a-f]{6}$/i.test(value) ? value : fallback;
+    }
+
+    function downloadTextFile(filename, text, type) {
+      const blob = new Blob([text], { type });
+      downloadBlob(filename, blob);
+    }
+
+    function downloadBlob(filename, blob) {
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+
+      link.href = url;
+      link.download = filename;
+      document.body.append(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+    }
+
+    function createRawQr(data) {
+      if (typeof qrcode !== "function") {
+        throw new Error("qrcode-generator library missing");
+      }
+
+      const correction = uploadedLogo ? "H" : els.errorCorrection.value;
+      const qr = qrcode(0, correction);
+      qr.addData(data);
+      qr.make();
+      return qr;
+    }
+
+    function getQrRuns(qr) {
+      const moduleCount = qr.getModuleCount();
+      const runs = [];
+
+      for (let row = 0; row < moduleCount; row += 1) {
+        let start = -1;
+
+        for (let col = 0; col <= moduleCount; col += 1) {
+          const dark = col < moduleCount && qr.isDark(row, col);
+
+          if (dark && start === -1) {
+            start = col;
+          }
+
+          if ((!dark || col === moduleCount) && start !== -1) {
+            runs.push({
+              x: start,
+              y: row,
+              width: col - start
+            });
+            start = -1;
+          }
+        }
+      }
+
+      return runs;
+    }
+
+    function buildCorelSvg(data) {
+      const qr = createRawQr(data);
+      const moduleCount = qr.getModuleCount();
+      const quietZone = 4;
+      const size = moduleCount + quietZone * 2;
+      const fg = safeColor(els.fgColor.value, "#000000");
+      const bg = safeColor(els.bgColor.value, "#ffffff");
+      const rects = getQrRuns(qr).map((run) =>
+        `<rect x="${run.x + quietZone}" y="${run.y + quietZone}" width="${run.width}" height="1"/>`
+      );
+
+      return [
+        `<?xml version="1.0" encoding="UTF-8"?>`,
+        `<svg xmlns="http://www.w3.org/2000/svg" width="${size}mm" height="${size}mm" viewBox="0 0 ${size} ${size}" shape-rendering="crispEdges">`,
+        `<rect width="100%" height="100%" fill="${bg}"/>`,
+        `<g fill="${fg}">`,
+        rects.join(""),
+        `</g>`,
+        `</svg>`
+      ].join("\n");
+    }
+
+    function loadImage(src) {
+      return new Promise((resolve, reject) => {
+        const image = new Image();
+        image.onload = () => resolve(image);
+        image.onerror = reject;
+        image.src = src;
+      });
+    }
+
+    async function buildCompressedPng(data) {
+      const qr = createRawQr(data);
+      const moduleCount = qr.getModuleCount();
+      const quietZone = 4;
+      const size = moduleCount + quietZone * 2;
+      const scale = Math.max(4, Math.min(16, Math.floor(640 / size)));
+      const canvas = document.createElement("canvas");
+      const ctx = canvas.getContext("2d");
+      const fg = safeColor(els.fgColor.value, "#000000");
+      const bg = safeColor(els.bgColor.value, "#ffffff");
+
+      canvas.width = size * scale;
+      canvas.height = size * scale;
+      ctx.imageSmoothingEnabled = false;
+      ctx.fillStyle = bg;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = fg;
+
+      getQrRuns(qr).forEach((run) => {
+        ctx.fillRect(
+          (run.x + quietZone) * scale,
+          (run.y + quietZone) * scale,
+          run.width * scale,
+          scale
+        );
+      });
+
+      if (uploadedLogo) {
+        const logo = await loadImage(uploadedLogo);
+        const logoSize = Math.round(canvas.width * Number(els.logoSizeInput.value));
+        const logoMargin = Math.max(8, Math.round(logoSize * 0.14));
+        const boxSize = logoSize + logoMargin * 2;
+        const boxX = Math.round((canvas.width - boxSize) / 2);
+        const boxY = Math.round((canvas.height - boxSize) / 2);
+        const logoX = Math.round((canvas.width - logoSize) / 2);
+        const logoY = Math.round((canvas.height - logoSize) / 2);
+
+        ctx.fillStyle = bg;
+        ctx.fillRect(boxX, boxY, boxSize, boxSize);
+        ctx.drawImage(logo, logoX, logoY, logoSize, logoSize);
+      }
+
+      return new Promise((resolve) => {
+        canvas.toBlob((blob) => resolve(blob), "image/png");
+      });
     }
 
     function updateStatus(data) {
@@ -784,6 +993,26 @@
       applyQrUpdate();
     });
 
+    els.compactLinkBtn.addEventListener("click", () => {
+      const before = clean(els.linkInput.value);
+
+      if (!before) {
+        els.statusText.textContent = "Pune un link mai intai.";
+        els.statusText.classList.add("warn");
+        return;
+      }
+
+      const compacted = compactUrl(before);
+      els.linkInput.value = compacted.value;
+      applyQrUpdate();
+
+      if (compacted.saved > 0) {
+        els.statusText.textContent = `Link compactat: ${compacted.saved} caractere mai putin.`;
+      } else {
+        els.statusText.textContent = "Linkul e deja destul de compact. Pentru un short link real ar trebui un serviciu/redirect.";
+      }
+    });
+
     els.vcardInputs.forEach((input) => input.addEventListener("input", applyQrUpdate));
 
     [els.dotStyle, els.cornerStyle, els.errorCorrection, els.fgColor, els.bgColor, els.marginInput, els.logoSizeInput]
@@ -813,14 +1042,28 @@
       applyQrUpdate();
     });
 
-    els.downloadPng.addEventListener("click", () => {
+    els.downloadPng.addEventListener("click", async () => {
       if (!hasRealData) return;
-      qrCode.download({ name: currentFilename(), extension: "png" });
+      try {
+        const png = await buildCompressedPng(getPayload());
+        downloadBlob(`${currentFilename()}.png`, png);
+      } catch (error) {
+        console.error(error);
+        els.statusText.textContent = "Nu am putut face PNG-ul comprimat. Incearca SVG sau reincarca pagina.";
+        els.statusText.classList.add("warn");
+      }
     });
 
     els.downloadSvg.addEventListener("click", () => {
       if (!hasRealData) return;
-      qrCode.download({ name: currentFilename(), extension: "svg" });
+      try {
+        const svg = buildCorelSvg(getPayload());
+        downloadTextFile(`${currentFilename()}.svg`, svg, "image/svg+xml;charset=utf-8");
+      } catch (error) {
+        console.error(error);
+        els.statusText.textContent = "Nu am putut face SVG-ul curat. Incearca PNG sau reincarca pagina.";
+        els.statusText.classList.add("warn");
+      }
     });
 
     els.resetBtn.addEventListener("click", resetStyle);
