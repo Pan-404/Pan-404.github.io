@@ -12,7 +12,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
   <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.6.0/lib/qr-code-styling.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
   <style>
     :root {
       --bg: #111111;
@@ -593,6 +592,10 @@
     let currentMode = "link";
     let uploadedLogo = "";
     let hasRealData = false;
+    let previewRevision = 0;
+
+    // This encoder emits an ECI UTF-8 segment, so phone scanners keep Romanian diacritics.
+    const eciQrReady = import("https://cdn.jsdelivr.net/npm/@nuintun/qrcode@5.0.3/+esm");
 
     const qrCode = new QRCodeStyling({
       width: 720,
@@ -785,16 +788,17 @@
       URL.revokeObjectURL(url);
     }
 
-    function createRawQr(data) {
-      if (typeof qrcode !== "function") {
-        throw new Error("qrcode-generator library missing");
-      }
-
+    async function createRawQr(data) {
+      const { Byte, Charset, Encoder } = await eciQrReady;
       const correction = uploadedLogo ? "H" : els.errorCorrection.value;
-      const qr = qrcode(0, correction);
-      qr.addData(data);
-      qr.make();
-      return qr;
+      const encoded = new Encoder({ level: correction }).encode(
+        new Byte(String(data), Charset.UTF_8)
+      );
+
+      return {
+        getModuleCount: () => encoded.size,
+        isDark: (row, col) => encoded.get(col, row) === 1
+      };
     }
 
     function getQrRuns(qr) {
@@ -825,23 +829,113 @@
       return runs;
     }
 
-    function buildCorelSvg(data) {
-      const qr = createRawQr(data);
+    function getMergedComponentPaths(qr) {
+      const moduleCount = qr.getModuleCount();
+      const componentIds = Array.from({ length: moduleCount }, () => Array(moduleCount).fill(-1));
+      let componentCount = 0;
+
+      for (let row = 0; row < moduleCount; row += 1) {
+        for (let col = 0; col < moduleCount; col += 1) {
+          if (!qr.isDark(row, col) || componentIds[row][col] !== -1) continue;
+
+          const pending = [[row, col]];
+          componentIds[row][col] = componentCount;
+
+          while (pending.length) {
+            const [currentRow, currentCol] = pending.pop();
+            const neighbours = [
+              [currentRow - 1, currentCol],
+              [currentRow + 1, currentCol],
+              [currentRow, currentCol - 1],
+              [currentRow, currentCol + 1]
+            ];
+
+            neighbours.forEach(([nextRow, nextCol]) => {
+              if (
+                nextRow >= 0 && nextRow < moduleCount &&
+                nextCol >= 0 && nextCol < moduleCount &&
+                qr.isDark(nextRow, nextCol) &&
+                componentIds[nextRow][nextCol] === -1
+              ) {
+                componentIds[nextRow][nextCol] = componentCount;
+                pending.push([nextRow, nextCol]);
+              }
+            });
+          }
+
+          componentCount += 1;
+        }
+      }
+
+      const rectangles = [];
+      let active = new Map();
+
+      for (let row = 0; row < moduleCount; row += 1) {
+        const nextActive = new Map();
+
+        for (let col = 0; col < moduleCount;) {
+          const componentId = componentIds[row][col];
+          if (componentId === -1) {
+            col += 1;
+            continue;
+          }
+
+          const start = col;
+          while (col < moduleCount && componentIds[row][col] === componentId) {
+            col += 1;
+          }
+
+          const width = col - start;
+          const key = `${componentId}:${start}:${width}`;
+          const previous = active.get(key);
+          const rectangle = previous || {
+            componentId,
+            x: start,
+            y: row,
+            width,
+            height: 0
+          };
+
+          rectangle.height += 1;
+          nextActive.set(key, rectangle);
+        }
+
+        active.forEach((rectangle, key) => {
+          if (!nextActive.has(key)) rectangles.push(rectangle);
+        });
+        active = nextActive;
+      }
+
+      active.forEach((rectangle) => rectangles.push(rectangle));
+
+      const paths = new Map();
+      rectangles.forEach((rectangle) => {
+        const segment = `M${rectangle.x} ${rectangle.y}h${rectangle.width}v${rectangle.height}h-${rectangle.width}z`;
+        const path = paths.get(rectangle.componentId) || [];
+        path.push(segment);
+        paths.set(rectangle.componentId, path);
+      });
+
+      return Array.from(paths.values()).map((segments) => segments.join(""));
+    }
+
+    async function buildCorelSvg(data) {
+      const qr = await createRawQr(data);
       const moduleCount = qr.getModuleCount();
       const quietZone = 4;
       const size = moduleCount + quietZone * 2;
       const fg = safeColor(els.fgColor.value, "#000000");
       const bg = safeColor(els.bgColor.value, "#ffffff");
-      const rects = getQrRuns(qr).map((run) =>
-        `<rect x="${run.x + quietZone}" y="${run.y + quietZone}" width="${run.width}" height="1"/>`
+      const paths = getMergedComponentPaths(qr).map((path) =>
+        `<path d="${path}" transform="translate(${quietZone} ${quietZone})"/>`
       );
 
       return [
         `<?xml version="1.0" encoding="UTF-8"?>`,
         `<svg xmlns="http://www.w3.org/2000/svg" width="${size}mm" height="${size}mm" viewBox="0 0 ${size} ${size}" shape-rendering="crispEdges">`,
         `<rect width="100%" height="100%" fill="${bg}"/>`,
-        `<g fill="${fg}">`,
-        rects.join(""),
+        `<g fill="${fg}" stroke="none">`,
+        paths.join(""),
         `</g>`,
         `</svg>`
       ].join("\n");
@@ -857,7 +951,7 @@
     }
 
     async function buildCompressedPng(data) {
-      const qr = createRawQr(data);
+      const qr = await createRawQr(data);
       const moduleCount = qr.getModuleCount();
       const quietZone = 4;
       const size = moduleCount + quietZone * 2;
@@ -923,11 +1017,11 @@
       els.statusText.textContent = currentMode === "link" ? "Link QR gata de scanat." : "vCard QR gata de scanat.";
     }
 
-    function applyQrUpdate() {
+    function renderStyledPreview(payload) {
       const data = getPayload();
       const color = els.fgColor.value;
-      const payload = data || "https://pan-404.github.io";
 
+      els.qrcode.innerHTML = "";
       qrCode.update({
         data: payload,
         image: uploadedLogo,
@@ -956,8 +1050,57 @@
           imageSize: Number(els.logoSizeInput.value)
         }
       });
+      qrCode.append(els.qrcode);
+    }
+
+    async function renderUtf8Preview(data, revision) {
+      const qr = await createRawQr(data);
+
+      if (revision !== previewRevision) return;
+
+      const moduleCount = qr.getModuleCount();
+      const quietZone = 4;
+      const size = moduleCount + quietZone * 2;
+      const fg = safeColor(els.fgColor.value, "#000000");
+      const bg = safeColor(els.bgColor.value, "#ffffff");
+      const rects = getQrRuns(qr).map((run) =>
+        `<rect x="${run.x + quietZone}" y="${run.y + quietZone}" width="${run.width}" height="1"/>`
+      ).join("");
+      const logoSize = size * Number(els.logoSizeInput.value);
+      const logoMargin = logoSize * 0.14;
+      const logoX = (size - logoSize) / 2;
+      const logoY = (size - logoSize) / 2;
+      const boxX = logoX - logoMargin;
+      const boxY = logoY - logoMargin;
+      const boxSize = logoSize + logoMargin * 2;
+      const logo = uploadedLogo
+        ? `<rect x="${boxX}" y="${boxY}" width="${boxSize}" height="${boxSize}" fill="${bg}"/><image href="${uploadedLogo}" x="${logoX}" y="${logoY}" width="${logoSize}" height="${logoSize}" preserveAspectRatio="xMidYMid meet"/>`
+        : "";
+
+      els.qrcode.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" shape-rendering="crispEdges"><rect width="100%" height="100%" fill="${bg}"/><g fill="${fg}">${rects}</g>${logo}</svg>`;
+    }
+
+    async function applyQrUpdate() {
+      const data = getPayload();
+      const payload = data || "https://pan-404.github.io";
+      const revision = ++previewRevision;
 
       updateStatus(data);
+
+      if (data && /[^\x00-\x7F]/.test(data)) {
+        try {
+          await renderUtf8Preview(data, revision);
+        } catch (error) {
+          console.error(error);
+          if (revision === previewRevision) {
+            els.statusText.textContent = "Nu am putut face QR-ul UTF-8. Reincarca pagina si incearca din nou.";
+            els.statusText.classList.add("warn");
+          }
+        }
+        return;
+      }
+
+      renderStyledPreview(payload);
     }
 
     function setMode(mode) {
@@ -1054,10 +1197,10 @@
       }
     });
 
-    els.downloadSvg.addEventListener("click", () => {
+    els.downloadSvg.addEventListener("click", async () => {
       if (!hasRealData) return;
       try {
-        const svg = buildCorelSvg(getPayload());
+        const svg = await buildCorelSvg(getPayload());
         downloadTextFile(`${currentFilename()}.svg`, svg, "image/svg+xml;charset=utf-8");
       } catch (error) {
         console.error(error);
