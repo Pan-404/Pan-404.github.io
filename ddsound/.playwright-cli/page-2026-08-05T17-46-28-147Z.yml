@@ -1,0 +1,574 @@
+- generic [active] [ref=f1e1]:
+  - banner [ref=f1e2]:
+    - link "D&D Sound" [ref=f1e3] [cursor=pointer]:
+      - /url: "#top"
+      - generic [ref=f1e4]: D&D
+      - generic [ref=f1e5]: Sound
+    - navigation [ref=f1e6]:
+      - link "Servicii" [ref=f1e7] [cursor=pointer]:
+        - /url: "#servicii"
+      - link "Echipamente" [ref=f1e8] [cursor=pointer]:
+        - /url: "#echipamente"
+      - link "Catalog" [ref=f1e9] [cursor=pointer]:
+        - /url: echipamente.html
+      - link "Evenimente" [ref=f1e10] [cursor=pointer]:
+        - /url: "#evenimente"
+      - link "Proces" [ref=f1e11] [cursor=pointer]:
+        - /url: "#proces"
+      - link "Contact" [ref=f1e12] [cursor=pointer]:
+        - /url: "#contact"
+  - main [ref=f1e13]:
+    - region [ref=f1e14]:
+      - generic [ref=f1e16]:
+        - paragraph [ref=f1e17]: Sunet RCF. Lumini DMX. Ecrane LED. Truss. Curent.
+        - heading "D&D Sound" [level=1] [ref=f1e18]
+        - paragraph [ref=f1e19]: Producție tehnică pentru evenimente care trebuie să se audă clar, să arate bine și să fie montate fără improvizații.
+        - generic [ref=f1e20]:
+          - link "Cere disponibilitate" [ref=f1e21] [cursor=pointer]:
+            - /url: "#contact"
+          - link "Vezi setup-ul" [ref=f1e22] [cursor=pointer]:
+            - /url: "#servicii"
+      - generic "Servicii principale" [ref=f1e23]:
+        - generic [ref=f1e24]: RCF HDL 10 / HDL 20
+        - generic [ref=f1e25]: LED P2.9 / P3.9
+        - generic [ref=f1e26]: Scenă 2 x 1 m + truss
+        - generic [ref=f1e27]: 32A / 63A / 125A la cerere
+    - region [ref=f1e28]:
+      - generic [ref=f1e29]:
+        - img "RCF HDL 10-A" [ref=f1e602]
+        - complementary [ref=f1e32]:
+          - generic [ref=f1e33]:
+            - paragraph [ref=f1e34]: Sunet
+            - heading "RCF HDL 10-A" [level=2] [ref=f1e35]
+            - paragraph [ref=f1e36]: Line array activ compact pentru evenimente indoor, outdoor și sisteme rapide de montat.
+          - list [ref=f1e37]:
+            - listitem [ref=f1e38]: 2 x 8 inch woofer + driver compresie 2 inch
+            - listitem [ref=f1e39]: 65 Hz - 20 kHz
+            - listitem [ref=f1e40]: 133 dB max SPL
+          - generic [ref=f1e41]:
+            - link "Vezi în catalog" [ref=f1e42] [cursor=pointer]:
+              - /url: echipamente.html#rcf-hdl-10
+            - generic "Navigare produse" [ref=f1e43]:
+              - button "Produs anterior" [ref=f1e44] [cursor=pointer]: ←
+              - button "Produs următor" [ref=f1e45] [cursor=pointer]: →
+          - generic [ref=f1e46]:
+            - generic [ref=f1e47]: "01"
+            - generic [ref=f1e48]: / 22
+      - generic "Poziție slider" [ref=f1e49]:
+        - 'button "Slide 01: RCF HDL 10-A" [ref=f1e50] [cursor=pointer]'
+        - 'button "Slide 02: RCF HDL 20-A" [ref=f1e51] [cursor=pointer]'
+        - 'button "Slide 03: RCF SUB 8008-AS" [ref=f1e52] [cursor=pointer]'
+        - 'button "Slide 04: Midas M32R LIVE" [ref=f1e53] [cursor=pointer]'
+        - 'button "Slide 05: WING Compact" [ref=f1e54] [cursor=pointer]'
+        - 'button "Slide 06: Shure SM58" [ref=f1e55] [cursor=pointer]'
+        - 'button "Slide 07: Gravity SP 5211 B" [ref=f1e56] [cursor=pointer]'
+        - 'button "Slide 08: Gravity MS 4322 B" [ref=f1e57] [cursor=pointer]'
+        - 'button "Slide 09: LED Bar" [ref=f1e58] [cursor=pointer]'
+        - 'button "Slide 10: Beam / Moving Head" [ref=f1e59] [cursor=pointer]'
+        - 'button "Slide 11: Thunder Wash" [ref=f1e60] [cursor=pointer]'
+        - 'button "Slide 12: Buteci 2 x 1 m" [ref=f1e61] [cursor=pointer]'
+        - 'button "Slide 13: Truss aluminiu" [ref=f1e62] [cursor=pointer]'
+        - 'button "Slide 14: Ecrane LED P2.9 / P3.9" [ref=f1e63] [cursor=pointer]'
+        - 'button "Slide 15: Novastar VX1000" [ref=f1e64] [cursor=pointer]'
+        - 'button "Slide 16: Link-uri de alimentare" [ref=f1e65] [cursor=pointer]'
+        - 'button "Slide 17: Cabluri PowerCON" [ref=f1e66] [cursor=pointer]'
+        - 'button "Slide 18: Cabluri XLR / DMX" [ref=f1e67] [cursor=pointer]'
+        - 'button "Slide 19: Fibră optică pe rolă" [ref=f1e68] [cursor=pointer]'
+        - 'button "Slide 20: Multicor sunet" [ref=f1e69] [cursor=pointer]'
+        - 'button "Slide 21: Prelungitoare profesionale" [ref=f1e70] [cursor=pointer]'
+        - 'button "Slide 22: Distribuții de curent" [ref=f1e71] [cursor=pointer]'
+      - generic "Alege produsul" [ref=f1e72]:
+        - button "Arată RCF HDL 10-A" [pressed] [ref=f1e73] [cursor=pointer]:
+          - generic [ref=f1e75]: RCF HDL 10-A
+        - button "Arată RCF HDL 20-A" [ref=f1e76] [cursor=pointer]:
+          - generic [ref=f1e78]: RCF HDL 20-A
+        - button "Arată RCF SUB 8008-AS" [ref=f1e79] [cursor=pointer]:
+          - generic [ref=f1e81]: RCF SUB 8008-AS
+        - button "Arată Midas M32R LIVE" [ref=f1e82] [cursor=pointer]:
+          - generic [ref=f1e84]: Midas M32R LIVE
+        - button "Arată WING Compact" [ref=f1e85] [cursor=pointer]:
+          - generic [ref=f1e87]: WING Compact
+        - button "Arată Shure SM58" [ref=f1e88] [cursor=pointer]:
+          - generic [ref=f1e90]: Shure SM58
+        - button "Arată Gravity SP 5211 B" [ref=f1e91] [cursor=pointer]:
+          - generic [ref=f1e93]: Gravity SP 5211 B
+        - button "Arată Gravity MS 4322 B" [ref=f1e94] [cursor=pointer]:
+          - generic [ref=f1e96]: Gravity MS 4322 B
+        - button "Arată LED Bar" [ref=f1e97] [cursor=pointer]:
+          - generic [ref=f1e99]: LED Bar
+        - button "Arată Beam / Moving Head" [ref=f1e100] [cursor=pointer]:
+          - generic [ref=f1e102]: Beam / Moving Head
+        - button "Arată Thunder Wash" [ref=f1e103] [cursor=pointer]:
+          - generic [ref=f1e105]: Thunder Wash
+        - button "Arată Buteci 2 x 1 m" [ref=f1e106] [cursor=pointer]:
+          - generic [ref=f1e108]: Buteci 2 x 1 m
+        - button "Arată Truss aluminiu" [ref=f1e109] [cursor=pointer]:
+          - generic [ref=f1e111]: Truss aluminiu
+        - button "Arată Ecrane LED P2.9 / P3.9" [ref=f1e112] [cursor=pointer]:
+          - generic [ref=f1e114]: Ecrane LED P2.9 / P3.9
+        - button "Arată Novastar VX1000" [ref=f1e115] [cursor=pointer]:
+          - generic [ref=f1e117]: Novastar VX1000
+        - button "Arată Link-uri de alimentare" [ref=f1e118] [cursor=pointer]:
+          - generic [ref=f1e120]: Link-uri de alimentare
+        - button "Arată Cabluri PowerCON" [ref=f1e121] [cursor=pointer]:
+          - generic [ref=f1e123]: Cabluri PowerCON
+        - button "Arată Cabluri XLR / DMX" [ref=f1e124] [cursor=pointer]:
+          - generic [ref=f1e126]: Cabluri XLR / DMX
+        - button "Arată Fibră optică pe rolă" [ref=f1e127] [cursor=pointer]:
+          - generic [ref=f1e129]: Fibră optică pe rolă
+        - button "Arată Multicor sunet" [ref=f1e130] [cursor=pointer]:
+          - generic [ref=f1e132]: Multicor sunet
+        - button "Arată Prelungitoare profesionale" [ref=f1e133] [cursor=pointer]:
+          - generic [ref=f1e135]: Prelungitoare profesionale
+        - button "Arată Distribuții de curent" [ref=f1e136] [cursor=pointer]:
+          - generic [ref=f1e138]: Distribuții de curent
+    - generic [ref=f1e139]:
+      - generic [ref=f1e140]:
+        - paragraph [ref=f1e141]: Servicii
+        - heading "Categoriile importante, puse într-un plan tehnic clar." [level=2] [ref=f1e142]
+      - generic [ref=f1e143]:
+        - article [ref=f1e144]:
+          - generic [ref=f1e145]: "01"
+          - generic [ref=f1e146]:
+            - heading "Sunet" [level=3] [ref=f1e147]
+            - paragraph [ref=f1e148]: Line Array RCF HDL 10 și HDL 20, subwoofere RCF SUB 8008, mixere digitale, microfoane Shure și stative profesionale.
+            - list "Echipamente sunet" [ref=f1e149]:
+              - listitem [ref=f1e150]: RCF HDL 10 / HDL 20
+              - listitem [ref=f1e151]: RCF SUB 8008
+              - listitem [ref=f1e152]: Midas M32R / Wing Compact
+        - article [ref=f1e153]:
+          - generic [ref=f1e154]: "02"
+          - generic [ref=f1e155]:
+            - heading "Lumini" [level=3] [ref=f1e156]
+            - paragraph [ref=f1e157]: LED Bar-uri, Beam, Thunder Wash și moving head-uri controlate DMX pentru scenă, ring, intrări speciale și momente live.
+            - list "Echipamente lumini" [ref=f1e158]:
+              - listitem [ref=f1e159]: LED Bar
+              - listitem [ref=f1e160]: Beam
+              - listitem [ref=f1e161]: Thunder Wash
+              - listitem [ref=f1e162]: Moving Head
+        - article [ref=f1e163]:
+          - generic [ref=f1e164]: "03"
+          - generic [ref=f1e165]:
+            - heading "Scenă" [level=3] [ref=f1e166]
+            - paragraph [ref=f1e167]: Platforme modulare de 2 x 1 metri și structuri truss din aluminiu, configurate rapid pentru podiumuri, scene și susținere echipamente.
+            - list "Echipamente scenă" [ref=f1e168]:
+              - listitem [ref=f1e169]: Buteci 2 x 1 m
+              - listitem [ref=f1e170]: Truss 1 m / 2 m
+              - listitem [ref=f1e171]: Argintiu / negru
+        - article [ref=f1e172]:
+          - generic [ref=f1e173]: "04"
+          - generic [ref=f1e174]:
+            - heading "Video & ecrane LED" [level=3] [ref=f1e175]
+            - paragraph [ref=f1e176]: Ecrane LED P2.9 și P3.9, plus procesare video VX1000 pentru prezentări, live feed, concerte și producții corporate.
+            - list "Echipamente video" [ref=f1e177]:
+              - listitem [ref=f1e178]: LED P2.9 / P3.9
+              - listitem [ref=f1e179]: VX1000
+              - listitem [ref=f1e180]: Live feed
+        - article [ref=f1e181]:
+          - generic [ref=f1e182]: "05"
+          - generic [ref=f1e183]:
+            - heading "Conectivitate" [level=3] [ref=f1e184]
+            - paragraph [ref=f1e185]: XLR, DMX, fibră optică pe rolă, multicor de sunet, PowerCON, link-uri de alimentare și prelungitoare profesionale.
+            - list "Conectivitate" [ref=f1e186]:
+              - listitem [ref=f1e187]: XLR / DMX
+              - listitem [ref=f1e188]: Fibră optică
+              - listitem [ref=f1e189]: PowerCON
+              - listitem [ref=f1e190]: Multicor sunet
+        - article [ref=f1e191]:
+          - generic [ref=f1e192]: "06"
+          - generic [ref=f1e193]:
+            - heading "Curent" [level=3] [ref=f1e194]
+            - paragraph [ref=f1e195]: Distribuții profesionale de curent și alimentări trifazice pentru sisteme audio, lumini și video, dimensionate după consumul real.
+            - list "Alimentare electrică" [ref=f1e196]:
+              - listitem [ref=f1e197]: 32A
+              - listitem [ref=f1e198]: 63A
+              - listitem [ref=f1e199]: 125A la cerere specială
+      - paragraph [ref=f1e200]: Pentru evenimente în afara orașului se adaugă transportul. La nevoie, pachetul poate include sunetist, luminist și operator pentru ecrane LED.
+    - generic [ref=f1e201]:
+      - generic [ref=f1e202]:
+        - generic [ref=f1e203]:
+          - paragraph [ref=f1e204]: Echipamente
+          - heading "Un scroll rapid prin produsele principale." [level=2] [ref=f1e205]
+        - generic "Navigare echipamente" [ref=f1e206]:
+          - button "Echipamente anterioare" [ref=f1e207] [cursor=pointer]: ←
+          - button "Echipamente următoare" [ref=f1e208] [cursor=pointer]: →
+      - generic "Echipamente principale D&D Sound" [ref=f1e209]:
+        - article [ref=f1e210]:
+          - img "RCF HDL 10-A" [ref=f1e212]
+          - generic [ref=f1e213]:
+            - generic [ref=f1e214]: Sunet
+            - heading "RCF HDL 10-A" [level=3] [ref=f1e215]
+            - paragraph [ref=f1e216]: Line array activ compact pentru evenimente indoor, outdoor și sisteme rapide de montat.
+            - list [ref=f1e217]:
+              - listitem [ref=f1e218]: 2 x 8 inch woofer + driver compresie 2 inch
+              - listitem [ref=f1e219]: 65 Hz - 20 kHz
+              - listitem [ref=f1e220]: 133 dB max SPL
+            - link "Detalii" [ref=f1e222] [cursor=pointer]:
+              - /url: echipamente.html#rcf-hdl-10
+        - article [ref=f1e223]:
+          - img "RCF HDL 20-A" [ref=f1e225]
+          - generic [ref=f1e226]:
+            - generic [ref=f1e227]: Sunet
+            - heading "RCF HDL 20-A" [level=3] [ref=f1e228]
+            - paragraph [ref=f1e229]: Line array activ cu două difuzoare de 10 inch, potrivit pentru producții mai mari.
+            - list [ref=f1e230]:
+              - listitem [ref=f1e231]: 2 x 10 inch woofer + driver compresie 2 inch
+              - listitem [ref=f1e232]: 55 Hz - 20 kHz
+              - listitem [ref=f1e233]: 135 dB max SPL
+            - link "Detalii" [ref=f1e235] [cursor=pointer]:
+              - /url: echipamente.html#rcf-hdl-20
+        - article [ref=f1e236]:
+          - img "RCF SUB 8008-AS" [ref=f1e238]
+          - generic [ref=f1e239]:
+            - generic [ref=f1e240]: Sunet
+            - heading "RCF SUB 8008-AS" [level=3] [ref=f1e241]
+            - paragraph [ref=f1e242]: Subwoofer activ dublu de 18 inch pentru bass cu impact în evenimente live.
+            - list [ref=f1e243]:
+              - listitem [ref=f1e244]: 2 x 18 inch woofer, 4 inch v.c.
+              - listitem [ref=f1e245]: 30 Hz - 120 Hz
+              - listitem [ref=f1e246]: 137 dB max SPL
+            - link "Detalii" [ref=f1e248] [cursor=pointer]:
+              - /url: echipamente.html#rcf-sub-8008
+        - article [ref=f1e249]:
+          - img "Midas M32R LIVE" [ref=f1e251]
+          - generic [ref=f1e252]:
+            - generic [ref=f1e253]: Sunet
+            - heading "Midas M32R LIVE" [level=3] [ref=f1e254]
+            - paragraph [ref=f1e255]: Mixer digital pentru live și studio, bun pentru concerte, conferințe și producții complexe.
+            - list [ref=f1e256]:
+              - listitem [ref=f1e257]: 40 canale de intrare
+              - listitem [ref=f1e258]: 16 preamplificatoare Midas PRO
+              - listitem [ref=f1e259]: 25 mix buses
+            - link "Detalii" [ref=f1e261] [cursor=pointer]:
+              - /url: echipamente.html#midas-m32r
+        - article [ref=f1e262]:
+          - img "WING Compact" [ref=f1e264]
+          - generic [ref=f1e265]:
+            - generic [ref=f1e266]: Sunet
+            - heading "WING Compact" [level=3] [ref=f1e267]
+            - paragraph [ref=f1e268]: Consolă digitală modernă pentru setup-uri cu multe surse și control rapid.
+            - list [ref=f1e269]:
+              - listitem [ref=f1e270]: 48 canale / 28 buses full stereo
+              - listitem [ref=f1e271]: 24 preamplificatoare Midas PRO
+              - listitem [ref=f1e272]: 13 fadere motorizate de 100 mm
+            - link "Detalii" [ref=f1e274] [cursor=pointer]:
+              - /url: echipamente.html#wing-compact
+        - article [ref=f1e275]:
+          - img "Shure SM58" [ref=f1e277]
+          - generic [ref=f1e278]:
+            - generic [ref=f1e279]: Sunet
+            - heading "Shure SM58" [level=3] [ref=f1e280]
+            - paragraph [ref=f1e281]: Microfon vocal dinamic, folosit constant pentru voce live și discursuri.
+            - list [ref=f1e282]:
+              - listitem [ref=f1e283]: Tip dinamic cardioid
+              - listitem [ref=f1e284]: 50 Hz - 15 kHz
+              - listitem [ref=f1e285]: Filtru pop sferic integrat
+            - link "Detalii" [ref=f1e287] [cursor=pointer]:
+              - /url: echipamente.html#shure-sm58
+        - article [ref=f1e288]:
+          - img "Gravity SP 5211 B" [ref=f1e290]
+          - generic [ref=f1e291]:
+            - generic [ref=f1e292]: Sunet
+            - heading "Gravity SP 5211 B" [level=3] [ref=f1e293]
+            - paragraph [ref=f1e294]: Stativ de boxă cu trepied, stabil pentru setup-uri mobile.
+            - list [ref=f1e295]:
+              - listitem [ref=f1e296]: Sarcină maximă 50 kg
+              - listitem [ref=f1e297]: Înălțime maximă 195 cm
+              - listitem [ref=f1e298]: Tub aluminiu powder coated
+            - link "Detalii" [ref=f1e300] [cursor=pointer]:
+              - /url: echipamente.html#gravity-speaker-stand
+        - article [ref=f1e301]:
+          - img "Gravity MS 4322 B" [ref=f1e303]
+          - generic [ref=f1e304]:
+            - generic [ref=f1e305]: Sunet
+            - heading "Gravity MS 4322 B" [level=3] [ref=f1e306]
+            - paragraph [ref=f1e307]: Stativ de microfon cu braț telescopic, util pentru conferințe și live.
+            - list [ref=f1e308]:
+              - listitem [ref=f1e309]: Înălțime maximă 169 cm
+              - listitem [ref=f1e310]: Braț telescopic cu reglaj în 2 puncte
+              - listitem [ref=f1e311]: Bază stabilă tip trepied
+            - link "Detalii" [ref=f1e313] [cursor=pointer]:
+              - /url: echipamente.html#gravity-mic-stand
+        - article [ref=f1e314]:
+          - img "LED Bar" [ref=f1e316]
+          - generic [ref=f1e317]:
+            - generic [ref=f1e318]: Lumini
+            - heading "LED Bar" [level=3] [ref=f1e319]
+            - paragraph [ref=f1e320]: Bară LED pentru decor, scenă și spălare de culoare pe fundal sau ring.
+            - list [ref=f1e321]:
+              - listitem [ref=f1e322]: Control DMX512
+              - listitem [ref=f1e323]: RGBWA+UV, în funcție de model
+              - listitem [ref=f1e324]: Moduri auto / sound / master-slave
+            - link "Detalii" [ref=f1e326] [cursor=pointer]:
+              - /url: echipamente.html#led-bar
+        - article [ref=f1e327]:
+          - img "Beam / Moving Head" [ref=f1e329]
+          - generic [ref=f1e330]:
+            - generic [ref=f1e331]: Lumini
+            - heading "Beam / Moving Head" [level=3] [ref=f1e332]
+            - paragraph [ref=f1e333]: Cap mobil pentru fascicule puternice, mișcare și momente de show pe scenă.
+            - list [ref=f1e334]:
+              - listitem [ref=f1e335]: Control DMX
+              - listitem [ref=f1e336]: Mișcare pan / tilt
+              - listitem [ref=f1e337]: Fascicul îngust pentru efecte vizibile
+            - link "Detalii" [ref=f1e339] [cursor=pointer]:
+              - /url: echipamente.html#beam-moving-head
+        - article [ref=f1e340]:
+          - img "Thunder Wash" [ref=f1e342]
+          - generic [ref=f1e343]:
+            - generic [ref=f1e344]: Lumini
+            - heading "Thunder Wash" [level=3] [ref=f1e345]
+            - paragraph [ref=f1e346]: Efect de tip wash / blinder / strobe pentru energie vizuală pe scenă sau ring.
+            - list [ref=f1e347]:
+              - listitem [ref=f1e348]: DMX input / output pe XLR 3 pini
+              - listitem [ref=f1e349]: Moduri DMX multiple
+              - listitem [ref=f1e350]: Dimmer, flash și durată controlabile
+            - link "Detalii" [ref=f1e352] [cursor=pointer]:
+              - /url: echipamente.html#thunder-wash
+        - article [ref=f1e353]:
+          - img "Buteci 2 x 1 m" [ref=f1e355]
+          - generic [ref=f1e356]:
+            - generic [ref=f1e357]: Scenă
+            - heading "Buteci 2 x 1 m" [level=3] [ref=f1e358]
+            - paragraph [ref=f1e359]: Platforme modulare pentru scenă, podium, pupitru DJ sau spațiu de prezentare.
+            - list [ref=f1e360]:
+              - listitem [ref=f1e361]: Modul standard 2 x 1 m
+              - listitem [ref=f1e362]: Configurații pe dimensiunea spațiului
+              - listitem [ref=f1e363]: Stabilizare înainte de utilizare
+            - link "Detalii" [ref=f1e365] [cursor=pointer]:
+              - /url: echipamente.html#scena-modulara
+        - article [ref=f1e366]:
+          - img "Truss aluminiu" [ref=f1e368]
+          - generic [ref=f1e369]:
+            - generic [ref=f1e370]: Scenă
+            - heading "Truss aluminiu" [level=3] [ref=f1e371]
+            - paragraph [ref=f1e372]: Structură pentru susținerea luminilor, boxelor, decorului sau ecranelor LED.
+            - list [ref=f1e373]:
+              - listitem [ref=f1e374]: Grinzi de 1 m și 2 m
+              - listitem [ref=f1e375]: Finisaj argintiu sau negru
+              - listitem [ref=f1e376]: Conectori și pini pentru montaj rapid
+            - link "Detalii" [ref=f1e378] [cursor=pointer]:
+              - /url: echipamente.html#truss-aluminiu
+        - article [ref=f1e379]:
+          - img "Ecrane LED P2.9 / P3.9" [ref=f1e381]
+          - generic [ref=f1e382]:
+            - generic [ref=f1e383]: Video
+            - heading "Ecrane LED P2.9 / P3.9" [level=3] [ref=f1e384]
+            - paragraph [ref=f1e385]: Panouri LED modulare pentru prezentări, live feed, fundal de scenă și conținut vizual.
+            - list [ref=f1e386]:
+              - listitem [ref=f1e387]: Pixel pitch P2.9 sau P3.9
+              - listitem [ref=f1e388]: Dimensiune configurabilă pe module
+              - listitem [ref=f1e389]: Luminozitate pentru sală sau scenă
+            - link "Detalii" [ref=f1e391] [cursor=pointer]:
+              - /url: echipamente.html#ecran-led
+        - article [ref=f1e392]:
+          - img "Novastar VX1000" [ref=f1e394]
+          - generic [ref=f1e395]:
+            - generic [ref=f1e396]: Video
+            - heading "Novastar VX1000" [level=3] [ref=f1e397]
+            - paragraph [ref=f1e398]: Controller și procesor video all-in-one pentru ecrane LED.
+            - list [ref=f1e399]:
+              - listitem [ref=f1e400]: Capacitate 6.5 milioane pixeli
+              - listitem [ref=f1e401]: Lățime maximă 10,240 px
+              - listitem [ref=f1e402]: Înălțime maximă 8,192 px
+            - link "Detalii" [ref=f1e404] [cursor=pointer]:
+              - /url: echipamente.html#vx1000
+        - article [ref=f1e405]:
+          - img "Link-uri de alimentare" [ref=f1e407]
+          - generic [ref=f1e408]:
+            - generic [ref=f1e409]: Conectivitate
+            - heading "Link-uri de alimentare" [level=3] [ref=f1e410]
+            - paragraph [ref=f1e411]: Conectare rapidă între echipamente compatibile, cu mai puține trasee separate.
+            - list [ref=f1e412]:
+              - listitem [ref=f1e413]: Pentru echipamente compatibile
+              - listitem [ref=f1e414]: Reduc numărul de cabluri
+              - listitem [ref=f1e415]: Montaj mai ordonat
+            - link "Detalii" [ref=f1e417] [cursor=pointer]:
+              - /url: echipamente.html#link-uri-alimentare
+        - article [ref=f1e418]:
+          - img "Cabluri PowerCON" [ref=f1e420]
+          - generic [ref=f1e421]:
+            - generic [ref=f1e422]: Conectivitate
+            - heading "Cabluri PowerCON" [level=3] [ref=f1e423]
+            - paragraph [ref=f1e424]: Cabluri de alimentare profesionale cu blocare mecanică pentru echipamente de scenă.
+            - list [ref=f1e425]:
+              - listitem [ref=f1e426]: Conector cu blocare
+              - listitem [ref=f1e427]: Pentru audio, video și lumini
+              - listitem [ref=f1e428]: Disponibile în lungimi diferite
+            - link "Detalii" [ref=f1e430] [cursor=pointer]:
+              - /url: echipamente.html#powercon
+        - article [ref=f1e431]:
+          - img "Cabluri XLR / DMX" [ref=f1e433]
+          - generic [ref=f1e434]:
+            - generic [ref=f1e435]: Conectivitate
+            - heading "Cabluri XLR / DMX" [level=3] [ref=f1e436]
+            - paragraph [ref=f1e437]: Semnal audio balansat și control de lumini, pregătite pentru montaj rapid.
+            - list [ref=f1e438]:
+              - listitem [ref=f1e439]: XLR pentru semnal audio
+              - listitem [ref=f1e440]: DMX pentru control lumini
+              - listitem [ref=f1e441]: Lungimi multiple
+            - link "Detalii" [ref=f1e443] [cursor=pointer]:
+              - /url: echipamente.html#xlr-dmx
+        - article [ref=f1e444]:
+          - img "Fibră optică pe rolă" [ref=f1e446]
+          - generic [ref=f1e447]:
+            - generic [ref=f1e448]: Conectivitate
+            - heading "Fibră optică pe rolă" [level=3] [ref=f1e449]
+            - paragraph [ref=f1e450]: Trasee lungi de semnal pentru ecrane LED, video sau control, fără aglomerare inutilă.
+            - list [ref=f1e451]:
+              - listitem [ref=f1e452]: Rolă pentru distanțe mari
+              - listitem [ref=f1e453]: Semnal stabil pe traseu lung
+              - listitem [ref=f1e454]: Utilă la ecrane LED și FOH
+            - link "Detalii" [ref=f1e456] [cursor=pointer]:
+              - /url: echipamente.html#fibra-optica
+        - article [ref=f1e457]:
+          - img "Multicor sunet" [ref=f1e459]
+          - generic [ref=f1e460]:
+            - generic [ref=f1e461]: Conectivitate
+            - heading "Multicor sunet" [level=3] [ref=f1e462]
+            - paragraph [ref=f1e463]: Mai multe canale audio într-un singur traseu între scenă și mixer.
+            - list [ref=f1e464]:
+              - listitem [ref=f1e465]: Traseu scenă - pupitru
+              - listitem [ref=f1e466]: Canale multiple pe un singur cablu
+              - listitem [ref=f1e467]: Reduce aglomerația de cabluri
+            - link "Detalii" [ref=f1e469] [cursor=pointer]:
+              - /url: echipamente.html#multicor-sunet
+        - article [ref=f1e470]:
+          - img "Prelungitoare profesionale" [ref=f1e472]
+          - generic [ref=f1e473]:
+            - generic [ref=f1e474]: Conectivitate
+            - heading "Prelungitoare profesionale" [level=3] [ref=f1e475]
+            - paragraph [ref=f1e476]: Alimentare auxiliară pentru echipamente, poziționată curat și sigur.
+            - list [ref=f1e477]:
+              - listitem [ref=f1e478]: Lungimi diferite
+              - listitem [ref=f1e479]: Pentru consumatori tehnici
+              - listitem [ref=f1e480]: Așezare ordonată pe traseu
+            - link "Detalii" [ref=f1e482] [cursor=pointer]:
+              - /url: echipamente.html#prelungitoare
+        - article [ref=f1e483]:
+          - img "Distribuții de curent" [ref=f1e485]
+          - generic [ref=f1e486]:
+            - generic [ref=f1e487]: Curent
+            - heading "Distribuții de curent" [level=3] [ref=f1e488]
+            - paragraph [ref=f1e489]: Distribuții profesionale pentru alimentarea separată a sunetului, luminilor și video.
+            - list [ref=f1e490]:
+              - listitem [ref=f1e491]: Distribuție pe zone tehnice
+              - listitem [ref=f1e492]: Alimentare pentru sunet / lumini / video
+              - listitem [ref=f1e493]: Trasee dimensionate după consum
+            - link "Detalii" [ref=f1e495] [cursor=pointer]:
+              - /url: echipamente.html#distributii-curent
+      - link "Deschide catalogul complet" [ref=f1e497] [cursor=pointer]:
+        - /url: echipamente.html
+    - region [ref=f1e498]:
+      - generic [ref=f1e499]:
+        - paragraph [ref=f1e500]: Setup rapid
+        - heading "Alege zona tehnică și vezi imediat ce trebuie lămurit." [level=2] [ref=f1e501]
+        - paragraph [ref=f1e502]: "Fiecare locație cere altă abordare. De aici începe oferta: spațiu, public, program, consum electric și personal tehnic."
+      - generic [ref=f1e503]:
+        - tablist "Alege zona tehnică" [ref=f1e504]:
+          - tab "Sunet" [selected] [ref=f1e505] [cursor=pointer]
+          - tab "Lumini" [ref=f1e506] [cursor=pointer]
+          - tab "Scenă" [ref=f1e507] [cursor=pointer]
+          - tab "Video" [ref=f1e508] [cursor=pointer]
+          - tab "Cabluri" [ref=f1e509] [cursor=pointer]
+          - tab "Curent" [ref=f1e510] [cursor=pointer]
+        - generic [ref=f1e511]:
+          - paragraph [ref=f1e512]: Focus tehnic
+          - heading "Sunet RCF dimensionat corect" [level=3] [ref=f1e513]
+          - paragraph [ref=f1e514]: Line Array RCF HDL 10 sau HDL 20, SUB 8008 pentru bass și mixaj digital pe Midas M32R sau Wing Compact.
+          - generic "Niveluri recomandate" [ref=f1e515]:
+            - generic [ref=f1e516]: Acoperire
+            - generic [ref=f1e520]: Bass
+            - generic [ref=f1e524]: Mixaj
+    - generic [ref=f1e528]:
+      - generic [ref=f1e529]:
+        - paragraph [ref=f1e530]: Evenimente
+        - heading "De la sală elegantă la scenă outdoor, echipamentul se dimensionează după loc, public și program." [level=2] [ref=f1e531]
+      - generic "Tipuri de evenimente" [ref=f1e532]:
+        - generic [ref=f1e533]:
+          - generic [ref=f1e534]: Nunți
+          - generic [ref=f1e535]: Botezuri
+          - generic [ref=f1e536]: Majorate
+        - generic [ref=f1e537]:
+          - generic [ref=f1e538]: Corporate
+          - generic [ref=f1e539]: Lansări
+          - generic [ref=f1e540]: Gale
+        - generic [ref=f1e541]:
+          - generic [ref=f1e542]: Concerte
+          - generic [ref=f1e543]: Festivaluri
+          - generic [ref=f1e544]: Club
+        - generic [ref=f1e545]:
+          - generic [ref=f1e546]: Outdoor
+          - generic [ref=f1e547]: DJ set
+          - generic [ref=f1e548]: Petreceri private
+    - generic [ref=f1e549]:
+      - generic [ref=f1e550]:
+        - paragraph [ref=f1e551]: Proces
+        - heading "Patru pași simpli, ca în ziua evenimentului să nu se caute cabluri." [level=2] [ref=f1e552]
+      - list [ref=f1e553]:
+        - listitem [ref=f1e554]:
+          - generic [ref=f1e555]: "01"
+          - heading "Discuție scurtă" [level=3] [ref=f1e556]
+          - paragraph [ref=f1e557]: Data, locația, numărul de invitați, programul și ce momente trebuie să iasă perfect.
+        - listitem [ref=f1e558]:
+          - generic [ref=f1e559]: "02"
+          - heading "Plan tehnic" [level=3] [ref=f1e560]
+          - paragraph [ref=f1e561]: Alegem sunetul, luminile, scena, ecranul, cablarea și alimentarea în funcție de locație.
+        - listitem [ref=f1e562]:
+          - generic [ref=f1e563]: "03"
+          - heading "Montaj & probe" [level=3] [ref=f1e564]
+          - paragraph [ref=f1e565]: Ajungem din timp, montăm curat, testăm microfoane, semnale, lumini și ecrane.
+        - listitem [ref=f1e566]:
+          - generic [ref=f1e567]: "04"
+          - heading "Operare live" [level=3] [ref=f1e568]
+          - paragraph [ref=f1e569]: La nevoie, rămân la pupitru sunetistul, luministul și operatorul de ecran până la final.
+    - generic [ref=f1e570]:
+      - generic [ref=f1e571]:
+        - paragraph [ref=f1e572]: Contact
+        - heading "Ai data și locația? Trimite detaliile, iar setup-ul îl construim împreună." [level=2] [ref=f1e573]
+        - paragraph [ref=f1e574]: Include orașul, sala, numărul de invitați și ce categorii îți trebuie. Pentru afara orașului calculăm și transportul.
+        - generic [ref=f1e575]:
+          - link "+40 700 000 000" [ref=f1e576] [cursor=pointer]:
+            - /url: tel:+40700000000
+          - link "contact@ddsound.ro" [ref=f1e577] [cursor=pointer]:
+            - /url: mailto:contact@ddsound.ro
+      - generic [ref=f1e578]:
+        - generic [ref=f1e579]:
+          - generic [ref=f1e580]: Nume
+          - textbox "Nume" [ref=f1e581]:
+            - /placeholder: Numele tău
+        - generic [ref=f1e582]:
+          - generic [ref=f1e583]: Telefon
+          - textbox "Telefon" [ref=f1e584]:
+            - /placeholder: 07xx xxx xxx
+        - generic [ref=f1e585]:
+          - generic [ref=f1e586]: Tip eveniment
+          - combobox "Tip eveniment" [ref=f1e587]:
+            - option "Alege" [selected]
+            - option "Nuntă"
+            - option "Botez"
+            - option "Corporate"
+            - option "Concert"
+            - option "Petrecere privată"
+            - option "Alt eveniment"
+        - generic [ref=f1e588]:
+          - generic [ref=f1e589]: Operatori tehnici
+          - combobox "Operatori tehnici" [ref=f1e590]:
+            - option "De discutat" [selected]
+            - option "Doar închiriere echipamente"
+            - option "Sunetist"
+            - option "Luminist"
+            - option "Ecranist"
+            - option "Echipă completă"
+        - generic [ref=f1e591]:
+          - generic [ref=f1e592]: Data evenimentului
+          - textbox "Data evenimentului" [ref=f1e593]
+        - generic [ref=f1e594]:
+          - generic [ref=f1e595]: Ce ai nevoie?
+          - textbox "Ce ai nevoie?" [ref=f1e596]:
+            - /placeholder: "Ex: sunet RCF, lumini, ecran LED, scenă, truss, curent 32A/63A, transport, oraș"
+        - button "Pregătește cererea" [ref=f1e597] [cursor=pointer]
+        - paragraph [ref=f1e598]
+  - contentinfo [ref=f1e599]:
+    - paragraph [ref=f1e600]: D&D Sound
+    - paragraph [ref=f1e601]: Sunet, lumini, scenă, ecrane LED, conectivitate și curent pentru evenimente.

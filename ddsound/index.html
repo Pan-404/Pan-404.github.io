@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="D&D Sound oferă sonorizare, lumini, scenă, ecrane LED, conectivitate și distribuții de curent pentru evenimente private, corporate și live.">
+  <title>D&D Sound | Echipamente profesionale pentru evenimente</title>
+  <link rel="icon" type="image/png" href="assets/ddsound-logo-cropped.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header" data-header>
+    <a class="brand" href="#top" aria-label="D&D Sound">
+      <img class="brand-logo" src="assets/ddsound-logo-cropped.png" alt="" width="160" height="128">
+      <span class="sr-only">D&D Sound</span>
+    </a>
+
+    <button class="menu-button" type="button" aria-label="Deschide meniul" aria-expanded="false" data-menu-button>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav class="main-nav" data-nav>
+      <a href="#servicii">Servicii</a>
+      <a href="#echipamente">Echipamente</a>
+      <a href="echipamente.html">Catalog</a>
+      <a href="#evenimente">Evenimente</a>
+      <a href="#proces">Proces</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <canvas id="stageCanvas" aria-hidden="true"></canvas>
+      <div class="hero-shade"></div>
+
+      <div class="hero-content">
+        <img class="hero-logo reveal" src="assets/ddsound-logo-cropped.png" alt="D&D Sound" width="420" height="336">
+        <p class="eyebrow reveal">Sunet RCF. Lumini DMX. Ecrane LED. Truss. Curent.</p>
+        <p class="hero-line reveal">Producție tehnică pentru evenimente care trebuie să se audă clar, să arate bine și să fie montate fără improvizații.</p>
+        <div class="hero-actions reveal">
+          <a class="button primary" href="#contact">Cere disponibilitate</a>
+          <a class="button ghost" href="#servicii">Vezi setup-ul</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="showcase-section" aria-labelledby="showcase-title" data-product-showcase tabindex="0">
+      <div class="showcase-shell reveal">
+        <div class="showcase-media" data-showcase-media aria-live="polite"></div>
+
+        <aside class="showcase-panel">
+          <div>
+            <p class="section-kicker" data-showcase-category>Echipament</p>
+            <h2 id="showcase-title" data-showcase-title>Parc tehnic D&D Sound</h2>
+            <p data-showcase-copy>Produse verificate pentru sunet, lumini, scenă, video, conectivitate și curent.</p>
+          </div>
+
+          <ul class="showcase-specs" data-showcase-specs></ul>
+
+          <div class="showcase-footer">
+            <a class="button ghost" href="echipamente.html" data-showcase-link>Vezi în catalog</a>
+            <div class="showcase-controls" aria-label="Navigare produse">
+              <button type="button" aria-label="Produs anterior" data-showcase-prev>&larr;</button>
+              <button type="button" aria-label="Produs următor" data-showcase-next>&rarr;</button>
+            </div>
+          </div>
+
+          <div class="showcase-count" aria-hidden="true">
+            <span data-showcase-index>01</span>
+            <span data-showcase-total>/ 22</span>
+          </div>
+        </aside>
+      </div>
+
+      <div class="showcase-dots reveal" data-showcase-dots aria-label="Poziție slider"></div>
+      <div class="showcase-thumbs reveal" data-showcase-thumbs aria-label="Alege produsul"></div>
+    </section>
+
+    <section id="servicii" class="services-section">
+      <div class="section-heading reveal">
+        <p class="section-kicker">Servicii</p>
+        <h2>Categoriile importante, puse într-un plan tehnic clar.</h2>
+      </div>
+
+      <div class="service-list">
+        <article class="service-row reveal">
+          <span class="service-number">01</span>
+          <div>
+            <h3>Sunet</h3>
+            <p>Line Array RCF HDL 10 și HDL 20, subwoofere RCF SUB 8008, mixere digitale, microfoane Shure și stative profesionale.</p>
+            <ul class="service-tags" aria-label="Echipamente sunet">
+              <li>RCF HDL 10 / HDL 20</li>
+              <li>RCF SUB 8008</li>
+              <li>Midas M32R / Wing Compact</li>
+            </ul>
+          </div>
+        </article>
+        <article class="service-row reveal">
+          <span class="service-number">02</span>
+          <div>
+            <h3>Lumini</h3>
+            <p>LED Bar-uri, Beam, Thunder Wash și moving head-uri controlate DMX pentru scenă, ring, intrări speciale și momente live.</p>
+            <ul class="service-tags" aria-label="Echipamente lumini">
+              <li>LED Bar</li>
+              <li>Beam</li>
+              <li>Thunder Wash</li>
+              <li>Moving Head</li>
+            </ul>
+          </div>
+        </article>
+        <article class="service-row reveal">
+          <span class="service-number">03</span>
+          <div>
+            <h3>Scenă</h3>
+            <p>Platforme modulare de 2 x 1 metri și structuri truss din aluminiu, configurate rapid pentru podiumuri, scene și susținere echipamente.</p>
+            <ul class="service-tags" aria-label="Echipamente scenă">
+              <li>Buteci 2 x 1 m</li>
+              <li>Truss 1 m / 2 m</li>
+              <li>Argintiu / negru</li>
+            </ul>
+          </div>
+        </article>
+        <article class="service-row reveal">
+          <span class="service-number">04</span>
+          <div>
+            <h3>Video & ecrane LED</h3>
+            <p>Ecrane LED P2.9 și P3.9, plus procesare video VX1000 pentru prezentări, live feed, concerte și producții corporate.</p>
+            <ul class="service-tags" aria-label="Echipamente video">
+              <li>LED P2.9 / P3.9</li>
+              <li>VX1000</li>
+              <li>Live feed</li>
+            </ul>
+          </div>
+        </article>
+        <article class="service-row reveal">
+          <span class="service-number">05</span>
+          <div>
+            <h3>Conectivitate</h3>
+            <p>XLR, DMX, fibră optică pe rolă, multicor de sunet, PowerCON, link-uri de alimentare și prelungitoare profesionale.</p>
+            <ul class="service-tags" aria-label="Conectivitate">
+              <li>XLR / DMX</li>
+              <li>Fibră optică</li>
+              <li>PowerCON</li>
+              <li>Multicor sunet</li>
+            </ul>
+          </div>
+        </article>
+        <article class="service-row reveal">
+          <span class="service-number">06</span>
+          <div>
+            <h3>Curent</h3>
+            <p>Distribuții profesionale de curent și alimentări trifazice pentru sisteme audio, lumini și video, dimensionate după consumul real.</p>
+            <ul class="service-tags" aria-label="Alimentare electrică">
+              <li>32A</li>
+              <li>63A</li>
+              <li>125A la cerere specială</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+
+      <p class="service-note reveal">
+        Pentru evenimente în afara orașului se adaugă transportul. La nevoie, pachetul poate include sunetist,
+        luminist și operator pentru ecrane LED.
+      </p>
+    </section>
+
+    <section id="echipamente" class="gear-section">
+      <div class="gear-heading reveal">
+        <div>
+          <h2>Un scroll rapid prin produsele principale.</h2>
+        </div>
+        <div class="rail-controls" aria-label="Navigare echipamente">
+          <button type="button" aria-label="Echipamente anterioare" data-rail-prev>&larr;</button>
+          <button type="button" aria-label="Echipamente următoare" data-rail-next>&rarr;</button>
+        </div>
+      </div>
+
+      <div class="product-rail reveal" data-product-rail aria-label="Echipamente principale D&D Sound"></div>
+
+      <div class="gear-link reveal">
+        <a class="button ghost" href="echipamente.html">Deschide catalogul complet</a>
+      </div>
+    </section>
+
+    <section class="mixer-section" aria-labelledby="mixer-title">
+      <div class="mixer-copy reveal">
+        <h2 id="mixer-title">Alege zona tehnică și vezi imediat ce trebuie lămurit.</h2>
+        <p>Fiecare locație cere altă abordare. De aici începe oferta: spațiu, public, program, consum electric și personal tehnic.</p>
+      </div>
+
+      <div class="mixer-panel reveal">
+        <div class="mixer-controls" role="tablist" aria-label="Alege zona tehnică">
+          <button class="mixer-tab is-active" type="button" role="tab" aria-selected="true" data-service="sunet">Sunet</button>
+          <button class="mixer-tab" type="button" role="tab" aria-selected="false" data-service="lumini">Lumini</button>
+          <button class="mixer-tab" type="button" role="tab" aria-selected="false" data-service="scena">Scenă</button>
+          <button class="mixer-tab" type="button" role="tab" aria-selected="false" data-service="video">Video</button>
+          <button class="mixer-tab" type="button" role="tab" aria-selected="false" data-service="conectivitate">Cabluri</button>
+          <button class="mixer-tab" type="button" role="tab" aria-selected="false" data-service="curent">Curent</button>
+        </div>
+
+        <div class="mixer-readout" aria-live="polite">
+          <p class="readout-label" data-readout-label>Focus tehnic</p>
+          <h3 data-readout-title>Sunet echilibrat</h3>
+          <p data-readout-copy>Presiune suficientă pentru ring, voci clare la microfon și control bun al volumului pe tot spațiul.</p>
+
+          <div class="meter-group" aria-label="Niveluri recomandate">
+            <div class="meter">
+              <span data-meter-a-label>Claritate</span>
+              <div class="meter-track"><span data-meter-a style="width: 86%"></span></div>
+            </div>
+            <div class="meter">
+              <span data-meter-b-label>Impact</span>
+              <div class="meter-track"><span data-meter-b style="width: 74%"></span></div>
+            </div>
+            <div class="meter">
+              <span data-meter-c-label>Control</span>
+              <div class="meter-track"><span data-meter-c style="width: 92%"></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="evenimente" class="events-section">
+      <div class="events-sticky reveal">
+        <p class="section-kicker">Evenimente</p>
+        <h2>De la sală elegantă la scenă outdoor, echipamentul se dimensionează după loc, public și program.</h2>
+      </div>
+
+      <div class="event-lines" aria-label="Tipuri de evenimente">
+        <div class="event-line reveal">
+          <span>Nunți</span>
+          <span>Botezuri</span>
+          <span>Majorate</span>
+        </div>
+        <div class="event-line reveal">
+          <span>Corporate</span>
+          <span>Lansări</span>
+          <span>Gale</span>
+        </div>
+        <div class="event-line reveal">
+          <span>Concerte</span>
+          <span>Festivaluri</span>
+          <span>Club</span>
+        </div>
+        <div class="event-line reveal">
+          <span>Outdoor</span>
+          <span>DJ set</span>
+          <span>Petreceri private</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="proces" class="process-section">
+      <div class="section-heading reveal">
+        <p class="section-kicker">Proces</p>
+        <h2>Patru pași simpli, ca în ziua evenimentului să nu se caute cabluri.</h2>
+      </div>
+
+      <ol class="process-list">
+        <li class="reveal">
+          <span>01</span>
+          <h3>Discuție scurtă</h3>
+          <p>Data, locația, numărul de invitați, programul și ce momente trebuie să iasă perfect.</p>
+        </li>
+        <li class="reveal">
+          <span>02</span>
+          <h3>Plan tehnic</h3>
+          <p>Alegem sunetul, luminile, scena, ecranul, cablarea și alimentarea în funcție de locație.</p>
+        </li>
+        <li class="reveal">
+          <span>03</span>
+          <h3>Montaj & probe</h3>
+          <p>Ajungem din timp, montăm, testăm microfoane, semnale, lumini și ecrane.</p>
+        </li>
+        <li class="reveal">
+          <span>04</span>
+          <h3>Operare live</h3>
+          <p>La nevoie, rămân la pupitru sunetistul, luministul și operatorul de ecran până la final.</p>
+        </li>
+      </ol>
+    </section>
+
+    <section id="contact" class="contact-section">
+      <div class="contact-copy reveal">
+        <p class="section-kicker">Contact</p>
+        <h2>Ai data și locația? Trimite detaliile, iar setup-ul îl construim împreună.</h2>
+        <p>Include orașul, sala, numărul de invitați și ce categorii îți trebuie. Pentru afara orașului calculăm și transportul.</p>
+        <div class="contact-direct">
+          <a href="tel:+40700000000">+40 700 000 000</a>
+          <a href="mailto:contact@ddsound.ro">contact@ddsound.ro</a>
+        </div>
+      </div>
+
+      <form class="quote-form reveal" data-quote-form>
+        <label>
+          <span>Nume</span>
+          <input name="name" type="text" autocomplete="name" placeholder="Numele tău" required>
+        </label>
+        <label>
+          <span>Telefon</span>
+          <input name="phone" type="tel" autocomplete="tel" placeholder="07xx xxx xxx" required>
+        </label>
+        <label>
+          <span>Tip eveniment</span>
+          <select name="eventType" required>
+            <option value="">Alege</option>
+            <option>Nuntă</option>
+            <option>Botez</option>
+            <option>Corporate</option>
+            <option>Concert</option>
+            <option>Petrecere privată</option>
+            <option>Alt eveniment</option>
+          </select>
+        </label>
+        <label>
+          <span>Operatori tehnici</span>
+          <select name="crew">
+            <option>De discutat</option>
+            <option>Doar închiriere echipamente</option>
+            <option>Sunetist</option>
+            <option>Luminist</option>
+            <option>Ecranist</option>
+            <option>Echipă completă</option>
+          </select>
+        </label>
+        <label>
+          <span>Data evenimentului</span>
+          <input name="date" type="date">
+        </label>
+        <label class="full">
+          <span>Ce ai nevoie?</span>
+          <textarea name="message" rows="4" placeholder="Ex: sunet RCF, lumini, ecran LED, scenă, truss, curent 32A/63A, transport, oraș"></textarea>
+        </label>
+        <button class="button primary full" type="submit">Pregătește cererea</button>
+        <p class="form-status" data-form-status aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>D&D Sound</p>
+    <p>Sunet, lumini, scenă, ecrane LED, conectivitate și curent pentru evenimente.</p>
+  </footer>
+
+  <script src="products.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

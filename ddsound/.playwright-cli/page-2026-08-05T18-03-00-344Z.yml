@@ -1,0 +1,220 @@
+- generic [active] [ref=f1e1]:
+  - banner [ref=f1e2]:
+    - link "D&D Sound" [ref=f1e3] [cursor=pointer]:
+      - /url: "#top"
+    - button "Deschide meniul" [ref=f1e4]
+    - navigation [ref=f1e5]:
+      - link "Servicii" [ref=f1e6] [cursor=pointer]:
+        - /url: "#servicii"
+      - link "Echipamente" [ref=f1e7] [cursor=pointer]:
+        - /url: "#echipamente"
+      - link "Catalog" [ref=f1e8] [cursor=pointer]:
+        - /url: echipamente.html
+      - link "Evenimente" [ref=f1e9] [cursor=pointer]:
+        - /url: "#evenimente"
+      - link "Proces" [ref=f1e10] [cursor=pointer]:
+        - /url: "#proces"
+      - link "Contact" [ref=f1e11] [cursor=pointer]:
+        - /url: "#contact"
+  - main [ref=f1e12]:
+    - region [ref=f1e13]:
+      - generic [ref=f1e15]:
+        - paragraph [ref=f1e16]: Sunet RCF. Lumini DMX. Ecrane LED. Truss. Curent.
+        - heading "D&D Sound" [level=1] [ref=f1e17]
+        - paragraph [ref=f1e18]: Producție tehnică pentru evenimente care trebuie să se audă clar, să arate bine și să fie montate fără improvizații.
+        - generic [ref=f1e19]:
+          - link "Cere disponibilitate" [ref=f1e20] [cursor=pointer]:
+            - /url: "#contact"
+          - link "Vezi setup-ul" [ref=f1e21] [cursor=pointer]:
+            - /url: "#servicii"
+      - generic "Servicii principale" [ref=f1e22]: RCF HDL 10 / HDL 20 LED P2.9 / P3.9 Scenă 2 x 1 m + truss 32A / 63A / 125A la cerere
+    - region [ref=f1e23]:
+      - complementary [ref=f1e25]:
+        - generic [ref=f1e26]:
+          - paragraph [ref=f1e27]: Echipament
+          - heading "Parc tehnic D&D Sound" [level=2] [ref=f1e28]
+          - paragraph [ref=f1e29]: Produse verificate pentru sunet, lumini, scenă, video, conectivitate și curent.
+        - list
+        - generic [ref=f1e30]:
+          - link "Vezi în catalog" [ref=f1e31] [cursor=pointer]:
+            - /url: echipamente.html
+          - generic "Navigare produse" [ref=f1e32]:
+            - button "Produs anterior" [ref=f1e33]: ←
+            - button "Produs următor" [ref=f1e34]: →
+        - generic [ref=f1e35]: 01 / 22
+      - generic "Poziție slider"
+      - generic "Alege produsul"
+    - generic [ref=f1e36]:
+      - generic [ref=f1e37]:
+        - paragraph [ref=f1e38]: Servicii
+        - heading "Categoriile importante, puse într-un plan tehnic clar." [level=2] [ref=f1e39]
+      - generic [ref=f1e40]:
+        - article [ref=f1e41]:
+          - text: "01"
+          - generic [ref=f1e42]:
+            - heading "Sunet" [level=3] [ref=f1e43]
+            - paragraph [ref=f1e44]: Line Array RCF HDL 10 și HDL 20, subwoofere RCF SUB 8008, mixere digitale, microfoane Shure și stative profesionale.
+            - list "Echipamente sunet" [ref=f1e45]:
+              - listitem [ref=f1e46]: RCF HDL 10 / HDL 20
+              - listitem [ref=f1e47]: RCF SUB 8008
+              - listitem [ref=f1e48]: Midas M32R / Wing Compact
+        - article [ref=f1e49]:
+          - text: "02"
+          - generic [ref=f1e50]:
+            - heading "Lumini" [level=3] [ref=f1e51]
+            - paragraph [ref=f1e52]: LED Bar-uri, Beam, Thunder Wash și moving head-uri controlate DMX pentru scenă, ring, intrări speciale și momente live.
+            - list "Echipamente lumini" [ref=f1e53]:
+              - listitem [ref=f1e54]: LED Bar
+              - listitem [ref=f1e55]: Beam
+              - listitem [ref=f1e56]: Thunder Wash
+              - listitem [ref=f1e57]: Moving Head
+        - article [ref=f1e58]:
+          - text: "03"
+          - generic [ref=f1e59]:
+            - heading "Scenă" [level=3] [ref=f1e60]
+            - paragraph [ref=f1e61]: Platforme modulare de 2 x 1 metri și structuri truss din aluminiu, configurate rapid pentru podiumuri, scene și susținere echipamente.
+            - list "Echipamente scenă" [ref=f1e62]:
+              - listitem [ref=f1e63]: Buteci 2 x 1 m
+              - listitem [ref=f1e64]: Truss 1 m / 2 m
+              - listitem [ref=f1e65]: Argintiu / negru
+        - article [ref=f1e66]:
+          - text: "04"
+          - generic [ref=f1e67]:
+            - heading "Video & ecrane LED" [level=3] [ref=f1e68]
+            - paragraph [ref=f1e69]: Ecrane LED P2.9 și P3.9, plus procesare video VX1000 pentru prezentări, live feed, concerte și producții corporate.
+            - list "Echipamente video" [ref=f1e70]:
+              - listitem [ref=f1e71]: LED P2.9 / P3.9
+              - listitem [ref=f1e72]: VX1000
+              - listitem [ref=f1e73]: Live feed
+        - article [ref=f1e74]:
+          - text: "05"
+          - generic [ref=f1e75]:
+            - heading "Conectivitate" [level=3] [ref=f1e76]
+            - paragraph [ref=f1e77]: XLR, DMX, fibră optică pe rolă, multicor de sunet, PowerCON, link-uri de alimentare și prelungitoare profesionale.
+            - list "Conectivitate" [ref=f1e78]:
+              - listitem [ref=f1e79]: XLR / DMX
+              - listitem [ref=f1e80]: Fibră optică
+              - listitem [ref=f1e81]: PowerCON
+              - listitem [ref=f1e82]: Multicor sunet
+        - article [ref=f1e83]:
+          - text: "06"
+          - generic [ref=f1e84]:
+            - heading "Curent" [level=3] [ref=f1e85]
+            - paragraph [ref=f1e86]: Distribuții profesionale de curent și alimentări trifazice pentru sisteme audio, lumini și video, dimensionate după consumul real.
+            - list "Alimentare electrică" [ref=f1e87]:
+              - listitem [ref=f1e88]: 32A
+              - listitem [ref=f1e89]: 63A
+              - listitem [ref=f1e90]: 125A la cerere specială
+      - paragraph [ref=f1e91]: Pentru evenimente în afara orașului se adaugă transportul. La nevoie, pachetul poate include sunetist, luminist și operator pentru ecrane LED.
+    - generic [ref=f1e92]:
+      - generic [ref=f1e93]:
+        - generic [ref=f1e94]:
+          - paragraph [ref=f1e95]: Echipamente
+          - heading "Un scroll rapid prin produsele principale." [level=2] [ref=f1e96]
+        - generic "Navigare echipamente" [ref=f1e97]:
+          - button "Echipamente anterioare" [ref=f1e98]: ←
+          - button "Echipamente următoare" [ref=f1e99]: →
+      - generic "Echipamente principale D&D Sound"
+      - link "Deschide catalogul complet" [ref=f1e101] [cursor=pointer]:
+        - /url: echipamente.html
+    - region [ref=f1e102]:
+      - generic [ref=f1e103]:
+        - paragraph [ref=f1e104]: Setup rapid
+        - heading "Alege zona tehnică și vezi imediat ce trebuie lămurit." [level=2] [ref=f1e105]
+        - paragraph [ref=f1e106]: "Fiecare locație cere altă abordare. De aici începe oferta: spațiu, public, program, consum electric și personal tehnic."
+      - generic [ref=f1e107]:
+        - tablist "Alege zona tehnică" [ref=f1e108]:
+          - tab "Sunet" [selected] [ref=f1e109]
+          - tab "Lumini" [ref=f1e110]
+          - tab "Scenă" [ref=f1e111]
+          - tab "Video" [ref=f1e112]
+          - tab "Cabluri" [ref=f1e113]
+          - tab "Curent" [ref=f1e114]
+        - generic [ref=f1e115]:
+          - paragraph [ref=f1e116]: Focus tehnic
+          - heading "Sunet echilibrat" [level=3] [ref=f1e117]
+          - paragraph [ref=f1e118]: Presiune suficientă pentru ring, voci clare la microfon și control bun al volumului pe tot spațiul.
+          - generic "Niveluri recomandate" [ref=f1e119]:
+            - generic [ref=f1e120]: Claritate
+            - generic [ref=f1e121]: Impact
+            - generic [ref=f1e122]: Control
+    - generic [ref=f1e123]:
+      - generic [ref=f1e124]:
+        - paragraph [ref=f1e125]: Evenimente
+        - heading "De la sală elegantă la scenă outdoor, echipamentul se dimensionează după loc, public și program." [level=2] [ref=f1e126]
+      - generic "Tipuri de evenimente" [ref=f1e127]:
+        - generic [ref=f1e128]: Nunți Botezuri Majorate
+        - generic [ref=f1e129]: Corporate Lansări Gale
+        - generic [ref=f1e130]: Concerte Festivaluri Club
+        - generic [ref=f1e131]: Outdoor DJ set Petreceri private
+    - generic [ref=f1e132]:
+      - generic [ref=f1e133]:
+        - paragraph [ref=f1e134]: Proces
+        - heading "Patru pași simpli, ca în ziua evenimentului să nu se caute cabluri." [level=2] [ref=f1e135]
+      - list [ref=f1e136]:
+        - listitem [ref=f1e137]:
+          - text: "01"
+          - heading "Discuție scurtă" [level=3] [ref=f1e138]
+          - paragraph [ref=f1e139]: Data, locația, numărul de invitați, programul și ce momente trebuie să iasă perfect.
+        - listitem [ref=f1e140]:
+          - text: "02"
+          - heading "Plan tehnic" [level=3] [ref=f1e141]
+          - paragraph [ref=f1e142]: Alegem sunetul, luminile, scena, ecranul, cablarea și alimentarea în funcție de locație.
+        - listitem [ref=f1e143]:
+          - text: "03"
+          - heading "Montaj & probe" [level=3] [ref=f1e144]
+          - paragraph [ref=f1e145]: Ajungem din timp, montăm curat, testăm microfoane, semnale, lumini și ecrane.
+        - listitem [ref=f1e146]:
+          - text: "04"
+          - heading "Operare live" [level=3] [ref=f1e147]
+          - paragraph [ref=f1e148]: La nevoie, rămân la pupitru sunetistul, luministul și operatorul de ecran până la final.
+    - generic [ref=f1e149]:
+      - generic [ref=f1e150]:
+        - paragraph [ref=f1e151]: Contact
+        - heading "Ai data și locația? Trimite detaliile, iar setup-ul îl construim împreună." [level=2] [ref=f1e152]
+        - paragraph [ref=f1e153]: Include orașul, sala, numărul de invitați și ce categorii îți trebuie. Pentru afara orașului calculăm și transportul.
+        - generic [ref=f1e154]:
+          - link "+40 700 000 000" [ref=f1e155] [cursor=pointer]:
+            - /url: tel:+40700000000
+          - link "contact@ddsound.ro" [ref=f1e156] [cursor=pointer]:
+            - /url: mailto:contact@ddsound.ro
+      - generic [ref=f1e157]:
+        - generic [ref=f1e158]:
+          - text: Nume
+          - textbox "Nume" [ref=f1e159]:
+            - /placeholder: Numele tău
+        - generic [ref=f1e160]:
+          - text: Telefon
+          - textbox "Telefon" [ref=f1e161]:
+            - /placeholder: 07xx xxx xxx
+        - generic [ref=f1e162]:
+          - text: Tip eveniment
+          - combobox "Tip eveniment" [ref=f1e163]:
+            - option "Alege" [selected]
+            - option "Nuntă"
+            - option "Botez"
+            - option "Corporate"
+            - option "Concert"
+            - option "Petrecere privată"
+            - option "Alt eveniment"
+        - generic [ref=f1e164]:
+          - text: Operatori tehnici
+          - combobox "Operatori tehnici" [ref=f1e165]:
+            - option "De discutat" [selected]
+            - option "Doar închiriere echipamente"
+            - option "Sunetist"
+            - option "Luminist"
+            - option "Ecranist"
+            - option "Echipă completă"
+        - generic [ref=f1e166]:
+          - text: Data evenimentului
+          - textbox "Data evenimentului" [ref=f1e167]
+        - generic [ref=f1e168]:
+          - text: Ce ai nevoie?
+          - textbox "Ce ai nevoie?" [ref=f1e169]:
+            - /placeholder: "Ex: sunet RCF, lumini, ecran LED, scenă, truss, curent 32A/63A, transport, oraș"
+        - button "Pregătește cererea" [ref=f1e170]
+        - paragraph
+  - contentinfo [ref=f1e171]:
+    - paragraph [ref=f1e172]: D&D Sound
+    - paragraph [ref=f1e173]: Sunet, lumini, scenă, ecrane LED, conectivitate și curent pentru evenimente.
