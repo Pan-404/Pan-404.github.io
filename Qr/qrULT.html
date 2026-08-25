@@ -223,7 +223,7 @@
       border: 2px solid #795548;
       border-radius: 12px;
       background: linear-gradient(90deg, var(--brown-dark), var(--brown));
-      color: #fff;
+      color: #ffffff;
       font: inherit;
       font-size: 0.94rem;
       outline: none;
@@ -245,6 +245,16 @@
     textarea:focus {
       border-color: var(--accent);
       box-shadow: 0 0 0 2px rgba(215, 184, 153, 0.3), 0 0 18px rgba(215, 184, 153, 0.34);
+    }
+
+    select option,
+    select optgroup {
+      background: var(--panel-soft);
+      color: #f8fafc;
+    }
+    
+    select {
+      color-scheme: dark;
     }
 
     input[type="color"] {
