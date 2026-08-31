@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Opening link</title>
+  <meta name="robots" content="noindex">
+  <script src="/short-link.js"></script>
+  <style>
+    :root {
+      --bg: #111111;
+      --panel: #171412;
+      --accent: #d7b899;
+      --text: #fff8ee;
+      --muted: rgba(255, 248, 238, 0.66);
+      --line: rgba(215, 184, 153, 0.25);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      background:
+        radial-gradient(circle at top left, rgba(215, 184, 153, 0.12), transparent 34rem),
+        linear-gradient(135deg, #111111 0%, #15100e 58%, #0d0d0d 100%);
+      color: var(--text);
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    main {
+      width: min(560px, 100%);
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(23, 20, 18, 0.74);
+      box-shadow: 0 18px 60px rgba(0, 0, 0, 0.34);
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      color: var(--accent);
+      font-size: clamp(1.8rem, 7vw, 3rem);
+      line-height: 1;
+    }
+
+    p {
+      margin: 0 0 18px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--accent);
+      overflow-wrap: anywhere;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1 id="title">Opening link</h1>
+    <p id="message">Verific linkul scurt...</p>
+    <a id="fallbackLink" class="hidden" href="/">Inapoi acasa</a>
+  </main>
+
+  <script>
+    const title = document.getElementById("title");
+    const message = document.getElementById("message");
+    const fallbackLink = document.getElementById("fallbackLink");
+
+    function getShortPayload() {
+      const marker = "/S/";
+      const path = window.location.pathname;
+      const markerIndex = path.toUpperCase().indexOf(marker);
+
+      if (markerIndex === -1) return "";
+
+      const rawPayload = path.slice(markerIndex + marker.length).replace(/\/+$/, "");
+
+      try {
+        return decodeURIComponent(rawPayload).toUpperCase();
+      } catch (error) {
+        return rawPayload.toUpperCase();
+      }
+    }
+
+    function showFallback(text, href) {
+      title.textContent = "Link indisponibil";
+      message.textContent = text;
+      fallbackLink.href = href || "/";
+      fallbackLink.textContent = href || "Inapoi acasa";
+      fallbackLink.classList.remove("hidden");
+    }
+
+    try {
+      const payload = getShortPayload();
+
+      if (!payload) {
+        showFallback("Pagina asta nu exista sau linkul este incomplet.", "/");
+      } else {
+        const destination = window.PanShortLink.decodePayload(payload);
+
+        if (!/^https?:\/\//i.test(destination)) {
+          throw new Error("Unsupported destination.");
+        }
+
+        message.textContent = "Te duc catre destinatie...";
+        fallbackLink.href = destination;
+        fallbackLink.textContent = destination;
+        fallbackLink.classList.remove("hidden");
+
+        window.setTimeout(() => {
+          window.location.replace(destination);
+        }, 80);
+      }
+    } catch (error) {
+      showFallback("Linkul scurt este invalid sau a fost copiat incomplet.", "/");
+    }
+  </script>
+</body>
+</html>

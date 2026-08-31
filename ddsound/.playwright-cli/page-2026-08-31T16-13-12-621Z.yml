@@ -1,0 +1,754 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - link "D&D Sound" [ref=e3] [cursor=pointer]:
+      - /url: index.html#top
+    - navigation [ref=e5]:
+      - link "Servicii" [ref=e6] [cursor=pointer]:
+        - /url: index.html#servicii
+      - link "Echipamente" [ref=e7] [cursor=pointer]:
+        - /url: index.html#echipamente
+      - link "Catalog" [ref=e8] [cursor=pointer]:
+        - /url: echipamente.html
+      - link "Evenimente" [ref=e9] [cursor=pointer]:
+        - /url: index.html#evenimente
+      - link "Contact" [ref=e10] [cursor=pointer]:
+        - /url: index.html#contact
+  - main [ref=e11]:
+    - generic [ref=e12]:
+      - heading "Echipamente D&D Sound" [level=1] [ref=e13]
+      - paragraph [ref=e14]: Poze, cantități, categorii și specificații scurte pentru produsele folosite în evenimente. Modelele exacte au fișă de producător, iar elementele configurabile se dimensionează după locație și consum.
+    - region "Filtrare catalog" [ref=e15]:
+      - tablist "Categorii echipamente" [ref=e16]:
+        - tab "Tot" [selected] [ref=e17] [cursor=pointer]
+        - tab "Sunet" [ref=e18] [cursor=pointer]
+        - tab "Lumini" [ref=e19] [cursor=pointer]
+        - tab "Efecte" [ref=e20] [cursor=pointer]
+        - tab "Scenă" [ref=e21] [cursor=pointer]
+        - tab "Rigging" [ref=e22] [cursor=pointer]
+        - tab "Video" [ref=e23] [cursor=pointer]
+        - tab "Prelungitoare" [ref=e24] [cursor=pointer]
+        - tab "Cabluri" [ref=e25] [cursor=pointer]
+        - tab "Curent" [ref=e26] [cursor=pointer]
+      - generic [ref=e27]:
+        - generic [ref=e28]: Caută
+        - searchbox "Caută" [ref=e29]
+    - region [ref=e30]:
+      - generic [ref=e31]:
+        - paragraph [ref=e32]: Produse
+        - heading "46 poziții în catalog" [level=2] [ref=e33]
+      - generic [ref=e34]:
+        - article [ref=e35]:
+          - img "RCF HDL 10-A" [ref=e37]
+          - generic [ref=e38]:
+            - generic [ref=e39]:
+              - generic [ref=e40]: Sunet
+              - generic [ref=e41]: 10 buc
+            - heading "RCF HDL 10-A" [level=3] [ref=e42]
+            - paragraph [ref=e43]: Line array activ compact pentru evenimente indoor, outdoor și sisteme rapide de montat.
+            - list [ref=e44]:
+              - listitem [ref=e45]: 2 x 8 inch woofer + driver compresie 2 inch
+              - listitem [ref=e46]: 65 Hz - 20 kHz
+              - listitem [ref=e47]: 133 dB max SPL
+              - listitem [ref=e48]: 1400 W peak / 700 W RMS
+              - listitem [ref=e49]: Acoperire 100° x 15°
+              - listitem [ref=e50]: 20.4 kg
+            - link "Fișă producător" [ref=e52] [cursor=pointer]:
+              - /url: https://www.rcf.it/en/products/product-detail/hdl-10-a
+        - article [ref=e53]:
+          - img "RCF HDL 20-A" [ref=e55]
+          - generic [ref=e56]:
+            - generic [ref=e57]:
+              - generic [ref=e58]: Sunet
+              - generic [ref=e59]: 10 buc
+            - heading "RCF HDL 20-A" [level=3] [ref=e60]
+            - paragraph [ref=e61]: Line array activ cu două difuzoare de 10 inch, potrivit pentru producții mai mari.
+            - list [ref=e62]:
+              - listitem [ref=e63]: 2 x 10 inch woofer + driver compresie 2 inch
+              - listitem [ref=e64]: 55 Hz - 20 kHz
+              - listitem [ref=e65]: 135 dB max SPL
+              - listitem [ref=e66]: 1400 W peak / 700 W RMS
+              - listitem [ref=e67]: Acoperire 100° x 15°
+              - listitem [ref=e68]: 30.2 kg
+            - link "Fișă producător" [ref=e70] [cursor=pointer]:
+              - /url: https://www.rcf.it/en/products/product-detail/hdl-20-a
+        - article [ref=e71]:
+          - img "RCF SUB 8008-AS" [ref=e73]
+          - generic [ref=e74]:
+            - generic [ref=e75]:
+              - generic [ref=e76]: Sunet
+              - generic [ref=e77]: 4 buc
+            - heading "RCF SUB 8008-AS" [level=3] [ref=e78]
+            - paragraph [ref=e79]: Subwoofer activ dublu de 18 inch pentru bass cu impact în evenimente live.
+            - list [ref=e80]:
+              - listitem [ref=e81]: 2 x 18 inch woofer, 4 inch v.c.
+              - listitem [ref=e82]: 30 Hz - 120 Hz
+              - listitem [ref=e83]: 137 dB max SPL
+              - listitem [ref=e84]: 4400 W peak
+              - listitem [ref=e85]: PowerCON TRUE1 TOP IN/OUT
+              - listitem [ref=e86]: 80 kg
+            - link "Fișă producător" [ref=e88] [cursor=pointer]:
+              - /url: https://www.rcf.it/en/products/product-detail/sub-8008-as
+        - article [ref=e89]:
+          - img "Consolă Midas M32R" [ref=e91]
+          - generic [ref=e92]:
+            - generic [ref=e93]:
+              - generic [ref=e94]: Sunet
+              - generic [ref=e95]: 1 buc
+            - heading "Consolă Midas M32R" [level=3] [ref=e96]
+            - paragraph [ref=e97]: Mixer digital pentru live, conferințe și producții complexe.
+            - list [ref=e98]:
+              - listitem [ref=e99]: 40 canale de intrare
+              - listitem [ref=e100]: 16 preamplificatoare Midas PRO
+              - listitem [ref=e101]: 25 mix buses
+              - listitem [ref=e102]: Live multitrack recording
+              - listitem [ref=e103]: Format rack/desktop
+              - listitem [ref=e104]: Potrivit pentru operare live
+            - link "Fișă producător" [ref=e106] [cursor=pointer]:
+              - /url: https://www.midasconsoles.com/en/products/0603-AEP
+        - article [ref=e107]:
+          - img "Consolă Behringer Wing" [ref=e109]
+          - generic [ref=e110]:
+            - generic [ref=e111]:
+              - generic [ref=e112]: Sunet
+              - generic [ref=e113]: 1 buc
+            - heading "Consolă Behringer Wing" [level=3] [ref=e114]
+            - paragraph [ref=e115]: Consolă digitală modernă pentru setup-uri cu multe surse și control rapid.
+            - list [ref=e116]:
+              - listitem [ref=e117]: 48 canale / 28 buses full stereo
+              - listitem [ref=e118]: 24 preamplificatoare Midas PRO
+              - listitem [ref=e119]: 13 fadere motorizate
+              - listitem [ref=e120]: Touchscreen de 10 inch
+              - listitem [ref=e121]: 48 x 48 USB audio interface
+              - listitem [ref=e122]: 3 porturi AES50
+            - link "Fișă producător" [ref=e124] [cursor=pointer]:
+              - /url: https://www.behringer.com/en/products/0603-AEV
+        - article [ref=e125]:
+          - img "dB Technologies B-Hype 12" [ref=e127]
+          - generic [ref=e128]:
+            - generic [ref=e129]: Sunet
+            - heading "dB Technologies B-Hype 12" [level=3] [ref=e131]
+            - paragraph [ref=e132]: Boxă activă de 12 inch pentru evenimente mai mici, monitorizare sau zone secundare.
+            - list [ref=e133]:
+              - listitem [ref=e134]: 12 inch woofer + driver 1 inch
+              - listitem [ref=e135]: 400 W peak / 200 W RMS
+              - listitem [ref=e136]: 126 dB max SPL
+              - listitem [ref=e137]: 55 Hz - 20 kHz
+              - listitem [ref=e138]: Horn 85° x 85°
+              - listitem [ref=e139]: 13.9 kg
+            - link "Fișă producător" [ref=e141] [cursor=pointer]:
+              - /url: https://www.dbtechnologies.com/us/products/b-hype
+        - article [ref=e142]:
+          - img "dB Technologies SUB 618" [ref=e144]
+          - generic [ref=e145]:
+            - generic [ref=e146]: Sunet
+            - heading "dB Technologies SUB 618" [level=3] [ref=e148]
+            - paragraph [ref=e149]: Subwoofer activ de 18 inch pentru completarea setup-urilor compacte.
+            - list [ref=e150]:
+              - listitem [ref=e151]: 1 x 18 inch bass-reflex
+              - listitem [ref=e152]: 600 W RMS / 1200 W peak
+              - listitem [ref=e153]: 35 Hz - 130 Hz
+              - listitem [ref=e154]: 133 dB max SPL
+              - listitem [ref=e155]: Intrări / ieșiri XLR
+              - listitem [ref=e156]: 31.1 kg
+            - link "Fișă producător" [ref=e158] [cursor=pointer]:
+              - /url: https://www.dbtechnologies.com/us/products/sub-series/sub-618
+        - article [ref=e159]:
+          - img "Shure SM58" [ref=e161]
+          - generic [ref=e162]:
+            - generic [ref=e163]: Sunet
+            - heading "Shure SM58" [level=3] [ref=e165]
+            - paragraph [ref=e166]: Microfon vocal dinamic, folosit constant pentru voce live și discursuri.
+            - list [ref=e167]:
+              - listitem [ref=e168]: Tip dinamic cardioid
+              - listitem [ref=e169]: 50 Hz - 15 kHz
+              - listitem [ref=e170]: Filtru pop sferic integrat
+              - listitem [ref=e171]: Shock-mount pneumatic
+              - listitem [ref=e172]: Conector XLR
+              - listitem [ref=e173]: Construcție robustă pentru scenă
+            - link "Fișă producător" [ref=e175] [cursor=pointer]:
+              - /url: https://www.shure.com/en-US/products/microphones/sm58
+        - article [ref=e176]:
+          - img "Stative boxe Gravity" [ref=e178]
+          - generic [ref=e179]:
+            - generic [ref=e180]: Sunet
+            - heading "Stative boxe Gravity" [level=3] [ref=e182]
+            - paragraph [ref=e183]: Stative stabile pentru boxe și setup-uri mobile.
+            - list [ref=e184]:
+              - listitem [ref=e185]: Sarcină maximă 50 kg
+              - listitem [ref=e186]: Înălțime maximă 195 cm
+              - listitem [ref=e187]: Construcție cu trepied
+              - listitem [ref=e188]: Tub aluminiu powder coated
+              - listitem [ref=e189]: Pentru boxe cu flanșă standard
+              - listitem [ref=e190]: Montaj rapid
+            - link "Fișă producător" [ref=e192] [cursor=pointer]:
+              - /url: https://www.gravitystands.com/en/products/speaker-stands/2960/sp-5211-b
+        - article [ref=e193]:
+          - img "Stative microfon Gravity" [ref=e195]
+          - generic [ref=e196]:
+            - generic [ref=e197]: Sunet
+            - heading "Stative microfon Gravity" [level=3] [ref=e199]
+            - paragraph [ref=e200]: Stative de microfon cu braț telescopic pentru conferințe și live.
+            - list [ref=e201]:
+              - listitem [ref=e202]: Înălțime maximă 169 cm
+              - listitem [ref=e203]: Braț telescopic
+              - listitem [ref=e204]: Bază tip trepied
+              - listitem [ref=e205]: Construcție heavy-duty
+              - listitem [ref=e206]: Pentru vocal și discurs
+              - listitem [ref=e207]: Reglaj rapid
+            - link "Fișă producător" [ref=e209] [cursor=pointer]:
+              - /url: https://www.gravitystands.com/en/products/microphone-stands/2909/ms-4322-b
+        - article [ref=e210]:
+          - img "Moving Head" [ref=e212]
+          - generic [ref=e213]:
+            - generic [ref=e214]:
+              - generic [ref=e215]: Lumini
+              - generic [ref=e216]: 8 buc
+            - heading "Moving Head" [level=3] [ref=e217]
+            - paragraph [ref=e218]: Cap mobil pentru mișcare, gobos, culoare și momente sincronizate pe scenă.
+            - list [ref=e219]:
+              - listitem [ref=e220]: Control DMX
+              - listitem [ref=e221]: Mișcare pan / tilt
+              - listitem [ref=e222]: Programe auto și sound
+              - listitem [ref=e223]: Montaj pe podea sau truss
+              - listitem [ref=e224]: Pentru scenă și ring
+              - listitem [ref=e225]: Modelul exact se confirmă la setup
+        - article [ref=e226]:
+          - img "Beam" [ref=e228]
+          - generic [ref=e229]:
+            - generic [ref=e230]:
+              - generic [ref=e231]: Lumini
+              - generic [ref=e232]: 10 buc
+            - heading "Beam" [level=3] [ref=e233]
+            - paragraph [ref=e234]: Fascicule înguste și puternice pentru efecte vizibile în fum sau haze.
+            - list [ref=e235]:
+              - listitem [ref=e236]: Beam cu fascicul concentrat
+              - listitem [ref=e237]: Control DMX
+              - listitem [ref=e238]: Pan / tilt motorizat
+              - listitem [ref=e239]: Culori și strobe
+              - listitem [ref=e240]: Montaj pe truss
+              - listitem [ref=e241]: Pentru concerte și petreceri
+        - article [ref=e242]:
+          - img "Thunderwash" [ref=e244]
+          - generic [ref=e245]:
+            - generic [ref=e246]:
+              - generic [ref=e247]: Lumini
+              - generic [ref=e248]: 10 buc
+            - heading "Thunderwash" [level=3] [ref=e249]
+            - paragraph [ref=e250]: Efect de tip wash / blinder / strobe pentru energie vizuală pe scenă sau ring.
+            - list [ref=e251]:
+              - listitem [ref=e252]: DMX input / output
+              - listitem [ref=e253]: Moduri DMX multiple
+              - listitem [ref=e254]: Dimmer și flash
+              - listitem [ref=e255]: Master / slave / standalone
+              - listitem [ref=e256]: Display LED pentru setări
+              - listitem [ref=e257]: Control pe sunet
+            - link "Fișă producător" [ref=e259] [cursor=pointer]:
+              - /url: https://www.cameolight.com/en/solutions/dj-musicians/static-lighting/floodlights/2402/thunder-wash-600-w
+        - article [ref=e260]:
+          - img "Wash" [ref=e262]
+          - generic [ref=e263]:
+            - generic [ref=e264]:
+              - generic [ref=e265]: Lumini
+              - generic [ref=e266]: 10 buc
+            - heading "Wash" [level=3] [ref=e267]
+            - paragraph [ref=e268]: Spălare de culoare pentru scenă, fundal, ring sau zone decorative.
+            - list [ref=e269]:
+              - listitem [ref=e270]: Acoperire largă
+              - listitem [ref=e271]: Control DMX
+              - listitem [ref=e272]: Dimmer și strobe
+              - listitem [ref=e273]: Culori pentru atmosferă
+              - listitem [ref=e274]: Montaj pe truss sau stativ
+              - listitem [ref=e275]: Potrivit indoor
+        - article [ref=e276]:
+          - img "LED Bar" [ref=e278]
+          - generic [ref=e279]:
+            - generic [ref=e280]:
+              - generic [ref=e281]: Lumini
+              - generic [ref=e282]: 20 buc
+            - heading "LED Bar" [level=3] [ref=e283]
+            - paragraph [ref=e284]: Bară LED pentru decor, scenă și spălare de culoare pe fundal sau ring.
+            - list [ref=e285]:
+              - listitem [ref=e286]: Control DMX512
+              - listitem [ref=e287]: RGBWA+UV, în funcție de model
+              - listitem [ref=e288]: Moduri auto / sound
+              - listitem [ref=e289]: Dimmer și strobe
+              - listitem [ref=e290]: Alimentare 110-240V
+              - listitem [ref=e291]: Montaj pe stativ sau truss
+            - link "Fișă producător" [ref=e293] [cursor=pointer]:
+              - /url: https://audibax.com/product/bar-1818-black-2/
+        - article [ref=e294]:
+          - img "PAR LED" [ref=e296]
+          - generic [ref=e297]:
+            - generic [ref=e298]:
+              - generic [ref=e299]: Lumini
+              - generic [ref=e300]: 10 buc
+            - heading "PAR LED" [level=3] [ref=e301]
+            - paragraph [ref=e302]: Proiectoare PAR LED pentru iluminat ambiental, scenă și accente de culoare.
+            - list [ref=e303]:
+              - listitem [ref=e304]: Control DMX
+              - listitem [ref=e305]: RGB / RGBW după model
+              - listitem [ref=e306]: Unghi potrivit pentru wash
+              - listitem [ref=e307]: Consum redus
+              - listitem [ref=e308]: Montaj pe stativ sau truss
+              - listitem [ref=e309]: Mod auto / sound
+        - article [ref=e310]:
+          - img "Follow Spot" [ref=e312]
+          - generic [ref=e313]:
+            - generic [ref=e314]:
+              - generic [ref=e315]: Lumini
+              - generic [ref=e316]: 1 buc
+            - heading "Follow Spot" [level=3] [ref=e317]
+            - paragraph [ref=e318]: Spot de urmărire pentru artiști, momente speciale, intrări și prezentări.
+            - list [ref=e319]:
+              - listitem [ref=e320]: Operare manuală
+              - listitem [ref=e321]: Fascicul concentrat
+              - listitem [ref=e322]: Montaj pe trepied
+              - listitem [ref=e323]: Pentru scenă și sală
+              - listitem [ref=e324]: Dimming controlabil
+              - listitem [ref=e325]: Ideal pentru intrări speciale
+        - article [ref=e326]:
+          - img "Mașină CO2 MOKA SFX MK-C12" [ref=e328]
+          - generic [ref=e329]:
+            - generic [ref=e330]: Efecte
+            - heading "Mașină CO2 MOKA SFX MK-C12" [level=3] [ref=e332]
+            - paragraph [ref=e333]: Tun CO2 cu LED-uri RGB pentru coloane de fum rece la momente de impact.
+            - list [ref=e334]:
+              - listitem [ref=e335]: Unghi ajustabil 0-90°
+              - listitem [ref=e336]: 12 x 3 W RGB LED
+              - listitem [ref=e337]: Jet CO2 până la 8-10 m
+              - listitem [ref=e338]: Control DMX512
+              - listitem [ref=e339]: 6 canale DMX
+              - listitem [ref=e340]: Butelia/consumabilele se taxează separat
+            - link "Fișă producător" [ref=e342] [cursor=pointer]:
+              - /url: https://www.mokalighting.com/products/moka-sfx-led-co2-jet-machine
+        - article [ref=e343]:
+          - img "Mașini de scântei reci" [ref=e345]
+          - generic [ref=e346]:
+            - generic [ref=e347]: Efecte
+            - heading "Mașini de scântei reci" [level=3] [ref=e349]
+            - paragraph [ref=e350]: Efect de tip fountain pentru momente foto, dansul mirilor și intrări spectaculoase.
+            - list [ref=e351]:
+              - listitem [ref=e352]: Efect fără flacără deschisă
+              - listitem [ref=e353]: Control DMX sau telecomandă
+              - listitem [ref=e354]: Înălțime reglabilă după model
+              - listitem [ref=e355]: Potrivit pentru interior cu aprobare
+              - listitem [ref=e356]: Consumabil dedicat
+              - listitem [ref=e357]: Se folosește conform regulilor locației
+        - article [ref=e358]:
+          - img "Mașini de fum greu" [ref=e360]
+          - generic [ref=e361]:
+            - generic [ref=e362]: Efecte
+            - heading "Mașini de fum greu" [level=3] [ref=e364]
+            - paragraph [ref=e365]: Fum dens la nivelul podelei pentru dansuri, intrări și momente cu atmosferă cinematică.
+            - list [ref=e366]:
+              - listitem [ref=e367]: Efect low fog
+              - listitem [ref=e368]: Control temporizat
+              - listitem [ref=e369]: Output mare pentru scenă/ring
+              - listitem [ref=e370]: Pregătire înainte de moment
+              - listitem [ref=e371]: Fluid/consumabil dedicat
+              - listitem [ref=e372]: Se dimensionează după spațiu
+        - article [ref=e373]:
+          - img "Hazere" [ref=e375]
+          - generic [ref=e376]:
+            - generic [ref=e377]: Efecte
+            - heading "Hazere" [level=3] [ref=e379]
+            - paragraph [ref=e380]: Ceață fină pentru a face razele de lumină vizibile în sală sau în exterior seara.
+            - list [ref=e381]:
+              - listitem [ref=e382]: Output fin și constant
+              - listitem [ref=e383]: Control DMX
+              - listitem [ref=e384]: Fan reglabil după model
+              - listitem [ref=e385]: Ideal pentru beam-uri și lasere
+              - listitem [ref=e386]: Consum redus de lichid
+              - listitem [ref=e387]: Folosire cu ventilație adecvată
+        - article [ref=e388]:
+          - img "Lasere" [ref=e390]
+          - generic [ref=e391]:
+            - generic [ref=e392]: Efecte
+            - heading "Lasere" [level=3] [ref=e394]
+            - paragraph [ref=e395]: Efecte laser pentru show-uri de seară, ring și momente sincronizate cu luminile.
+            - list [ref=e396]:
+              - listitem [ref=e397]: Culori RGB după model
+              - listitem [ref=e398]: Control DMX
+              - listitem [ref=e399]: Mod auto / sound
+              - listitem [ref=e400]: Vizibilitate bună cu haze
+              - listitem [ref=e401]: Poziționare sigură
+              - listitem [ref=e402]: Operare responsabilă în public
+        - article [ref=e403]:
+          - img "Buteci 2 x 1 m" [ref=e405]
+          - generic [ref=e406]:
+            - generic [ref=e407]: Scenă
+            - heading "Buteci 2 x 1 m" [level=3] [ref=e409]
+            - paragraph [ref=e410]: Platforme modulare pentru scenă, podium, pupitru DJ sau spațiu de prezentare.
+            - list [ref=e411]:
+              - listitem [ref=e412]: Modul standard 2 x 1 m
+              - listitem [ref=e413]: Configurații pe dimensiunea spațiului
+              - listitem [ref=e414]: Stabilizare înainte de utilizare
+              - listitem [ref=e415]: Potrivit indoor / outdoor
+              - listitem [ref=e416]: Înălțime și suprafață la cerere
+              - listitem [ref=e417]: Montaj rapid pe locație
+            - link "Fișă producător" [ref=e419] [cursor=pointer]:
+              - /url: https://www.thomannmusic.com/stairville_tour_stage_platform_2x1_m_odw.htm
+        - article [ref=e420]:
+          - img "Grindă truss 1 m" [ref=e422]
+          - generic [ref=e423]:
+            - generic [ref=e424]:
+              - generic [ref=e425]: Rigging
+              - generic [ref=e426]: 10 buc
+            - heading "Grindă truss 1 m" [level=3] [ref=e427]
+            - paragraph [ref=e428]: Segment truss pentru structuri de lumini, sunet sau ecrane LED.
+            - list [ref=e429]:
+              - listitem [ref=e430]: Lungime 1 m
+              - listitem [ref=e431]: Aluminiu
+              - listitem [ref=e432]: Pentru structuri modulare
+              - listitem [ref=e433]: Conectori și pini la montaj
+              - listitem [ref=e434]: Finisaj argintiu/negru după stoc
+              - listitem [ref=e435]: Se configurează după proiect
+            - link "Fișă producător" [ref=e437] [cursor=pointer]:
+              - /url: https://www.milossystems.com/products/truss
+        - article [ref=e438]:
+          - img "Grindă truss 2 m" [ref=e440]
+          - generic [ref=e441]:
+            - generic [ref=e442]:
+              - generic [ref=e443]: Rigging
+              - generic [ref=e444]: 10 buc
+            - heading "Grindă truss 2 m" [level=3] [ref=e445]
+            - paragraph [ref=e446]: Segment truss de bază pentru deschideri și structuri tehnice.
+            - list [ref=e447]:
+              - listitem [ref=e448]: Lungime 2 m
+              - listitem [ref=e449]: Aluminiu
+              - listitem [ref=e450]: Pentru lumini și video
+              - listitem [ref=e451]: Montaj cu conectori
+              - listitem [ref=e452]: Stoc pentru configurații mari
+              - listitem [ref=e453]: Calcul de încărcare la proiecte mari
+            - link "Fișă producător" [ref=e455] [cursor=pointer]:
+              - /url: https://www.milossystems.com/products/truss
+        - article [ref=e456]:
+          - img "Grindă truss 3 m" [ref=e458]
+          - generic [ref=e459]:
+            - generic [ref=e460]:
+              - generic [ref=e461]: Rigging
+              - generic [ref=e462]: 4 buc
+            - heading "Grindă truss 3 m" [level=3] [ref=e463]
+            - paragraph [ref=e464]: Segment lung pentru structuri cu mai puține îmbinări.
+            - list [ref=e465]:
+              - listitem [ref=e466]: Lungime 3 m
+              - listitem [ref=e467]: Aluminiu
+              - listitem [ref=e468]: Pentru deschideri mai mari
+              - listitem [ref=e469]: Conectori dedicați
+              - listitem [ref=e470]: Transport și montaj tehnic
+              - listitem [ref=e471]: Se folosește după planul de rigging
+        - article [ref=e472]:
+          - img "Grindă truss 4 m" [ref=e474]
+          - generic [ref=e475]:
+            - generic [ref=e476]:
+              - generic [ref=e477]: Rigging
+              - generic [ref=e478]: 2 buc
+            - heading "Grindă truss 4 m" [level=3] [ref=e479]
+            - paragraph [ref=e480]: Segment truss pentru structuri mai ample sau deschideri principale.
+            - list [ref=e481]:
+              - listitem [ref=e482]: Lungime 4 m
+              - listitem [ref=e483]: Aluminiu
+              - listitem [ref=e484]: Pentru scenă și ecrane
+              - listitem [ref=e485]: Necesar transport dedicat
+              - listitem [ref=e486]: Montaj tehnic
+              - listitem [ref=e487]: Se verifică încărcarea înainte de eveniment
+        - article [ref=e488]:
+          - img "Truss tower" [ref=e490]
+          - generic [ref=e491]:
+            - generic [ref=e492]: Rigging
+            - heading "Truss tower" [level=3] [ref=e494]
+            - paragraph [ref=e495]: Turnuri truss pentru ridicarea luminilor, suporturi laterale sau puncte tehnice.
+            - list [ref=e496]:
+              - listitem [ref=e497]: Structură verticală
+              - listitem [ref=e498]: Bază stabilă
+              - listitem [ref=e499]: Pentru lumini și efecte
+              - listitem [ref=e500]: Înălțime după proiect
+              - listitem [ref=e501]: Montaj cu echipă tehnică
+              - listitem [ref=e502]: Se poziționează după planul locației
+        - article [ref=e503]:
+          - img "Modul LED Outdoor P3.9 1 x 0.5 m" [ref=e505]
+          - generic [ref=e506]:
+            - generic [ref=e507]:
+              - generic [ref=e508]: Video
+              - generic [ref=e509]: 50 buc
+            - heading "Modul LED Outdoor P3.9 1 x 0.5 m" [level=3] [ref=e510]
+            - paragraph [ref=e511]: Module LED outdoor pentru ecrane configurabile, live feed și conținut vizual.
+            - list [ref=e512]:
+              - listitem [ref=e513]: Pixel pitch P3.9
+              - listitem [ref=e514]: Modul 1 x 0.5 m
+              - listitem [ref=e515]: 50 module în inventar
+              - listitem [ref=e516]: Luminozitate pentru exterior
+              - listitem [ref=e517]: Montaj pe structură adecvată
+              - listitem [ref=e518]: Procesare cu VX1000
+            - link "Fișă producător" [ref=e520] [cursor=pointer]:
+              - /url: https://hhevent.eu/p2-9-led-screen/
+        - article [ref=e521]:
+          - img "Procesor VX1000 Pro" [ref=e523]
+          - generic [ref=e524]:
+            - generic [ref=e525]:
+              - generic [ref=e526]: Video
+              - generic [ref=e527]: 2 buc
+            - heading "Procesor VX1000 Pro" [level=3] [ref=e528]
+            - paragraph [ref=e529]: Controller și procesor video all-in-one pentru ecrane LED.
+            - list [ref=e530]:
+              - listitem [ref=e531]: Capacitate 6.5 milioane pixeli
+              - listitem [ref=e532]: Lățime maximă 10,240 px
+              - listitem [ref=e533]: Înălțime maximă 8,192 px
+              - listitem [ref=e534]: 2 x HDMI 1.4, DVI, 3G-SDI, OPT
+              - listitem [ref=e535]: 10 porturi Ethernet + 2 optical
+              - listitem [ref=e536]: 483.6 x 351.2 x 50.1 mm
+            - link "Fișă producător" [ref=e538] [cursor=pointer]:
+              - /url: https://www.adj.eu/novastar-vx1000
+        - article [ref=e539]:
+          - img "Fibră optică 150 m" [ref=e541]
+          - generic [ref=e542]:
+            - generic [ref=e543]:
+              - generic [ref=e544]: Video
+              - generic [ref=e545]: 1 buc
+            - heading "Fibră optică 150 m" [level=3] [ref=e546]
+            - paragraph [ref=e547]: Traseu lung de semnal pentru ecran LED, FOH sau control video.
+            - list [ref=e548]:
+              - listitem [ref=e549]: Lungime 150 m
+              - listitem [ref=e550]: Rolă pentru transport
+              - listitem [ref=e551]: Semnal stabil pe distanță mare
+              - listitem [ref=e552]: Utilă la ecrane LED
+              - listitem [ref=e553]: Conectori protejați
+              - listitem [ref=e554]: Testare înainte de eveniment
+        - article [ref=e555]:
+          - img "Fibră optică 100 m" [ref=e557]
+          - generic [ref=e558]:
+            - generic [ref=e559]:
+              - generic [ref=e560]: Video
+              - generic [ref=e561]: 1 buc
+            - heading "Fibră optică 100 m" [level=3] [ref=e562]
+            - paragraph [ref=e563]: Traseu optic pentru conexiuni video și control pe distanțe medii-mari.
+            - list [ref=e564]:
+              - listitem [ref=e565]: Lungime 100 m
+              - listitem [ref=e566]: Rolă pentru transport
+              - listitem [ref=e567]: Pentru video/control
+              - listitem [ref=e568]: Montaj protejat
+              - listitem [ref=e569]: Conectori verificați
+              - listitem [ref=e570]: Testare înainte de show
+        - article [ref=e571]:
+          - img "Cablu trifazic 32A" [ref=e573]
+          - generic [ref=e574]:
+            - generic [ref=e575]:
+              - generic [ref=e576]: Curent
+              - generic [ref=e577]: 2 buc
+            - heading "Cablu trifazic 32A" [level=3] [ref=e578]
+            - paragraph [ref=e579]: Alimentare trifazică pentru distribuții și consumatori tehnici.
+            - list [ref=e580]:
+              - listitem [ref=e581]: CEE 32A
+              - listitem [ref=e582]: Trifazic 400V
+              - listitem [ref=e583]: Pentru evenimente și scenă
+              - listitem [ref=e584]: Conectori industriali
+              - listitem [ref=e585]: Traseu dimensionat după consum
+              - listitem [ref=e586]: Verificare înainte de montaj
+        - article [ref=e587]:
+          - img "Cablu trifazic 63A" [ref=e589]
+          - generic [ref=e590]:
+            - generic [ref=e591]:
+              - generic [ref=e592]: Curent
+              - generic [ref=e593]: 1 buc
+            - heading "Cablu trifazic 63A" [level=3] [ref=e594]
+            - paragraph [ref=e595]: Traseu principal de alimentare pentru setup-uri cu consum mai mare.
+            - list [ref=e596]:
+              - listitem [ref=e597]: CEE 63A
+              - listitem [ref=e598]: Trifazic 400V
+              - listitem [ref=e599]: Pentru distribuții principale
+              - listitem [ref=e600]: Conectori industriali
+              - listitem [ref=e601]: Montaj tehnic
+              - listitem [ref=e602]: Se folosește după disponibilitatea locației
+        - article [ref=e603]:
+          - img "Distribuție Y" [ref=e605]
+          - generic [ref=e606]:
+            - generic [ref=e607]:
+              - generic [ref=e608]: Curent
+              - generic [ref=e609]: 1 buc
+            - heading "Distribuție Y" [level=3] [ref=e610]
+            - paragraph [ref=e611]: Distribuție de tip Y pentru împărțirea controlată a alimentării tehnice.
+            - list [ref=e612]:
+              - listitem [ref=e613]: Splitter trifazic
+              - listitem [ref=e614]: Pentru trasee tehnice
+              - listitem [ref=e615]: Conectori CEE
+              - listitem [ref=e616]: Așezare ordonată
+              - listitem [ref=e617]: Verificare înainte de eveniment
+              - listitem [ref=e618]: Se folosește după planul de consum
+        - article [ref=e619]:
+          - img "Distribuție curent" [ref=e621]
+          - generic [ref=e622]:
+            - generic [ref=e623]:
+              - generic [ref=e624]: Curent
+              - generic [ref=e625]: 2 buc
+            - heading "Distribuție curent" [level=3] [ref=e626]
+            - paragraph [ref=e627]: Distribuții profesionale pentru alimentarea separată a sunetului, luminilor și video.
+            - list [ref=e628]:
+              - listitem [ref=e629]: Distribuție pe zone tehnice
+              - listitem [ref=e630]: Pentru sunet / lumini / video
+              - listitem [ref=e631]: Trasee dimensionate după consum
+              - listitem [ref=e632]: Curent trifazic 32A și 63A
+              - listitem [ref=e633]: 125A la cerere specială
+              - listitem [ref=e634]: Planificare înainte de montaj
+            - link "Fișă producător" [ref=e636] [cursor=pointer]:
+              - /url: https://www.thomannmusic.com/pce_9130076_ischl_bv_cee_32a.htm
+        - article [ref=e637]:
+          - img "Prelungitor 10 m" [ref=e639]
+          - generic [ref=e640]:
+            - generic [ref=e641]:
+              - generic [ref=e642]: Prelungitoare
+              - generic [ref=e643]: 15 buc
+            - heading "Prelungitor 10 m" [level=3] [ref=e644]
+            - paragraph [ref=e645]: Prelungitor profesional pentru alimentare auxiliară pe trasee curate.
+            - list [ref=e646]:
+              - listitem [ref=e647]: Lungime 10 m
+              - listitem [ref=e648]: Pentru consumatori tehnici
+              - listitem [ref=e649]: Poziționare ordonată
+              - listitem [ref=e650]: Verificat înainte de eveniment
+              - listitem [ref=e651]: Util pentru scenă și backstage
+              - listitem [ref=e652]: Se folosește cu distribuții
+        - article [ref=e653]:
+          - img "Prelungitor 5 m" [ref=e655]
+          - generic [ref=e656]:
+            - generic [ref=e657]:
+              - generic [ref=e658]: Prelungitoare
+              - generic [ref=e659]: 10 buc
+            - heading "Prelungitor 5 m" [level=3] [ref=e660]
+            - paragraph [ref=e661]: Prelungitor scurt pentru alimentări locale și poziții apropiate.
+            - list [ref=e662]:
+              - listitem [ref=e663]: Lungime 5 m
+              - listitem [ref=e664]: Pentru echipamente tehnice
+              - listitem [ref=e665]: Traseu scurt și curat
+              - listitem [ref=e666]: Verificare la montaj
+              - listitem [ref=e667]: Util în scenă sau control
+              - listitem [ref=e668]: Stoc pentru setup-uri rapide
+        - article [ref=e669]:
+          - img "Prelungitor 3 m" [ref=e671]
+          - generic [ref=e672]:
+            - generic [ref=e673]:
+              - generic [ref=e674]: Prelungitoare
+              - generic [ref=e675]: 20 buc
+            - heading "Prelungitor 3 m" [level=3] [ref=e676]
+            - paragraph [ref=e677]: Prelungitor compact pentru alimentări punctuale în scenă sau pupitru.
+            - list [ref=e678]:
+              - listitem [ref=e679]: Lungime 3 m
+              - listitem [ref=e680]: Pentru consumatori apropiați
+              - listitem [ref=e681]: Ușor de mascat
+              - listitem [ref=e682]: Stoc mare pentru puncte multiple
+              - listitem [ref=e683]: Verificat înainte de folosire
+              - listitem [ref=e684]: Util cu prize/distribuții
+        - article [ref=e685]:
+          - img "Prelungitor 6 prize" [ref=e687]
+          - generic [ref=e688]:
+            - generic [ref=e689]:
+              - generic [ref=e690]: Prelungitoare
+              - generic [ref=e691]: 10 buc
+            - heading "Prelungitor 6 prize" [level=3] [ref=e692]
+            - paragraph [ref=e693]: Prelungitor multipriză pentru alimentarea accesoriilor și a zonelor de control.
+            - list [ref=e694]:
+              - listitem [ref=e695]: 6 prize
+              - listitem [ref=e696]: Pentru consum redus/moderat
+              - listitem [ref=e697]: Așezare pe zone tehnice
+              - listitem [ref=e698]: Verificare înainte de eveniment
+              - listitem [ref=e699]: Util la pupitru și backstage
+              - listitem [ref=e700]: Se dimensionează după consum
+        - article [ref=e701]:
+          - img "Cabluri XLR / DMX" [ref=e703]
+          - generic [ref=e704]:
+            - generic [ref=e705]:
+              - generic [ref=e706]: Cabluri
+              - generic [ref=e707]: 60 buc
+            - heading "Cabluri XLR / DMX" [level=3] [ref=e708]
+            - paragraph [ref=e709]: Semnal audio balansat și control de lumini, pregătite pentru montaj rapid.
+            - list [ref=e710]:
+              - listitem [ref=e711]: XLR pentru semnal audio
+              - listitem [ref=e712]: DMX pentru control lumini
+              - listitem [ref=e713]: Lungimi multiple
+              - listitem [ref=e714]: Conectori verificați
+              - listitem [ref=e715]: Etichetare pe trasee mari
+              - listitem [ref=e716]: Pentru evenimente mici sau producții mari
+            - link "Fișă producător" [ref=e718] [cursor=pointer]:
+              - /url: https://www.thomannmusic.com/cordial_cpd_05_fm.htm
+        - article [ref=e719]:
+          - img "Alimentare ecran" [ref=e721]
+          - generic [ref=e722]:
+            - generic [ref=e723]:
+              - generic [ref=e724]: Cabluri
+              - generic [ref=e725]: 60 buc
+            - heading "Alimentare ecran" [level=3] [ref=e726]
+            - paragraph [ref=e727]: Cabluri dedicate pentru alimentarea modulelor de ecran LED.
+            - list [ref=e728]:
+              - listitem [ref=e729]: Pentru module LED
+              - listitem [ref=e730]: 60 buc în inventar
+              - listitem [ref=e731]: Trasee ordonate
+              - listitem [ref=e732]: Conectori verificați
+              - listitem [ref=e733]: Montaj rapid
+              - listitem [ref=e734]: Se folosesc cu distribuția video
+        - article [ref=e735]:
+          - img "Link ecran" [ref=e737]
+          - generic [ref=e738]:
+            - generic [ref=e739]:
+              - generic [ref=e740]: Cabluri
+              - generic [ref=e741]: 60 buc
+            - heading "Link ecran" [level=3] [ref=e742]
+            - paragraph [ref=e743]: Link-uri pentru conectarea rapidă între modulele și traseele ecranului LED.
+            - list [ref=e744]:
+              - listitem [ref=e745]: Pentru ecran LED
+              - listitem [ref=e746]: 60 buc în inventar
+              - listitem [ref=e747]: Conectare între module
+              - listitem [ref=e748]: Reduce cablarea vizibilă
+              - listitem [ref=e749]: Verificate înainte de montaj
+              - listitem [ref=e750]: Pentru configurații P3.9
+        - article [ref=e751]:
+          - img "Alimentare / link sunet" [ref=e753]
+          - generic [ref=e754]:
+            - generic [ref=e755]:
+              - generic [ref=e756]: Cabluri
+              - generic [ref=e757]: 30 buc
+            - heading "Alimentare / link sunet" [level=3] [ref=e758]
+            - paragraph [ref=e759]: Cabluri de alimentare și link pentru sistemele audio active.
+            - list [ref=e760]:
+              - listitem [ref=e761]: Pentru boxe și subwoofere active
+              - listitem [ref=e762]: 30 buc în inventar
+              - listitem [ref=e763]: Trasee mai curate
+              - listitem [ref=e764]: Conectori verificați
+              - listitem [ref=e765]: Pentru montaj rapid
+              - listitem [ref=e766]: Se folosesc după configurația audio
+        - article [ref=e767]:
+          - img "Cabluri PowerCON" [ref=e769]
+          - generic [ref=e770]:
+            - generic [ref=e771]:
+              - generic [ref=e772]: Cabluri
+              - generic [ref=e773]: 40 buc
+            - heading "Cabluri PowerCON" [level=3] [ref=e774]
+            - paragraph [ref=e775]: Cabluri de alimentare profesionale cu blocare mecanică pentru echipamente de scenă.
+            - list [ref=e776]:
+              - listitem [ref=e777]: Conector cu blocare
+              - listitem [ref=e778]: Pentru audio, video și lumini
+              - listitem [ref=e779]: Disponibile în lungimi diferite
+              - listitem [ref=e780]: Potrivite pentru aplicații mobile
+              - listitem [ref=e781]: Verificare înainte de montaj
+              - listitem [ref=e782]: Trasee curate pe scenă
+            - link "Fișă producător" [ref=e784] [cursor=pointer]:
+              - /url: https://www.thomannmusic.com/neutrik_nkph1_a1a1_m001.htm
+        - article [ref=e785]:
+          - img "Multicor sunet" [ref=e787]
+          - generic [ref=e788]:
+            - generic [ref=e789]: Cabluri
+            - heading "Multicor sunet" [level=3] [ref=e791]
+            - paragraph [ref=e792]: Mai multe canale audio într-un singur traseu între scenă și mixer.
+            - list [ref=e793]:
+              - listitem [ref=e794]: Traseu scenă - pupitru
+              - listitem [ref=e795]: Canale multiple pe un singur cablu
+              - listitem [ref=e796]: Reduce aglomerația de cabluri
+              - listitem [ref=e797]: Pentru live, conferințe și formații
+              - listitem [ref=e798]: Etichetare pe capete
+              - listitem [ref=e799]: Verificare canal cu canal
+            - link "Fișă producător" [ref=e801] [cursor=pointer]:
+              - /url: https://www.thomannmusic.com/pro_snake_410_multicore.htm
+    - generic [ref=e802]:
+      - paragraph [ref=e803]: Specificațiile pentru echipamentele cu model exact sunt preluate din fișe sau pagini de producător. Pentru cabluri, scenă, rigging, efecte și distribuții, configurația finală se stabilește după locație, consum, trasee și cerințele evenimentului.
+      - link "Cere ofertă pe eveniment" [ref=e804] [cursor=pointer]:
+        - /url: index.html#contact
+  - contentinfo [ref=e805]:
+    - paragraph [ref=e806]: D&D Sound
+    - paragraph [ref=e807]: Catalog echipamente pentru sunet, lumini, efecte, scenă, rigging, video, cabluri, prelungitoare și curent.

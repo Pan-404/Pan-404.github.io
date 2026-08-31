@@ -1,393 +1,535 @@
+const ddImages = {
+  rcfHdl10: "https://www.rcf.it/documents/20124/1238303/HDL10-A-tour.jpg/76956986-055b-2088-2d21-9e383f857b56?t=1643123670832&version=1.0",
+  rcfHdl20: "https://www.rcf.it/documents/20124/1238303/HDL-20-A-cool-tour-sound.jpg/eda0ea2b-3d87-b85d-e213-948ddc75e45b?t=1642756339821&version=2.0",
+  rcfSub: "https://www.rcf.it/documents/20128/825331/000_SUB-8008-AS-LEFT.png/76abca59-7f74-fae6-cdbd-44276fb672be?version=2.0&t=1707406201187&imagePreview=1",
+  midas: "https://cdn-media.empowertribe.com/5cc0fa7a6b0b448e814712aa9b4fc799/Image_MI_0603-AEP_M32R-LIVE_Catalog_B.png",
+  wing: "https://media.sweetwater.com/m/products/image/e3a7c15c455d958RSUAz9UbPlv4y6MN5tTU2I36x.jpg?ha=e3a7c15c450a2a55eebc5c788187d42e65dcac1b&quality=82&width=750",
+  dbHype: "https://img.kytary.com/eshop_cz/velky_v2/na/637908242423700000/9c6d99f3/64998935/db-technologies-b-hype-12.jpg",
+  dbSub: "https://media.musicalstore2005.com/media/catalog/product/cache/207e23213cf636ccdef205098cf3c8a3/d/b/db_technologies_sub_618_angle.jpg",
+  shure: "https://thumbs.static-thomann.de/thumb/padthumb600x600/pics/bdb/_10/105767/8805536_800.jpg",
+  gravitySpeaker: "https://cdn-shop.adamhall.com/ORIGINAL/media/MARKEN/GRAVITY/GSP5211B/GSP5211B_1.jpg",
+  gravityMic: "https://cdn-shop.adamhall.com/ORIGINAL/media/MARKEN/GRAVITY/GMS4322B/GMS4322B_1.jpg",
+  ledBar: "https://static.gooecloud.com/upload/img/GY369603158074/aa0d60ef368254434700096aa3f6d08f.jpg",
+  movingHead: "https://thumbs.static-thomann.de/thumb/padthumb600x600/pics/bdb/_39/398850/12015623_800.jpg",
+  beam: "https://static.gooecloud.com/upload/img/GY908654163015/1-21.jpg?x-oss-process=image%2Fformat%2Cwebp%2Fquality%2CQ_100",
+  thunderWash: "https://cdn-shop.adamhall.com/ORIGINAL/media/MARKEN/CAMEO/CLTW600W/CLTW600W_1.jpg",
+  parLed: "https://www.ibizasound.es/34911-thickbox_default/thinpar-36x1w-rgb.jpg",
+  followSpot: "https://geartechs.com/cdn/shop/files/mega-followbot-compact-1000-angle-left.jpg?v=1738076925",
+  co2: "https://www.mokalighting.com/cdn/shop/files/5_3_8f36f2b7-96ab-4e4f-aeef-52ee76f60b2a.webp?v=1779939682&width=1946",
+  coldSpark: "https://www.optonicaled.com/uploads/live/product_images/style_compressed/Cold-Spark-Machine-750W_1716190206.jpg",
+  smoke: "https://www.wwave.com.au/media/catalog/product/cache/da20bcb2c1a3edb4230d78336f4e1a53/b/e/beamz-s3500-smoke-machine-dmx-Wwave-For-Sale-Buy-0.jpg",
+  haze: "https://images.musicstore.de/langtextbilder/1280/lightmaxx-vega-haze-9004lig0015637-000_LIG0015637-000.jpg",
+  laser: "https://casamusicalomarmusic.com/wp-content/uploads/2023/08/LIGHTING-PRO-LT-L506-LASER.webp",
+  stage: "https://thumbs.static-thomann.de/thumb/padthumb600x600/pics/bdb/_29/295737/12697956_800.jpg",
+  truss: "https://dyproaudio.co.uk/cdn/shop/files/global-truss-f33-standard-3-0m-truss-dy-pro-audio-1.jpg?v=1759257172&width=1000",
+  trussTower: "https://www.titanav.co/cdn/shop/files/KIT-0028.jpg?crop=center&height=1200&v=1762759695&width=1200",
+  ledScreen: "https://hheventeu.b-cdn.net/wp-content/uploads/2022/12/led-screen-p.2.9-2.jpg",
+  vx1000: "https://www.adj.eu/media/catalog/product/cache/6517c62f5899ad6aa0ba23ceb3eeff97/V/X/VX1000_Front.png",
+  fiber: "https://thumbs.static-thomann.de/thumb/padthumb600x600/pics/bdb/_46/466017/16451326_800.jpg",
+  powerCable32: "https://cinemattaglx.com/cdn/shop/products/32A_415V_IP67_6mm_Extension_1-S_5f5767e8-4d79-41f7-9744-543bf7483fa4_1200x1200.jpg?v=1707651755",
+  powerCable63: "https://www.allhitech.it/94-large_default/cavo-32a-trifase-5-poli.jpg",
+  distribution: "https://thumbs.static-thomann.de/thumb/padthumb600x600/pics/bdb/_53/531541/16881946_800.jpg",
+  distributionY: "https://cdn.cybassets.com/media/W1siZiIsIjI0Mzk4L3Byb2R1Y3RzLzQwNTQyOTM0LzE2ODE4NzMzNTJfY2Y2ZTVhYmVjNjc5N2JiOGY4YWMuanBlZyJdXQ.jpeg?sha=edc40db3060b2114",
+  powercon: "https://thumbs.static-thomann.de/thumb/padthumb600x600/pics/bdb/_55/556903/17987362_800.jpg",
+  cable: "https://thumbs.static-thomann.de/thumb/padthumb600x600/pics/bdb/_19/198253/10877417_800.jpg",
+  powerLink: "https://thumbs.static-thomann.de/thumb/padthumb600x600/pics/bdb/_29/293237/19268648_800.jpg",
+  multicore: "https://thumbs.static-thomann.de/thumb/padthumb600x600/pics/bdb/_47/477866/14860195_800.jpg",
+  extension: "https://thumbs.static-thomann.de/thumb/padthumb600x600/pics/bdb/_41/415347/12779292_800.jpg"
+};
+
 window.ddProducts = [
   {
     id: "rcf-hdl-10",
     category: "sunet",
     categoryLabel: "Sunet",
     name: "RCF HDL 10-A",
-    image: "https://www.rcf.it/documents/20124/1238303/HDL10-A-tour.jpg/76956986-055b-2088-2d21-9e383f857b56?t=1643123670832&version=1.0",
+    quantity: "10 buc",
+    image: ddImages.rcfHdl10,
     sourceUrl: "https://www.rcf.it/en/products/product-detail/hdl-10-a",
     showcaseFit: "cover",
     showcasePadding: "0px",
     short: "Line array activ compact pentru evenimente indoor, outdoor și sisteme rapide de montat.",
-    specs: [
-      "2 x 8 inch woofer + driver compresie 2 inch",
-      "65 Hz - 20 kHz",
-      "133 dB max SPL",
-      "1400 W peak / 700 W RMS",
-      "Acoperire 100° x 15°",
-      "20.4 kg"
-    ]
+    specs: ["2 x 8 inch woofer + driver compresie 2 inch", "65 Hz - 20 kHz", "133 dB max SPL", "1400 W peak / 700 W RMS", "Acoperire 100° x 15°", "20.4 kg"]
   },
   {
     id: "rcf-hdl-20",
     category: "sunet",
     categoryLabel: "Sunet",
     name: "RCF HDL 20-A",
-    image: "https://www.rcf.it/documents/20124/1238303/HDL-20-A-cool-tour-sound.jpg/eda0ea2b-3d87-b85d-e213-948ddc75e45b?t=1642756339821&version=2.0",
+    quantity: "10 buc",
+    image: ddImages.rcfHdl20,
     sourceUrl: "https://www.rcf.it/en/products/product-detail/hdl-20-a",
     showcaseFit: "cover",
     showcasePadding: "0px",
     short: "Line array activ cu două difuzoare de 10 inch, potrivit pentru producții mai mari.",
-    specs: [
-      "2 x 10 inch woofer + driver compresie 2 inch",
-      "55 Hz - 20 kHz",
-      "135 dB max SPL",
-      "1400 W peak / 700 W RMS",
-      "Acoperire 100° x 15°",
-      "30.2 kg"
-    ]
+    specs: ["2 x 10 inch woofer + driver compresie 2 inch", "55 Hz - 20 kHz", "135 dB max SPL", "1400 W peak / 700 W RMS", "Acoperire 100° x 15°", "30.2 kg"]
   },
   {
     id: "rcf-sub-8008",
     category: "sunet",
     categoryLabel: "Sunet",
     name: "RCF SUB 8008-AS",
-    image: "https://www.rcf.it/documents/20128/825331/000_SUB-8008-AS-LEFT.png/76abca59-7f74-fae6-cdbd-44276fb672be?version=2.0&t=1707406201187&imagePreview=1",
+    quantity: "4 buc",
+    image: ddImages.rcfSub,
     sourceUrl: "https://www.rcf.it/en/products/product-detail/sub-8008-as",
     showcaseScale: "1.18",
     showcaseY: "-3%",
     short: "Subwoofer activ dublu de 18 inch pentru bass cu impact în evenimente live.",
-    specs: [
-      "2 x 18 inch woofer, 4 inch v.c.",
-      "30 Hz - 120 Hz",
-      "137 dB max SPL",
-      "4400 W peak",
-      "PowerCON TRUE1 TOP IN/OUT",
-      "80 kg"
-    ]
+    specs: ["2 x 18 inch woofer, 4 inch v.c.", "30 Hz - 120 Hz", "137 dB max SPL", "4400 W peak", "PowerCON TRUE1 TOP IN/OUT", "80 kg"]
   },
   {
     id: "midas-m32r",
     category: "sunet",
     categoryLabel: "Sunet",
-    name: "Midas M32R LIVE",
-    image: "https://cdn-media.empowertribe.com/5cc0fa7a6b0b448e814712aa9b4fc799/Image_MI_0603-AEP_M32R-LIVE_Catalog_B.png",
+    name: "Consolă Midas M32R",
+    quantity: "1 buc",
+    image: ddImages.midas,
     sourceUrl: "https://www.midasconsoles.com/en/products/0603-AEP",
-    short: "Mixer digital pentru live și studio, bun pentru concerte, conferințe și producții complexe.",
-    specs: [
-      "40 canale de intrare",
-      "16 preamplificatoare Midas PRO",
-      "25 mix buses",
-      "Live multitrack recording",
-      "Format rack/desktop",
-      "Potrivit pentru operare live"
-    ]
+    short: "Mixer digital pentru live, conferințe și producții complexe.",
+    specs: ["40 canale de intrare", "16 preamplificatoare Midas PRO", "25 mix buses", "Live multitrack recording", "Format rack/desktop", "Potrivit pentru operare live"]
   },
   {
-    id: "wing-compact",
+    id: "behringer-wing",
     category: "sunet",
     categoryLabel: "Sunet",
-    name: "WING Compact",
-    image: "https://media.sweetwater.com/m/products/image/e3a7c15c455d958RSUAz9UbPlv4y6MN5tTU2I36x.jpg?ha=e3a7c15c450a2a55eebc5c788187d42e65dcac1b&quality=82&width=750",
+    name: "Consolă Behringer Wing",
+    quantity: "1 buc",
+    image: ddImages.wing,
     sourceUrl: "https://www.behringer.com/en/products/0603-AEV",
     short: "Consolă digitală modernă pentru setup-uri cu multe surse și control rapid.",
-    specs: [
-      "48 canale / 28 buses full stereo",
-      "24 preamplificatoare Midas PRO",
-      "13 fadere motorizate de 100 mm",
-      "Touchscreen de 10 inch",
-      "48 x 48 USB audio interface",
-      "3 porturi AES50"
-    ]
+    specs: ["48 canale / 28 buses full stereo", "24 preamplificatoare Midas PRO", "13 fadere motorizate", "Touchscreen de 10 inch", "48 x 48 USB audio interface", "3 porturi AES50"]
+  },
+  {
+    id: "db-b-hype-12",
+    category: "sunet",
+    categoryLabel: "Sunet",
+    name: "dB Technologies B-Hype 12",
+    image: ddImages.dbHype,
+    sourceUrl: "https://www.dbtechnologies.com/us/products/b-hype",
+    short: "Boxă activă de 12 inch pentru evenimente mai mici, monitorizare sau zone secundare.",
+    specs: ["12 inch woofer + driver 1 inch", "400 W peak / 200 W RMS", "126 dB max SPL", "55 Hz - 20 kHz", "Horn 85° x 85°", "13.9 kg"]
+  },
+  {
+    id: "db-subwoofer-18",
+    category: "sunet",
+    categoryLabel: "Sunet",
+    name: "dB Technologies SUB 618",
+    image: ddImages.dbSub,
+    sourceUrl: "https://www.dbtechnologies.com/us/products/sub-series/sub-618",
+    short: "Subwoofer activ de 18 inch pentru completarea setup-urilor compacte.",
+    specs: ["1 x 18 inch bass-reflex", "600 W RMS / 1200 W peak", "35 Hz - 130 Hz", "133 dB max SPL", "Intrări / ieșiri XLR", "31.1 kg"]
   },
   {
     id: "shure-sm58",
     category: "sunet",
     categoryLabel: "Sunet",
     name: "Shure SM58",
-    image: "https://thumbs.static-thomann.de/thumb/padthumb600x600/pics/bdb/_10/105767/8805536_800.jpg",
+    image: ddImages.shure,
     visual: "microphone",
     sourceUrl: "https://www.shure.com/en-US/products/microphones/sm58",
     short: "Microfon vocal dinamic, folosit constant pentru voce live și discursuri.",
-    specs: [
-      "Tip dinamic cardioid",
-      "50 Hz - 15 kHz",
-      "Filtru pop sferic integrat",
-      "Shock-mount pneumatic",
-      "Conector XLR",
-      "Construcție robustă pentru scenă"
-    ]
+    specs: ["Tip dinamic cardioid", "50 Hz - 15 kHz", "Filtru pop sferic integrat", "Shock-mount pneumatic", "Conector XLR", "Construcție robustă pentru scenă"]
   },
   {
     id: "gravity-speaker-stand",
     category: "sunet",
     categoryLabel: "Sunet",
-    name: "Gravity SP 5211 B",
-    image: "https://cdn-shop.adamhall.com/ORIGINAL/media/MARKEN/GRAVITY/GSP5211B/GSP5211B_1.jpg",
+    name: "Stative boxe Gravity",
+    image: ddImages.gravitySpeaker,
     sourceUrl: "https://www.gravitystands.com/en/products/speaker-stands/2960/sp-5211-b",
-    short: "Stativ de boxă cu trepied, stabil pentru setup-uri mobile.",
-    specs: [
-      "Sarcină maximă 50 kg",
-      "Înălțime maximă 195 cm",
-      "Tub aluminiu powder coated",
-      "Construcție cu trepied",
-      "Potrivit pentru boxe cu flanșă standard",
-      "Inele de culoare interschimbabile"
-    ]
+    short: "Stative stabile pentru boxe și setup-uri mobile.",
+    specs: ["Sarcină maximă 50 kg", "Înălțime maximă 195 cm", "Construcție cu trepied", "Tub aluminiu powder coated", "Pentru boxe cu flanșă standard", "Montaj rapid"]
   },
   {
     id: "gravity-mic-stand",
     category: "sunet",
     categoryLabel: "Sunet",
-    name: "Gravity MS 4322 B",
-    image: "https://cdn-shop.adamhall.com/ORIGINAL/media/MARKEN/GRAVITY/GMS4322B/GMS4322B_1.jpg",
+    name: "Stative microfon Gravity",
+    image: ddImages.gravityMic,
     sourceUrl: "https://www.gravitystands.com/en/products/microphone-stands/2909/ms-4322-b",
-    short: "Stativ de microfon cu braț telescopic, util pentru conferințe și live.",
-    specs: [
-      "Înălțime maximă 169 cm",
-      "Braț telescopic cu reglaj în 2 puncte",
-      "Bază stabilă tip trepied",
-      "Construcție heavy-duty",
-      "Compatibil cu microfoane de scenă",
-      "Potrivit pentru vocal și discurs"
-    ]
+    short: "Stative de microfon cu braț telescopic pentru conferințe și live.",
+    specs: ["Înălțime maximă 169 cm", "Braț telescopic", "Bază tip trepied", "Construcție heavy-duty", "Pentru vocal și discurs", "Reglaj rapid"]
+  },
+  {
+    id: "moving-head",
+    category: "lumini",
+    categoryLabel: "Lumini",
+    name: "Moving Head",
+    quantity: "8 buc",
+    image: ddImages.movingHead,
+    visual: "moving",
+    short: "Cap mobil pentru mișcare, gobos, culoare și momente sincronizate pe scenă.",
+    specs: ["Control DMX", "Mișcare pan / tilt", "Programe auto și sound", "Montaj pe podea sau truss", "Pentru scenă și ring", "Modelul exact se confirmă la setup"]
+  },
+  {
+    id: "beam",
+    category: "lumini",
+    categoryLabel: "Lumini",
+    name: "Beam",
+    quantity: "10 buc",
+    image: ddImages.beam,
+    visual: "moving",
+    short: "Fascicule înguste și puternice pentru efecte vizibile în fum sau haze.",
+    specs: ["Beam cu fascicul concentrat", "Control DMX", "Pan / tilt motorizat", "Culori și strobe", "Montaj pe truss", "Pentru concerte și petreceri"]
+  },
+  {
+    id: "thunderwash",
+    category: "lumini",
+    categoryLabel: "Lumini",
+    name: "Thunderwash",
+    quantity: "10 buc",
+    image: ddImages.thunderWash,
+    sourceUrl: "https://www.cameolight.com/en/solutions/dj-musicians/static-lighting/floodlights/2402/thunder-wash-600-w",
+    short: "Efect de tip wash / blinder / strobe pentru energie vizuală pe scenă sau ring.",
+    specs: ["DMX input / output", "Moduri DMX multiple", "Dimmer și flash", "Master / slave / standalone", "Display LED pentru setări", "Control pe sunet"]
+  },
+  {
+    id: "wash",
+    category: "lumini",
+    categoryLabel: "Lumini",
+    name: "Wash",
+    quantity: "10 buc",
+    image: ddImages.thunderWash,
+    short: "Spălare de culoare pentru scenă, fundal, ring sau zone decorative.",
+    specs: ["Acoperire largă", "Control DMX", "Dimmer și strobe", "Culori pentru atmosferă", "Montaj pe truss sau stativ", "Potrivit indoor"]
   },
   {
     id: "led-bar",
     category: "lumini",
     categoryLabel: "Lumini",
     name: "LED Bar",
-    image: "https://audibax.com/wp-content/uploads/2024/01/Bar-1818-RGBWAUv-1-3.png",
+    quantity: "20 buc",
+    image: ddImages.ledBar,
     sourceUrl: "https://audibax.com/product/bar-1818-black-2/",
     short: "Bară LED pentru decor, scenă și spălare de culoare pe fundal sau ring.",
-    specs: [
-      "Control DMX512",
-      "RGBWA+UV, în funcție de model",
-      "Moduri auto / sound / master-slave",
-      "Dimmer și strobe",
-      "Alimentare 110-240V",
-      "Montaj pe stativ sau truss"
-    ]
+    specs: ["Control DMX512", "RGBWA+UV, în funcție de model", "Moduri auto / sound", "Dimmer și strobe", "Alimentare 110-240V", "Montaj pe stativ sau truss"]
   },
   {
-    id: "beam-moving-head",
+    id: "par-led",
     category: "lumini",
     categoryLabel: "Lumini",
-    name: "Beam / Moving Head",
-    image: "https://thumbs.static-thomann.de/thumb/padthumb600x600/pics/bdb/_38/384158/10894987_800.jpg",
-    visual: "moving",
-    sourceUrl: "https://www.thomannmusic.com/cameo_auro_spot_200.htm",
-    short: "Cap mobil pentru fascicule puternice, mișcare și momente de show pe scenă.",
-    specs: [
-      "Control DMX",
-      "Mișcare pan / tilt",
-      "Fascicul îngust pentru efecte vizibile",
-      "Culori, strobe și programe presetate",
-      "Montaj pe podea sau truss",
-      "Modelul exact se stabilește după eveniment"
-    ]
+    name: "PAR LED",
+    quantity: "10 buc",
+    image: ddImages.parLed,
+    short: "Proiectoare PAR LED pentru iluminat ambiental, scenă și accente de culoare.",
+    specs: ["Control DMX", "RGB / RGBW după model", "Unghi potrivit pentru wash", "Consum redus", "Montaj pe stativ sau truss", "Mod auto / sound"]
   },
   {
-    id: "thunder-wash",
+    id: "follow-spot",
     category: "lumini",
     categoryLabel: "Lumini",
-    name: "Thunder Wash",
-    image: "https://cdn-shop.adamhall.com/ORIGINAL/media/MARKEN/CAMEO/CLTW600W/CLTW600W_1.jpg",
-    sourceUrl: "https://www.cameolight.com/en/solutions/dj-musicians/static-lighting/floodlights/2402/thunder-wash-600-w",
-    short: "Efect de tip wash / blinder / strobe pentru energie vizuală pe scenă sau ring.",
-    specs: [
-      "DMX input / output pe XLR 3 pini",
-      "Moduri DMX multiple",
-      "Dimmer, flash și durată controlabile",
-      "Master / slave / standalone",
-      "Display LED pentru setări",
-      "Control pe sunet prin microfon integrat"
-    ]
+    name: "Follow Spot",
+    quantity: "1 buc",
+    image: ddImages.followSpot,
+    short: "Spot de urmărire pentru artiști, momente speciale, intrări și prezentări.",
+    specs: ["Operare manuală", "Fascicul concentrat", "Montaj pe trepied", "Pentru scenă și sală", "Dimming controlabil", "Ideal pentru intrări speciale"]
+  },
+  {
+    id: "co2-mk-c12",
+    category: "efecte",
+    categoryLabel: "Efecte",
+    name: "Mașină CO2 MOKA SFX MK-C12",
+    image: ddImages.co2,
+    sourceUrl: "https://www.mokalighting.com/products/moka-sfx-led-co2-jet-machine",
+    short: "Tun CO2 cu LED-uri RGB pentru coloane de fum rece la momente de impact.",
+    specs: ["Unghi ajustabil 0-90°", "12 x 3 W RGB LED", "Jet CO2 până la 8-10 m", "Control DMX512", "6 canale DMX", "Butelia/consumabilele se taxează separat"]
+  },
+  {
+    id: "scantei-reci",
+    category: "efecte",
+    categoryLabel: "Efecte",
+    name: "Mașini de scântei reci",
+    image: ddImages.coldSpark,
+    short: "Efect de tip fountain pentru momente foto, dansul mirilor și intrări spectaculoase.",
+    specs: ["Efect fără flacără deschisă", "Control DMX sau telecomandă", "Înălțime reglabilă după model", "Potrivit pentru interior cu aprobare", "Consumabil dedicat", "Se folosește conform regulilor locației"]
+  },
+  {
+    id: "fum-greu",
+    category: "efecte",
+    categoryLabel: "Efecte",
+    name: "Mașini de fum greu",
+    image: ddImages.smoke,
+    short: "Fum dens la nivelul podelei pentru dansuri, intrări și momente cu atmosferă cinematică.",
+    specs: ["Efect low fog", "Control temporizat", "Output mare pentru scenă/ring", "Pregătire înainte de moment", "Fluid/consumabil dedicat", "Se dimensionează după spațiu"]
+  },
+  {
+    id: "hazer",
+    category: "efecte",
+    categoryLabel: "Efecte",
+    name: "Hazere",
+    image: ddImages.haze,
+    short: "Ceață fină pentru a face razele de lumină vizibile în sală sau în exterior seara.",
+    specs: ["Output fin și constant", "Control DMX", "Fan reglabil după model", "Ideal pentru beam-uri și lasere", "Consum redus de lichid", "Folosire cu ventilație adecvată"]
+  },
+  {
+    id: "lasere",
+    category: "efecte",
+    categoryLabel: "Efecte",
+    name: "Lasere",
+    image: ddImages.laser,
+    short: "Efecte laser pentru show-uri de seară, ring și momente sincronizate cu luminile.",
+    specs: ["Culori RGB după model", "Control DMX", "Mod auto / sound", "Vizibilitate bună cu haze", "Poziționare sigură", "Operare responsabilă în public"]
   },
   {
     id: "scena-modulara",
     category: "scena",
     categoryLabel: "Scenă",
     name: "Buteci 2 x 1 m",
-    image: "https://thumbs.static-thomann.de/thumb/padthumb600x600/pics/bdb/_29/295737/12697956_800.jpg",
+    image: ddImages.stage,
     visual: "stage",
     sourceUrl: "https://www.thomannmusic.com/stairville_tour_stage_platform_2x1_m_odw.htm",
     short: "Platforme modulare pentru scenă, podium, pupitru DJ sau spațiu de prezentare.",
-    specs: [
-      "Modul standard 2 x 1 m",
-      "Configurații pe dimensiunea spațiului",
-      "Stabilizare înainte de utilizare",
-      "Potrivit indoor / outdoor",
-      "Înălțime și suprafață la cerere",
-      "Montaj rapid pe locație"
-    ]
+    specs: ["Modul standard 2 x 1 m", "Configurații pe dimensiunea spațiului", "Stabilizare înainte de utilizare", "Potrivit indoor / outdoor", "Înălțime și suprafață la cerere", "Montaj rapid pe locație"]
   },
   {
-    id: "truss-aluminiu",
-    category: "scena",
-    categoryLabel: "Scenă",
-    name: "Truss aluminiu",
-    image: "https://www.thomann.de/thumb/opengraph/pics/prod/156424.jpg",
+    id: "truss-1m",
+    category: "rigging",
+    categoryLabel: "Rigging",
+    name: "Grindă truss 1 m",
+    quantity: "10 buc",
+    image: ddImages.truss,
     sourceUrl: "https://www.milossystems.com/products/truss",
-    short: "Structură pentru susținerea luminilor, boxelor, decorului sau ecranelor LED.",
-    specs: [
-      "Grinzi de 1 m și 2 m",
-      "Finisaj argintiu sau negru",
-      "Conectori și pini pentru montaj rapid",
-      "Pentru lumini, sunet și video",
-      "Configurație după spațiu",
-      "Calcul de încărcare la proiecte mari"
-    ]
+    short: "Segment truss pentru structuri de lumini, sunet sau ecrane LED.",
+    specs: ["Lungime 1 m", "Aluminiu", "Pentru structuri modulare", "Conectori și pini la montaj", "Finisaj argintiu/negru după stoc", "Se configurează după proiect"]
   },
   {
-    id: "ecran-led",
+    id: "truss-2m",
+    category: "rigging",
+    categoryLabel: "Rigging",
+    name: "Grindă truss 2 m",
+    quantity: "10 buc",
+    image: ddImages.truss,
+    sourceUrl: "https://www.milossystems.com/products/truss",
+    short: "Segment truss de bază pentru deschideri și structuri tehnice.",
+    specs: ["Lungime 2 m", "Aluminiu", "Pentru lumini și video", "Montaj cu conectori", "Stoc pentru configurații mari", "Calcul de încărcare la proiecte mari"]
+  },
+  {
+    id: "truss-3m",
+    category: "rigging",
+    categoryLabel: "Rigging",
+    name: "Grindă truss 3 m",
+    quantity: "4 buc",
+    image: ddImages.truss,
+    short: "Segment lung pentru structuri cu mai puține îmbinări.",
+    specs: ["Lungime 3 m", "Aluminiu", "Pentru deschideri mai mari", "Conectori dedicați", "Transport și montaj tehnic", "Se folosește după planul de rigging"]
+  },
+  {
+    id: "truss-4m",
+    category: "rigging",
+    categoryLabel: "Rigging",
+    name: "Grindă truss 4 m",
+    quantity: "2 buc",
+    image: ddImages.truss,
+    short: "Segment truss pentru structuri mai ample sau deschideri principale.",
+    specs: ["Lungime 4 m", "Aluminiu", "Pentru scenă și ecrane", "Necesar transport dedicat", "Montaj tehnic", "Se verifică încărcarea înainte de eveniment"]
+  },
+  {
+    id: "truss-tower",
+    category: "rigging",
+    categoryLabel: "Rigging",
+    name: "Truss tower",
+    image: ddImages.trussTower,
+    short: "Turnuri truss pentru ridicarea luminilor, suporturi laterale sau puncte tehnice.",
+    specs: ["Structură verticală", "Bază stabilă", "Pentru lumini și efecte", "Înălțime după proiect", "Montaj cu echipă tehnică", "Se poziționează după planul locației"]
+  },
+  {
+    id: "modul-led-p39",
     category: "video",
     categoryLabel: "Video",
-    name: "Ecrane LED P2.9 / P3.9",
-    image: "https://hheventeu.b-cdn.net/wp-content/uploads/2022/12/led-screen-p.2.9-2.jpg",
+    name: "Modul LED Outdoor P3.9 1 x 0.5 m",
+    quantity: "50 buc",
+    image: ddImages.ledScreen,
     visual: "led",
     sourceUrl: "https://hhevent.eu/p2-9-led-screen/",
-    short: "Panouri LED modulare pentru prezentări, live feed, fundal de scenă și conținut vizual.",
-    specs: [
-      "Pixel pitch P2.9 sau P3.9",
-      "Dimensiune configurabilă pe module",
-      "Luminozitate pentru sală sau scenă",
-      "Conținut video / prezentări / live feed",
-      "Montaj pe structură adecvată",
-      "Procesare cu VX1000"
-    ]
+    short: "Module LED outdoor pentru ecrane configurabile, live feed și conținut vizual.",
+    specs: ["Pixel pitch P3.9", "Modul 1 x 0.5 m", "50 module în inventar", "Luminozitate pentru exterior", "Montaj pe structură adecvată", "Procesare cu VX1000"]
   },
   {
-    id: "vx1000",
+    id: "vx1000-pro",
     category: "video",
     categoryLabel: "Video",
-    name: "Novastar VX1000",
-    image: "https://www.adj.eu/media/catalog/product/cache/6517c62f5899ad6aa0ba23ceb3eeff97/V/X/VX1000_Front.png",
+    name: "Procesor VX1000 Pro",
+    quantity: "2 buc",
+    image: ddImages.vx1000,
     sourceUrl: "https://www.adj.eu/novastar-vx1000",
     short: "Controller și procesor video all-in-one pentru ecrane LED.",
-    specs: [
-      "Capacitate 6.5 milioane pixeli",
-      "Lățime maximă 10,240 px",
-      "Înălțime maximă 8,192 px",
-      "2 x HDMI 1.4, DVI, 3G-SDI, OPT",
-      "10 porturi Ethernet + 2 optical",
-      "483.6 x 351.2 x 50.1 mm, 4 kg"
-    ]
+    specs: ["Capacitate 6.5 milioane pixeli", "Lățime maximă 10,240 px", "Înălțime maximă 8,192 px", "2 x HDMI 1.4, DVI, 3G-SDI, OPT", "10 porturi Ethernet + 2 optical", "483.6 x 351.2 x 50.1 mm"]
   },
   {
-    id: "link-uri-alimentare",
-    category: "conectivitate",
-    categoryLabel: "Conectivitate",
-    name: "Link-uri de alimentare",
-    image: "https://thumbs.static-thomann.de/thumb/padthumb600x600/pics/bdb/_29/293237/19268648_800.jpg",
-    visual: "powerlink",
-    sourceUrl: "https://www.thomannmusic.com/stairville_power_twist_link_cable_50m.htm",
-    short: "Conectare rapidă între echipamente compatibile, cu mai puține trasee separate.",
-    specs: [
-      "Pentru echipamente compatibile",
-      "Reduc numărul de cabluri",
-      "Montaj mai ordonat",
-      "Verificate înainte de eveniment",
-      "Folosite la sunet, lumini și LED",
-      "Lungimi în funcție de setup"
-    ]
-  },
-  {
-    id: "powercon",
-    category: "conectivitate",
-    categoryLabel: "Conectivitate",
-    name: "Cabluri PowerCON",
-    image: "https://thumbs.static-thomann.de/thumb/padthumb600x600/pics/bdb/_55/556903/17987362_800.jpg",
-    visual: "powercon",
-    sourceUrl: "https://www.thomannmusic.com/neutrik_nkph1_a1a1_m001.htm",
-    short: "Cabluri de alimentare profesionale cu blocare mecanică pentru echipamente de scenă.",
-    specs: [
-      "Conector cu blocare",
-      "Pentru audio, video și lumini",
-      "Disponibile în lungimi diferite",
-      "Potrivite pentru aplicații mobile",
-      "Verificare înainte de montaj",
-      "Trasee curate pe scenă"
-    ]
-  },
-  {
-    id: "xlr-dmx",
-    category: "conectivitate",
-    categoryLabel: "Conectivitate",
-    name: "Cabluri XLR / DMX",
-    image: "https://thumbs.static-thomann.de/thumb/padthumb600x600/pics/bdb/_19/198253/10877417_800.jpg",
-    visual: "cable",
-    sourceUrl: "https://www.thomannmusic.com/cordial_cpd_05_fm.htm",
-    short: "Semnal audio balansat și control de lumini, pregătite pentru montaj rapid.",
-    specs: [
-      "XLR pentru semnal audio",
-      "DMX pentru control lumini",
-      "Lungimi multiple",
-      "Conectori verificați",
-      "Etichetare pe trasee mari",
-      "Pentru evenimente mici sau producții mari"
-    ]
-  },
-  {
-    id: "fibra-optica",
-    category: "conectivitate",
-    categoryLabel: "Conectivitate",
-    name: "Fibră optică pe rolă",
-    image: "https://thumbs.static-thomann.de/thumb/padthumb600x600/pics/bdb/_46/466017/16451326_800.jpg",
+    id: "fibra-150m",
+    category: "video",
+    categoryLabel: "Video",
+    name: "Fibră optică 150 m",
+    quantity: "1 buc",
+    image: ddImages.fiber,
     visual: "fiber",
-    sourceUrl: "https://www.thomannmusic.com/neutrik_nko2m_a_2_50.htm",
-    short: "Trasee lungi de semnal pentru ecrane LED, video sau control, fără aglomerare inutilă.",
-    specs: [
-      "Rolă pentru distanțe mari",
-      "Semnal stabil pe traseu lung",
-      "Utilă la ecrane LED și FOH",
-      "Conectori după setup",
-      "Montaj protejat",
-      "Testare înainte de show"
-    ]
+    short: "Traseu lung de semnal pentru ecran LED, FOH sau control video.",
+    specs: ["Lungime 150 m", "Rolă pentru transport", "Semnal stabil pe distanță mare", "Utilă la ecrane LED", "Conectori protejați", "Testare înainte de eveniment"]
   },
   {
-    id: "multicor-sunet",
-    category: "conectivitate",
-    categoryLabel: "Conectivitate",
-    name: "Multicor sunet",
-    image: "https://thumbs.static-thomann.de/thumb/padthumb600x600/pics/bdb/_47/477866/14860195_800.jpg",
-    visual: "snake",
-    sourceUrl: "https://www.thomannmusic.com/pro_snake_410_multicore.htm",
-    short: "Mai multe canale audio într-un singur traseu între scenă și mixer.",
-    specs: [
-      "Traseu scenă - pupitru",
-      "Canale multiple pe un singur cablu",
-      "Reduce aglomerația de cabluri",
-      "Pentru live, conferințe și formații",
-      "Etichetare pe capete",
-      "Verificare canal cu canal"
-    ]
+    id: "fibra-100m",
+    category: "video",
+    categoryLabel: "Video",
+    name: "Fibră optică 100 m",
+    quantity: "1 buc",
+    image: ddImages.fiber,
+    visual: "fiber",
+    short: "Traseu optic pentru conexiuni video și control pe distanțe medii-mari.",
+    specs: ["Lungime 100 m", "Rolă pentru transport", "Pentru video/control", "Montaj protejat", "Conectori verificați", "Testare înainte de show"]
   },
   {
-    id: "prelungitoare",
-    category: "conectivitate",
-    categoryLabel: "Conectivitate",
-    name: "Prelungitoare profesionale",
-    image: "https://thumbs.static-thomann.de/thumb/padthumb600x600/pics/bdb/_41/415347/12779292_800.jpg",
-    visual: "extension",
-    sourceUrl: "https://www.thomannmusic.com/varytec_cable_drum_ip44_25m_3x_15_mm.htm",
-    short: "Alimentare auxiliară pentru echipamente, poziționată curat și sigur.",
-    specs: [
-      "Lungimi diferite",
-      "Pentru consumatori tehnici",
-      "Așezare ordonată pe traseu",
-      "Verificare înainte de eveniment",
-      "Adaptate locației",
-      "Folosit împreună cu distribuții"
-    ]
-  },
-  {
-    id: "distributii-curent",
+    id: "cablu-trifazic-32a",
     category: "curent",
     categoryLabel: "Curent",
-    name: "Distribuții de curent",
-    image: "https://thumbs.static-thomann.de/thumb/padthumb600x600/pics/bdb/_53/531541/16881946_800.jpg",
+    name: "Cablu trifazic 32A",
+    quantity: "2 buc",
+    image: ddImages.powerCable32,
+    short: "Alimentare trifazică pentru distribuții și consumatori tehnici.",
+    specs: ["CEE 32A", "Trifazic 400V", "Pentru evenimente și scenă", "Conectori industriali", "Traseu dimensionat după consum", "Verificare înainte de montaj"]
+  },
+  {
+    id: "cablu-trifazic-63a",
+    category: "curent",
+    categoryLabel: "Curent",
+    name: "Cablu trifazic 63A",
+    quantity: "1 buc",
+    image: ddImages.powerCable63,
+    short: "Traseu principal de alimentare pentru setup-uri cu consum mai mare.",
+    specs: ["CEE 63A", "Trifazic 400V", "Pentru distribuții principale", "Conectori industriali", "Montaj tehnic", "Se folosește după disponibilitatea locației"]
+  },
+  {
+    id: "distributie-y",
+    category: "curent",
+    categoryLabel: "Curent",
+    name: "Distribuție Y",
+    quantity: "1 buc",
+    image: ddImages.distributionY,
+    visual: "distribution",
+    short: "Distribuție de tip Y pentru împărțirea controlată a alimentării tehnice.",
+    specs: ["Splitter trifazic", "Pentru trasee tehnice", "Conectori CEE", "Așezare ordonată", "Verificare înainte de eveniment", "Se folosește după planul de consum"]
+  },
+  {
+    id: "distributie-curent",
+    category: "curent",
+    categoryLabel: "Curent",
+    name: "Distribuție curent",
+    quantity: "2 buc",
+    image: ddImages.distribution,
     visual: "distribution",
     sourceUrl: "https://www.thomannmusic.com/pce_9130076_ischl_bv_cee_32a.htm",
     short: "Distribuții profesionale pentru alimentarea separată a sunetului, luminilor și video.",
-    specs: [
-      "Distribuție pe zone tehnice",
-      "Alimentare pentru sunet / lumini / video",
-      "Trasee dimensionate după consum",
-      "Curent trifazic 32A și 63A",
-      "125A la cerere specială",
-      "Planificare înainte de montaj"
-    ]
+    specs: ["Distribuție pe zone tehnice", "Pentru sunet / lumini / video", "Trasee dimensionate după consum", "Curent trifazic 32A și 63A", "125A la cerere specială", "Planificare înainte de montaj"]
+  },
+  {
+    id: "prelungitor-10m",
+    category: "prelungitoare",
+    categoryLabel: "Prelungitoare",
+    name: "Prelungitor 10 m",
+    quantity: "15 buc",
+    image: ddImages.extension,
+    visual: "extension",
+    short: "Prelungitor profesional pentru alimentare auxiliară pe trasee curate.",
+    specs: ["Lungime 10 m", "Pentru consumatori tehnici", "Poziționare ordonată", "Verificat înainte de eveniment", "Util pentru scenă și backstage", "Se folosește cu distribuții"]
+  },
+  {
+    id: "prelungitor-5m",
+    category: "prelungitoare",
+    categoryLabel: "Prelungitoare",
+    name: "Prelungitor 5 m",
+    quantity: "10 buc",
+    image: ddImages.extension,
+    visual: "extension",
+    short: "Prelungitor scurt pentru alimentări locale și poziții apropiate.",
+    specs: ["Lungime 5 m", "Pentru echipamente tehnice", "Traseu scurt și curat", "Verificare la montaj", "Util în scenă sau control", "Stoc pentru setup-uri rapide"]
+  },
+  {
+    id: "prelungitor-3m",
+    category: "prelungitoare",
+    categoryLabel: "Prelungitoare",
+    name: "Prelungitor 3 m",
+    quantity: "20 buc",
+    image: ddImages.extension,
+    visual: "extension",
+    short: "Prelungitor compact pentru alimentări punctuale în scenă sau pupitru.",
+    specs: ["Lungime 3 m", "Pentru consumatori apropiați", "Ușor de mascat", "Stoc mare pentru puncte multiple", "Verificat înainte de folosire", "Util cu prize/distribuții"]
+  },
+  {
+    id: "prelungitor-6-prize",
+    category: "prelungitoare",
+    categoryLabel: "Prelungitoare",
+    name: "Prelungitor 6 prize",
+    quantity: "10 buc",
+    image: ddImages.extension,
+    visual: "extension",
+    short: "Prelungitor multipriză pentru alimentarea accesoriilor și a zonelor de control.",
+    specs: ["6 prize", "Pentru consum redus/moderat", "Așezare pe zone tehnice", "Verificare înainte de eveniment", "Util la pupitru și backstage", "Se dimensionează după consum"]
+  },
+  {
+    id: "xlr-dmx",
+    category: "cabluri",
+    categoryLabel: "Cabluri",
+    name: "Cabluri XLR / DMX",
+    quantity: "60 buc",
+    image: ddImages.cable,
+    visual: "cable",
+    sourceUrl: "https://www.thomannmusic.com/cordial_cpd_05_fm.htm",
+    short: "Semnal audio balansat și control de lumini, pregătite pentru montaj rapid.",
+    specs: ["XLR pentru semnal audio", "DMX pentru control lumini", "Lungimi multiple", "Conectori verificați", "Etichetare pe trasee mari", "Pentru evenimente mici sau producții mari"]
+  },
+  {
+    id: "alimentare-ecran",
+    category: "cabluri",
+    categoryLabel: "Cabluri",
+    name: "Alimentare ecran",
+    quantity: "60 buc",
+    image: ddImages.powerLink,
+    visual: "powerlink",
+    short: "Cabluri dedicate pentru alimentarea modulelor de ecran LED.",
+    specs: ["Pentru module LED", "60 buc în inventar", "Trasee ordonate", "Conectori verificați", "Montaj rapid", "Se folosesc cu distribuția video"]
+  },
+  {
+    id: "link-ecran",
+    category: "cabluri",
+    categoryLabel: "Cabluri",
+    name: "Link ecran",
+    quantity: "60 buc",
+    image: ddImages.powerLink,
+    visual: "powerlink",
+    short: "Link-uri pentru conectarea rapidă între modulele și traseele ecranului LED.",
+    specs: ["Pentru ecran LED", "60 buc în inventar", "Conectare între module", "Reduce cablarea vizibilă", "Verificate înainte de montaj", "Pentru configurații P3.9"]
+  },
+  {
+    id: "alimentare-link-sunet",
+    category: "cabluri",
+    categoryLabel: "Cabluri",
+    name: "Alimentare / link sunet",
+    quantity: "30 buc",
+    image: ddImages.powerLink,
+    visual: "powerlink",
+    short: "Cabluri de alimentare și link pentru sistemele audio active.",
+    specs: ["Pentru boxe și subwoofere active", "30 buc în inventar", "Trasee mai curate", "Conectori verificați", "Pentru montaj rapid", "Se folosesc după configurația audio"]
+  },
+  {
+    id: "powercon",
+    category: "cabluri",
+    categoryLabel: "Cabluri",
+    name: "Cabluri PowerCON",
+    quantity: "40 buc",
+    image: ddImages.powercon,
+    visual: "powercon",
+    sourceUrl: "https://www.thomannmusic.com/neutrik_nkph1_a1a1_m001.htm",
+    short: "Cabluri de alimentare profesionale cu blocare mecanică pentru echipamente de scenă.",
+    specs: ["Conector cu blocare", "Pentru audio, video și lumini", "Disponibile în lungimi diferite", "Potrivite pentru aplicații mobile", "Verificare înainte de montaj", "Trasee curate pe scenă"]
+  },
+  {
+    id: "multicor-sunet",
+    category: "cabluri",
+    categoryLabel: "Cabluri",
+    name: "Multicor sunet",
+    image: ddImages.multicore,
+    visual: "snake",
+    sourceUrl: "https://www.thomannmusic.com/pro_snake_410_multicore.htm",
+    short: "Mai multe canale audio într-un singur traseu între scenă și mixer.",
+    specs: ["Traseu scenă - pupitru", "Canale multiple pe un singur cablu", "Reduce aglomerația de cabluri", "Pentru live, conferințe și formații", "Etichetare pe capete", "Verificare canal cu canal"]
   }
 ];

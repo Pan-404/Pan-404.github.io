@@ -12,6 +12,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
   <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.6.0/lib/qr-code-styling.js"></script>
+  <script src="../short-link.js"></script>
   <style>
     :root {
       --bg: #111111;
@@ -441,6 +442,7 @@
           </label>
           <div class="actions" style="margin-top: 14px;">
             <button class="ghost" id="compactLinkBtn" type="button">Compact link</button>
+            <button class="ghost" id="shortLinkBtn" type="button">Make short link</button>
           </div>
         </section>
 
@@ -571,6 +573,7 @@
       vcardPanel: document.getElementById("vcardPanel"),
       linkInput: document.getElementById("linkInput"),
       compactLinkBtn: document.getElementById("compactLinkBtn"),
+      shortLinkBtn: document.getElementById("shortLinkBtn"),
       vcardInputs: document.querySelectorAll("[data-vcard]"),
       dotStyle: document.getElementById("dotStyle"),
       cornerStyle: document.getElementById("cornerStyle"),
@@ -606,6 +609,11 @@
 
     // This encoder emits an ECI UTF-8 segment, so phone scanners keep Romanian diacritics.
     const eciQrReady = import("https://cdn.jsdelivr.net/npm/@nuintun/qrcode@5.0.3/+esm");
+    const qrAlphanumericPattern = /^[0-9A-Z $%*+\-./:]+$/;
+    const localPreviewHost = /^(localhost|127\.0\.0\.1|\[?::1\]?)$/i.test(window.location.hostname);
+    const githubPagesHost = /(^|\.)github\.io$/i.test(window.location.hostname);
+    const defaultOwnShortenerApi = localPreviewHost || githubPagesHost ? "" : "/api/shorten.php";
+    const ownShortenerApi = window.PAN_SHORTENER_API || defaultOwnShortenerApi;
 
     const qrCode = new QRCodeStyling({
       width: 720,
@@ -725,6 +733,78 @@
       }
     }
 
+    function getStaticShortBase() {
+      if (window.location.protocol === "http:" || window.location.protocol === "https:") {
+        return `${window.location.origin.toUpperCase()}/S/`;
+      }
+
+      return "HTTPS://PAN-404.GITHUB.IO/S/";
+    }
+
+    async function createServerShortLink(url) {
+      if (!ownShortenerApi) return null;
+
+      const response = await fetch(ownShortenerApi, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: JSON.stringify({ url })
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
+
+      const result = await response.json();
+      const shortUrl = result.shortUrl || result.short_url || result.url;
+
+      return typeof shortUrl === "string" && shortUrl ? shortUrl : null;
+    }
+
+    async function compressLink(value) {
+      const normalized = normalizeUrl(value);
+      const compacted = compactUrl(value);
+
+      try {
+        const serverShortLink = await createServerShortLink(compacted.value);
+
+        if (serverShortLink) {
+          return {
+            input: compacted.value,
+            output: serverShortLink,
+            saved: Math.max(0, normalized.length - serverShortLink.length),
+            method: "server"
+          };
+        }
+      } catch (error) {
+        // Fallback below keeps the generator usable if the server API is not configured yet.
+      }
+
+      if (!window.PanShortLink) {
+        throw new Error("Short link encoder missing.");
+      }
+
+      const output = `${getStaticShortBase()}${window.PanShortLink.encodeUrl(compacted.value)}`;
+
+      if (output.length >= compacted.value.length) {
+        return {
+          input: compacted.value,
+          output: compacted.value,
+          saved: Math.max(0, normalized.length - compacted.value.length),
+          method: "compact-only"
+        };
+      }
+
+      return {
+        input: compacted.value,
+        output,
+        saved: Math.max(0, normalized.length - output.length),
+        method: "static"
+      };
+    }
+
     function line(name, value) {
       return value ? `${name}:${escapeVCard(value)}` : "";
     }
@@ -799,11 +879,13 @@
     }
 
     async function createRawQr(data) {
-      const { Byte, Charset, Encoder } = await eciQrReady;
+      const { Alphanumeric, Byte, Charset, Encoder } = await eciQrReady;
       const correction = uploadedLogo ? "H" : els.errorCorrection.value;
-      const encoded = new Encoder({ level: correction }).encode(
-        new Byte(String(data), Charset.UTF_8)
-      );
+      const text = String(data);
+      const segment = qrAlphanumericPattern.test(text)
+        ? new Alphanumeric(text)
+        : new Byte(text, Charset.UTF_8);
+      const encoded = new Encoder({ level: correction }).encode(segment);
 
       return {
         getModuleCount: () => encoded.size,
@@ -1163,6 +1245,46 @@
         els.statusText.textContent = `Link compactat: ${compacted.saved} caractere mai putin.`;
       } else {
         els.statusText.textContent = "Linkul e deja destul de compact. Pentru un short link real ar trebui un serviciu/redirect.";
+      }
+    });
+
+    els.shortLinkBtn.addEventListener("click", async () => {
+      const before = clean(els.linkInput.value);
+
+      if (!before) {
+        els.statusText.textContent = "Pune un link mai intai.";
+        els.statusText.classList.add("warn");
+        return;
+      }
+
+      els.shortLinkBtn.disabled = true;
+      els.compactLinkBtn.disabled = true;
+      els.statusText.classList.remove("warn");
+      els.statusText.textContent = "Fac link scurt intern...";
+
+      try {
+        const compressed = await compressLink(before);
+        els.linkInput.value = compressed.output;
+        await applyQrUpdate();
+
+        if (compressed.method === "server" && compressed.saved > 0) {
+          els.statusText.textContent = `Short link pe server facut: ${compressed.saved} caractere mai putin.`;
+        } else if (compressed.method === "compact-only" && compressed.saved > 0) {
+          els.statusText.textContent = `Serverul de short link nu e activ aici. Am compactat local: ${compressed.saved} caractere mai putin.`;
+        } else if (compressed.method === "compact-only") {
+          els.statusText.textContent = "Serverul de short link nu e activ aici, iar varianta interna ar iesi mai lunga.";
+        } else if (compressed.saved > 0) {
+          els.statusText.textContent = `Link intern facut: ${compressed.saved} caractere mai putin si fara serviciu extern.`;
+        } else {
+          els.statusText.textContent = "Link intern facut. Pentru linkuri scurte poate iesi similar ca lungime.";
+        }
+      } catch (error) {
+        console.error(error);
+        els.statusText.textContent = "Nu am putut face linkul intern. Incearca din nou sau foloseste Compact link.";
+        els.statusText.classList.add("warn");
+      } finally {
+        els.shortLinkBtn.disabled = false;
+        els.compactLinkBtn.disabled = false;
       }
     });
 

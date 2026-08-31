@@ -1,0 +1,2 @@
+RewriteEngine On
+RewriteRule ^R/([0-9A-Z]+)$ api/redirect.php?c=$1 [L,QSA]

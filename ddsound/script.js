@@ -20,10 +20,17 @@ const serviceState = {
     labels: ["Atmosferă", "Mișcare", "Control"],
     meters: [88, 84, 90]
   },
+  efecte: {
+    color: "#ff7ad9",
+    title: "Efecte speciale cu operator",
+    copy: "CO2, scântei reci, fum greu, hazere și lasere pentru momente care trebuie planificate atent și folosite responsabil.",
+    labels: ["Impact", "Sincronizare", "Siguranță"],
+    meters: [90, 84, 92]
+  },
   scena: {
     color: "#9dffb0",
     title: "Scenă modulară și truss",
-    copy: "Buteci de 2 x 1 metri și truss de aluminiu de 1 m sau 2 m, în finisaj argintiu sau negru.",
+    copy: "Buteci de 2 x 1 metri, grinzi truss de 1-4 m și truss tower pentru lumini, video și susținere tehnică.",
     labels: ["Stabilitate", "Adaptare", "Montaj"],
     meters: [92, 82, 86]
   },
@@ -402,6 +409,17 @@ function createProductCard(product, options = {}) {
   category.className = "product-category";
   category.textContent = product.categoryLabel;
 
+  const meta = document.createElement("div");
+  meta.className = "product-meta";
+  meta.appendChild(category);
+
+  if (product.quantity) {
+    const quantity = document.createElement("span");
+    quantity.className = "product-quantity";
+    quantity.textContent = product.quantity;
+    meta.appendChild(quantity);
+  }
+
   const title = document.createElement("h3");
   title.textContent = product.name;
 
@@ -416,7 +434,7 @@ function createProductCard(product, options = {}) {
     specs.appendChild(item);
   });
 
-  body.append(category, title, short, specs);
+  body.append(meta, title, short, specs);
 
   const actions = document.createElement("div");
   actions.className = "product-actions";
@@ -586,6 +604,7 @@ function productMatches(product, filter, query) {
     product.name,
     product.categoryLabel,
     product.short,
+    product.quantity || "",
     ...product.specs
   ].join(" ").toLocaleLowerCase("ro-RO");
 
