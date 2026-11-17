@@ -12,6 +12,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
   <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.6.0/lib/qr-code-styling.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.js"></script>
   <script src="../short-link.js"></script>
   <style>
     :root {
@@ -113,6 +114,14 @@
       border-radius: 14px;
       background: rgba(0, 0, 0, 0.22);
       gap: 4px;
+    }
+
+    .mode-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
     }
 
     .mode-btn,
@@ -402,6 +411,7 @@
 
       .mode-switch,
       .mode-btn,
+      .mode-row > .ghost,
       .actions > *,
       .download-row > * {
         width: 100%;
@@ -429,9 +439,13 @@
 
     <section class="workspace">
       <div class="form-panel">
-        <div class="mode-switch" role="tablist" aria-label="Tip QR">
-          <button class="mode-btn active" type="button" data-mode="link" role="tab" aria-selected="true">Link</button>
-          <button class="mode-btn" type="button" data-mode="vcard" role="tab" aria-selected="false">vCard</button>
+        <div class="mode-row">
+          <div class="mode-switch" role="tablist" aria-label="Tip QR">
+            <button class="mode-btn active" type="button" data-mode="link" role="tab" aria-selected="true">Link</button>
+            <button class="mode-btn" type="button" data-mode="vcard" role="tab" aria-selected="false">vCard</button>
+          </div>
+          <button class="ghost" id="importQrBtn" type="button">Importa QR</button>
+          <input id="importQrInput" type="file" accept="image/png,image/jpeg,image/webp,image/gif,image/svg+xml,.png,.jpg,.jpeg,.webp,.gif,.svg">
         </div>
 
         <section class="panel" id="linkPanel">
@@ -574,6 +588,8 @@
       linkInput: document.getElementById("linkInput"),
       compactLinkBtn: document.getElementById("compactLinkBtn"),
       shortLinkBtn: document.getElementById("shortLinkBtn"),
+      importQrBtn: document.getElementById("importQrBtn"),
+      importQrInput: document.getElementById("importQrInput"),
       vcardInputs: document.querySelectorAll("[data-vcard]"),
       dotStyle: document.getElementById("dotStyle"),
       cornerStyle: document.getElementById("cornerStyle"),
@@ -840,6 +856,163 @@
 
       const hasContactData = Object.values(data).some(Boolean);
       return hasContactData ? rows.join("\r\n") : "";
+    }
+
+    function unescapeVCard(value) {
+      return String(value || "")
+        .replace(/\\n/gi, "\n")
+        .replace(/\\([\\;,])/g, "$1")
+        .trim();
+    }
+
+    function splitVCardValue(value) {
+      const parts = [];
+      let current = "";
+      let escaped = false;
+
+      for (const character of String(value || "")) {
+        if (escaped) {
+          current += `\\${character}`;
+          escaped = false;
+        } else if (character === "\\") {
+          escaped = true;
+        } else if (character === ";") {
+          parts.push(unescapeVCard(current));
+          current = "";
+        } else {
+          current += character;
+        }
+      }
+
+      if (escaped) current += "\\";
+      parts.push(unescapeVCard(current));
+      return parts;
+    }
+
+    function parseVCard(payload) {
+      const unfolded = String(payload || "").replace(/\r?\n[ \t]/g, "");
+      const entries = unfolded.split(/\r?\n/).map((row) => {
+        const separator = row.indexOf(":");
+        if (separator === -1) return null;
+
+        const descriptor = row.slice(0, separator);
+        const [name, ...parameters] = descriptor.split(";");
+        return {
+          name: name.toUpperCase(),
+          parameters: parameters.join(";").toUpperCase(),
+          rawValue: row.slice(separator + 1)
+        };
+      }).filter(Boolean);
+
+      const firstValue = (name) => {
+        const entry = entries.find((item) => item.name === name);
+        return entry ? unescapeVCard(entry.rawValue) : "";
+      };
+      const phones = entries.filter((item) => item.name === "TEL");
+      const phoneValue = (pattern) => {
+        const entry = phones.find((item) => pattern.test(item.parameters));
+        return entry ? unescapeVCard(entry.rawValue) : "";
+      };
+      const untypedPhone = phones.find((item) => !/(?:CELL|FAX)/i.test(item.parameters));
+      const nameParts = splitVCardValue((entries.find((item) => item.name === "N") || {}).rawValue);
+      const addressEntry = entries.find((item) => item.name === "ADR");
+      const address = addressEntry
+        ? splitVCardValue(addressEntry.rawValue).filter(Boolean).join(", ")
+        : "";
+
+      return {
+        name: firstValue("FN") || [nameParts[1], nameParts[0]].filter(Boolean).join(" "),
+        title: firstValue("TITLE"),
+        phone: phoneValue(/(?:^|[,;=])(?:WORK|VOICE)(?:$|[,;])/i) || unescapeVCard((untypedPhone || {}).rawValue),
+        mobile: phoneValue(/(?:^|[,;=])CELL(?:$|[,;])/i),
+        fax: phoneValue(/(?:^|[,;=])FAX(?:$|[,;])/i),
+        email: firstValue("EMAIL"),
+        org: firstValue("ORG"),
+        site: firstValue("URL"),
+        address
+      };
+    }
+
+    function expandImportedLink(value) {
+      try {
+        const url = new URL(value);
+        const match = url.pathname.match(/^\/S\/(.+)$/i);
+        if (match && window.PanShortLink) {
+          return window.PanShortLink.decodePayload(decodeURIComponent(match[1]));
+        }
+      } catch (error) {
+        // Plain text QR codes are valid too, so keep the original value.
+      }
+
+      return value;
+    }
+
+    async function applyImportedPayload(payload) {
+      const value = clean(payload);
+      if (!value) throw new Error("QR code without content.");
+
+      if (/^BEGIN:VCARD(?:\r?\n|$)/i.test(value)) {
+        const contact = parseVCard(value);
+        document.getElementById("nameInput").value = contact.name;
+        document.getElementById("titleInput").value = contact.title;
+        document.getElementById("phoneInput").value = contact.phone;
+        document.getElementById("mobileInput").value = contact.mobile;
+        document.getElementById("faxInput").value = contact.fax;
+        document.getElementById("emailInput").value = contact.email;
+        document.getElementById("orgInput").value = contact.org;
+        document.getElementById("siteInput").value = contact.site;
+        document.getElementById("addressInput").value = contact.address;
+        setMode("vcard");
+        await applyQrUpdate();
+        return "vCard importat. Poti modifica datele si descarca noul QR.";
+      }
+
+      els.linkInput.value = expandImportedLink(value);
+      setMode("link");
+      await applyQrUpdate();
+      return "QR importat. Poti modifica textul sau linkul si genera varianta noua.";
+    }
+
+    async function decodeQrImage(file) {
+      const objectUrl = URL.createObjectURL(file);
+
+      try {
+        const image = await loadImage(objectUrl);
+        const longestSide = Math.max(image.naturalWidth, image.naturalHeight);
+        const scale = Math.min(2400 / longestSide, Math.max(1, 1000 / longestSide));
+        const canvas = document.createElement("canvas");
+        const context = canvas.getContext("2d", { willReadFrequently: true });
+
+        canvas.width = Math.max(1, Math.round(image.naturalWidth * scale));
+        canvas.height = Math.max(1, Math.round(image.naturalHeight * scale));
+        context.fillStyle = "#ffffff";
+        context.fillRect(0, 0, canvas.width, canvas.height);
+        context.drawImage(image, 0, 0, canvas.width, canvas.height);
+
+        if ("BarcodeDetector" in window) {
+          try {
+            const detector = new BarcodeDetector({ formats: ["qr_code"] });
+            const results = await detector.detect(canvas);
+            if (results[0] && results[0].rawValue) return results[0].rawValue;
+          } catch (error) {
+            // jsQR below also works in browsers without BarcodeDetector support.
+          }
+        }
+
+        if (typeof window.jsQR !== "function") {
+          throw new Error("QR decoder did not load.");
+        }
+
+        const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+        const result = window.jsQR(imageData.data, canvas.width, canvas.height, {
+          inversionAttempts: "attemptBoth"
+        });
+
+        if (!result || !result.data) throw new Error("QR code not found.");
+        return result.data;
+      } finally {
+        URL.revokeObjectURL(objectUrl);
+      }
     }
 
     function getPayload() {
@@ -1220,6 +1393,30 @@
 
     els.modeButtons.forEach((button) => {
       button.addEventListener("click", () => setMode(button.dataset.mode));
+    });
+
+    els.importQrBtn.addEventListener("click", () => els.importQrInput.click());
+
+    els.importQrInput.addEventListener("change", async (event) => {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      els.importQrBtn.disabled = true;
+      els.statusText.classList.remove("warn");
+      els.statusText.textContent = "Citesc codul QR...";
+
+      try {
+        const payload = await decodeQrImage(file);
+        const message = await applyImportedPayload(payload);
+        els.statusText.textContent = message;
+      } catch (error) {
+        console.error(error);
+        els.statusText.textContent = "Nu am putut citi codul QR. Incearca o imagine mai clara, completa si fara reflexii.";
+        els.statusText.classList.add("warn");
+      } finally {
+        els.importQrBtn.disabled = false;
+        els.importQrInput.value = "";
+      }
     });
 
     els.linkInput.addEventListener("input", applyQrUpdate);
